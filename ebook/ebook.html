@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/ebook.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Cookie|Dancing+Script|Galada|Great+Vibes|Lobster+Two|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+    <div class="container">
+        <div>
+           <div class="col-12" style="height: 60px;background-color: #2B3843">
+               <div class="col-12">
+                   <p class="fonts" style="float: left">EbookBari</p>
+                  <ul class="main-ul">
+
+                      <li><a href="" class="headers"><i class="fab fa-google"></i></a></li>
+                      <li><a href="" class="headers"><i class="fa fa-youtube"></i></a></li>
+                      <li><a href="" class="headers"><i class="fa fa-snapchat"></i></a></li>
+                      <li><a href="" class="headers"><i class="fa fa-facebook"></i></a></li>
+                  </ul>
+               </div>
+           </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-12 menu-height" id="navbar">
+                <nav>
+                    <ul class="main-ul">
+                        <li class="main-li"><a href="index.html" class="menu" style="padding: 10px">হোম</a></li>
+
+                        <li class="main-li"><a href="" class="menu" style="padding: 10px">বাংলা বুক
+                        </a>
+                            <ul class="main-ul">
+                                <li class="second-li"><a href="hindi.html" class="menu" style="padding: 10px;font-size: 15px">কাজী নজরুল ইসলাম</a></li>
+                                <li class="second-li"><a href="english.html" class="menu" style="padding: 10px;font-size: 15px">হুমায়ন আহমেদ</a></li>
+                                <li class="second-li"><a href="bangla.html" class="menu" style="padding: 10px;font-size: 15px">জাফর ইকবাল</a></li>
+                                <li class="second-li"><a href="tamil.html" class="menu" style="padding: 10px;font-size: 15px">ফারুক আহমেদ</a></li>
+                            </ul>
+                        </li>
+                        <li class="main-li"><a href="" target="_blank" class="menu" style="padding: 10px">অনুবাদ বই</a></li>
+                        <li class="main-li"><a href="" target="_blank" class="menu" style="padding: 10px"> ইসলামিক বই</a></li>
+                        <li class="main-li"><a href="http://www.nctb.gov.bd/site/page/63728c01-bbb8-40ab-8dad-0b476e5dfeb6/%E0%A7%A8%E0%A7%A6%E0%A7%A7%E0%A7%AD-%E0%A6%B6%E0%A6%BF%E0%A6%95%E0%A7%8D%E0%A6%B7%E0%A6%BE%E0%A6%AC%E0%A6%B0%E0%A7%8D%E0%A6%B7%E0%A7%87%E0%A6%B0-%E0%A6%B8%E0%A6%95%E0%A6%B2-%E0%A6%B8%E0%A7%8D%E0%A6%A4%E0%A6%B0%E0%A7%87%E0%A6%B0-%E0%A6%AA%E0%A6%BE%E0%A6%A0%E0%A7%8D%E0%A6%AF%E0%A6%AA%E0%A7%81%E0%A6%B8%E0%A7%8D%E0%A6%A4%E0%A6%95%E0%A7%87%E0%A6%B0-%E0%A6%A4%E0%A6%BE%E0%A6%B2%E0%A6%BF%E0%A6%95%E0%A6%BE" target="_blank" class="menu" style="padding: 10px">NCTB</a></li>
+                        <li class="main-li"><a href="about%20us.html" class="menu" style="padding: 10px">কৌতুক</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+
+        <div class="col-12 sliders">
+            <div style="width: 100%">
+                <img class="mySlides" src="image/Himu-Somogro22.jpg" style="width:100%">
+                <img class="mySlides" src="image/Bengbook_Slider.jpg" style="width:100%">
+            </div>
+
+                <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+
+
+            <script>
+                var slideIndex = 1;
+                showDivs(slideIndex);
+
+                function plusDivs(n) {
+                    showDivs(slideIndex += n);
+                }
+
+                function showDivs(n) {
+                    var i;
+                    var x = document.getElementsByClassName("mySlides");
+                    if (n > x.length) {slideIndex = 1}
+                    if (n < 1) {slideIndex = x.length}
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                    }
+                    x[slideIndex-1].style.display = "block";
+                }
+            </script>
+
+        </div>
+
+        <div>
+
+            <div class="col-9">
+                <div style="background-color: #2B3843;border-radius: 20px">
+                    <p class="fonts" style="text-align: center">Islamic Book</p>
+                </div>
+                <div class="row">
+                    <div class="col-3 content col-m6 height">
+                        <div>
+                            <img src="image/isbook1.jpg" class="content-image"/>
+                            <div>
+                                <h3 class="fnt">101 madani ful</h3>
+                            </div>
+                            <a href="" class="btns">View</a>
+                        </div>
+
+                    </div>
+                    <div class="col-3 content col-m6 height">
+                        <div>
+                            <img src="image/isbook2.jpg" class="content-image"/>
+                            <div>
+                                <h3 class="fnt">biddut bebohar</h3>
+
+                            </div>
+                            <a href="" class="btns">View</a>
+                        </div>
+
+                    </div>
+                    <div class="col-3 content col-m6 height">
+                        <div>
+                            <img src="image/isbook3.jpg" class="content-image"/>
+                            <div>
+                                <h3 class="fnt">kalo golam</h3>
+                            </div>
+                            <a href="" class="btns">View</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            </div>
+
+            <div class="col-3" style="background-color: #2bd6ff;height: 50px;border-radius: 10px" >
+                <p style="font-family: 'Berkshire Swash';text-align: center">All book</p>
+                <div style="font-size: 18px;background-color: #263238;height: 425px;color: white;border: 1px solid #2bd6ff">
+                    <ul style="list-style-type: square">
+                        <li><a href="index.html">হোম</a></li>
+
+                        <li><a href=''>বাংলা বুক</a></li>
+                        <li><a href="hindi.html">কাজী নজরুল ইসলাম </a></li>
+                        <li><a href="english.html">হুমায়ন আহমেদ</a></li>
+                        <li><a href="bangla.html">জাফর ইকবাল</a></li>
+                        <li><a href="tamil.html">ফারুক আহমেদ</a></li>
+
+
+                        <li><a href="" target="_blank">অনুবাদ বই</a></li>
+                        <li><a href="" target="_blank"> ইসলামিক বই</a></li>
+                        <li><a href="http://www.nctb.gov.bd/site/page/63728c01-bbb8-40ab-8dad-0b476e5dfeb6/%E0%A7%A8%E0%A7%A6%E0%A7%A7%E0%A7%AD-%E0%A6%B6%E0%A6%BF%E0%A6%95%E0%A7%8D%E0%A6%B7%E0%A6%BE%E0%A6%AC%E0%A6%B0%E0%A7%8D%E0%A6%B7%E0%A7%87%E0%A6%B0-%E0%A6%B8%E0%A6%95%E0%A6%B2-%E0%A6%B8%E0%A7%8D%E0%A6%A4%E0%A6%B0%E0%A7%87%E0%A6%B0-%E0%A6%AA%E0%A6%BE%E0%A6%A0%E0%A7%8D%E0%A6%AF%E0%A6%AA%E0%A7%81%E0%A6%B8%E0%A7%8D%E0%A6%A4%E0%A6%95%E0%A7%87%E0%A6%B0-%E0%A6%A4%E0%A6%BE%E0%A6%B2%E0%A6%BF%E0%A6%95%E0%A6%BE" target="_blank">NCTB</a></li>
+                        <li><a href="about%20us.html">মধুসূধন দত</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        <div>
+
+            <div class="col-9 wood" style="background-color: ;">
+                <div style="background-color: #2B3843;border-radius: 20px">
+                    <p class="fonts" style="text-align: center">Humayan Ahamed </p>
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <div class="col-3 content col-m6 height">
+                            <div>
+                                <img src="image/isbook1.jpg" class="content-image"/>
+                                <div>
+                                    <h3 class="fnt">101 madani ful</h3>
+                                </div>
+                                <a href="" class="btns">View</a>
+                            </div>
+
+                        </div>
+                        <div class="col-3 content col-m6 height">
+                            <div>
+                                <img src="image/isbook2.jpg" class="content-image"/>
+                                <div>
+                                    <h3 class="fnt">biddut bebohar</h3>
+
+                                </div>
+                                <a href="" class="btns">View</a>
+                            </div>
+
+                        </div>
+                        <div class="col-3 content col-m6 height">
+                            <div>
+                                <img src="image/isbook3.jpg" class="content-image"/>
+                                <div>
+                                    <h3 class="fnt">kalo golam</h3>
+                                </div>
+                                <a href="" class="btns">View</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+        </div>
+        <div class="col-3" style="background-color: #2bd6ff;height: 50px;border-radius: 10px" >
+            <p style="font-family: 'Berkshire Swash';text-align: center">Recent </p>
+            <div class="wall" style="padding: 20px;font-size: 18px;background-color: #585858;height: 1500px;color: white;border: 0px solid #2bd6ff">
+                <ul style="list-style-type: square">
+                    <li><a href="hindi.html">কাজী নজরুল ইসলাম </a></li>
+                    <li><a href="english.html">হুমায়ন আহমেদ</a></li>
+                    <li><a href="bangla.html">জাফর ইকবাল</a></li>
+                    <li><a href="tamil.html">ফারুক আহমেদ</a></li>
+
+
+                    <li><a href="" target="_blank">অনুবাদ বই</a></li>
+                    <li><a href="" target="_blank"> ইসলামিক বই</a></li>
+                    <li><a href="http://www.nctb.gov.bd/site/page/63728c01-bbb8-40ab-8dad-0b476e5dfeb6/%E0%A7%A8%E0%A7%A6%E0%A7%A7%E0%A7%AD-%E0%A6%B6%E0%A6%BF%E0%A6%95%E0%A7%8D%E0%A6%B7%E0%A6%BE%E0%A6%AC%E0%A6%B0%E0%A7%8D%E0%A6%B7%E0%A7%87%E0%A6%B0-%E0%A6%B8%E0%A6%95%E0%A6%B2-%E0%A6%B8%E0%A7%8D%E0%A6%A4%E0%A6%B0%E0%A7%87%E0%A6%B0-%E0%A6%AA%E0%A6%BE%E0%A6%A0%E0%A7%8D%E0%A6%AF%E0%A6%AA%E0%A7%81%E0%A6%B8%E0%A7%8D%E0%A6%A4%E0%A6%95%E0%A7%87%E0%A6%B0-%E0%A6%A4%E0%A6%BE%E0%A6%B2%E0%A6%BF%E0%A6%95%E0%A6%BE" target="_blank">NCTB</a></li>
+                    <li><a href="about%20us.html">মধুসূধন দত</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div>
+
+            <div class="col-9 wood" style="background-color: ">
+                <div style="background-color: #2B3843;border-radius: 20px">
+                    <p class="fonts" style="text-align: center">Translated Book</p>
+                </div>
+                <div class="row">
+                    <div class="col-3 content col-m6 height">
+                        <div>
+                            <img src="image/isbook1.jpg" class="content-image"/>
+                            <div>
+                                <h3 class="fnt">101 madani ful</h3>
+                            </div>
+                            <a href="" class="btns">View</a>
+                        </div>
+
+                    </div>
+                    <div class="col-3 content col-m6 height">
+                        <div>
+                            <img src="image/isbook2.jpg" class="content-image"/>
+                            <div>
+                                <h3 class="fnt">biddut bebohar</h3>
+
+                            </div>
+                            <a href="" class="btns">View</a>
+                        </div>
+
+                    </div>
+                    <div class="col-3 content col-m6 height">
+                        <div>
+                            <img src="image/isbook3.jpg" class="content-image"/>
+                            <div>
+                                <h3 class="fnt">kalo golam</h3>
+                            </div>
+                            <a href="" class="btns">View</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+        <div>
+
+            <div class="col-9 wood" style="background-color:">
+                <div style="background-color: #2B3843;border-radius: 20px">
+                    <p class="fonts" style="text-align: center">Science Fiction</p>
+                </div>
+                <div class="row">
+                    <div class="col-3 content col-m6 height">
+                        <div>
+                            <img src="image/isbook1.jpg" class="content-image"/>
+                            <div>
+                                <h3 class="fnt">101 madani ful</h3>
+                            </div>
+                            <a href="" class="btns">View</a>
+                        </div>
+
+                    </div>
+                    <div class="col-3 content col-m6 height">
+                        <div>
+                            <img src="image/isbook2.jpg" class="content-image"/>
+                            <div>
+                                <h3 class="fnt">biddut bebohar</h3>
+
+                            </div>
+                            <a href="" class="btns">View</a>
+                        </div>
+
+                    </div>
+                    <div class="col-3 content col-m6 height">
+                        <div>
+                            <img src="image/isbook3.jpg" class="content-image"/>
+                            <div>
+                                <h3 class="fnt">kalo golam</h3>
+                            </div>
+                            <a href="" class="btns">View</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-12">
+            <div style="height: 300px;background-color: #2B3843">
+                <div class="col-3" style="margin-left: 20px">
+                    <p style="font-size: 25px;text-align: center;color: white;margin-left: 6px">Ebook Bari.com</p>
+                    <br/>
+                    <p style="color: white;letter-spacing: 2px;word-spacing: 5px;border-right: 2px solid white;margin: 15px; font-size: 12px">Lorem deserunt expedita molestias nihil? Aperiam beatae cum distinctio endis.</p>
+                </div>
+                <div class="col-3">
+                    <p style="color: white;font-size: 20px;margin-left: 45px">About Us</p><br/>
+                    <ul style="list-style-type: none">
+                        <li><a href="" style="color: aliceblue;text-decoration: none;word-spacing: 3px;font-size: 14px">Terms and conditions</a></li>
+                        <li><a href="" style="color: aliceblue;text-decoration: none;word-spacing: 3px;">Private Policy</a></li>
+                        <li><a href="" style="color: aliceblue;text-decoration: none;word-spacing: 3px;">Feedback</a></li>
+                        <li><a href="" style="color: aliceblue;text-decoration: none;word-spacing: 3px;">Contact Us</a></li>
+                        <li><a href="" style="color: aliceblue;text-decoration: none;word-spacing: 3px;">About</a></li>
+                        <li><a href="" style="color: aliceblue;text-decoration: none;word-spacing: 3px;">Partnership</a></li>
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <h3 style="font-size: 20px;color: white;margin-left: 30px">Contact Us</h3>
+                    <br>
+
+                    <p><a href="" style="color: white;list-style-type: none;text-decoration: none"><i class="fas fa-envelope-square"></i>princejahid7@gmail.com</a></p><br/>
+                    <p><a href="" style="color: white;list-style-type: none;text-decoration: none"><i class="fal fa-phone-square"></i>01952004180</p><br/>
+                    <p><a href="" style="color: white;list-style-type: none;text-decoration: none"><i class="far fa-address-card"></i>South Khilgaon,Dhaka</a></p>
+
+                </div>
+                <div class="col-2">
+                    <p style="color: white;font-size: 18px">Sign Up Here</p><br/>
+                    <input type="search" class="search" placeholder="Email"/>
+                    <input type="button" class="button" value="Subscribe">
+                </div>
+
+
+            </div>
+
+            <div style="height: 50px;background-color: greenyellow">
+                <p style="color: #263238;font-size: 30px;font-family: 'Berkshire Swash';margin: 0px;padding: 0px;text-align: center">Copyright@EbookBari.com</p>
+            </div>
+
+        </div>
+        <script>
+            window.onscroll = function() {myFunction()};
+
+            var navbar = document.getElementById("navbar");
+            var sticky = navbar.offsetTop;
+
+            function myFunction() {
+                if (window.pageYOffset >= sticky) {
+                    navbar.classList.add("sticky")
+                } else {
+                    navbar.classList.remove("sticky");
+                }
+            }
+        </script>
+    </div>
+
+    </div>
+
+
+
+
+
+
+</body>
+</html>
