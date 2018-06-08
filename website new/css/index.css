@@ -1,0 +1,218 @@
+*{ box-sizing: border-box;}
+
+body{
+    margin: 0px;
+    padding: 0px;
+    background-image: url("../image/green-background-2_00450547.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+
+}
+
+
+
+
+.col-1 { width: 8.33%;  }
+.col-2 {width: 16.66%; }
+.col-3 {width: 25%; }
+.col-4 {width: 33.33%; }
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%; }
+.col-7 {width: 58.33%; }
+.col-8 {width: 66.66%; }
+.col-9 {width: 75%; }
+.col-10 {width: 83.33%; }
+.col-11 {width: 91.66%; }
+.col-12 {width: 100%; }
+
+[class*='col-']{
+    border: 0px solid #2bd6ff;
+    float: left;
+}
+.row:after{
+    content: ' ';
+    clear: both;
+    display: block;
+}
+.container{
+    width: 95%;
+    height: auto;
+    margin: auto;
+}
+
+.div1-height { height: 25px;}
+.div2-height { height: 200px;}
+.div3-height{ height: 50px;}
+.div4-height{ height: 400px;}
+.div5-height{ height: 700px;}
+.div6-height{ height: 250px;}
+.div7-height{ height: 30px;}
+
+
+@keyframes slider {
+    0%{background-image: url("../image/Capture.JPG");background-size: 100% 100%}
+    20%{background-image: url("../image/Capture1.JPG");background-size: 100% 100%}
+    40%{background-image: url("../image/Capture2.JPG");background-size: 100% 100%}
+    60%{background-image: url("../image/Capture11.JPG");background-size: 100% 100%}
+    80%{background-image: url("../image/Capture12.JPG");background-size: 100% 100%}
+    100%{background-image: url("../image/Capture1.JPG");background-size: 100% 100%}
+
+}
+.slider{
+    animation-name: slider;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    height: 100%;
+    width: 100%;
+}
+.image-responsive{
+    height: 100%;
+    width: 100%;
+}
+.title{
+    text-align: center;
+    letter-spacing: 5px;
+    word-spacing: 10px;
+    text-shadow: 10px 10px 13px black;
+    color: white;
+}
+.search-input {
+    width: 50%;
+    margin-left: 25%;
+    height: 40px;
+    border-radius: 10px;
+}
+.search-input:focus{
+    box-shadow: 5px 5px 20px 5px white;
+    transition: 2s;
+}
+.search-btn{
+    height: 40px;
+    width: 100px;
+    background-color: green;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-left: 8px;
+}
+.search-btn:hover{
+    box-shadow: 0px 5px 20px 5px gray;
+    background-color: green;
+    color: black;
+    border-bottom: 3px solid red;
+}
+.search-area{
+    border: 0px solid ;
+    float: left;
+    margin-top: 20px;
+    width: 100%;
+
+}
+.header-ul{
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+.header-ul li{
+    float: left;
+    margin-top: 2px;
+}
+.login-ul{
+    margin: 0px;
+    padding: 0px;
+    float: right;
+}
+.login-ul li{
+    float: left;
+    list-style-type: none;
+}
+.login-ul li a{
+    display: block;
+    text-decoration: none;
+    margin-left: 50px;
+    margin-top: 7px;
+
+}
+.content-image{width: 100%;}
+.content{margin-top: 5px;padding: 10px}
+.content h3{text-align: center;}
+.content p{
+    padding: 5px;
+    text-align: justify;
+}
+.btn{
+    height: 40px;
+    width: 120px;
+    background-color: green;
+    color: white;
+    float: left;
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+    margin-left: 55%;
+    border-radius: 10px;
+    margin-bottom: 5px;
+
+}
+.btn:hover{
+    border-bottom: 3px solid red;
+}
+.main-ul{
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+.main-li{
+    float: left;
+    width: 20%;
+    border:0px solid red;
+    position: relative;
+
+
+}
+.second-li{
+    display: none;
+}
+.main-li a {
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    height: 50px;
+    background-color: #2bd6ff;
+    color: white;
+    padding-top: 15px;
+    border: 1px solid white;
+
+}
+.main-li a:hover{
+    background-color: #007399;
+    color:white;
+    transition: 2s;
+    border-bottom: 5px solid red;
+}
+.main-li:hover .main-ul .second-li{
+    display: block;}
+.content:hover{
+    box-shadow: 0px 5px 10px 5px gray ;
+}
+@media screen and (max-width:500px) {
+    [class*='col-'] {
+    width: 100%}
+}
+@media screen and (min-width: 501px) and (max-width: 780px){
+
+    .col-m1 { width: 8.33%;  }
+    .col-m2 {width: 16.66%; }
+    .col-m3 {width: 25%; }
+    .col-m4 {width: 33.33%; }
+    .col-m5 {width: 41.66%;}
+    .col-m6 {width: 50%; }
+    .col-m7 {width: 58.33%; }
+    .col-m8 {width: 66.66%; }
+    .col-m9 {width: 75%; }
+    .col-m10 {width: 83.33%; }
+    .col-m11 {width: 91.66%; }
+    .col-m12 {width: 100%; }
+
+}
