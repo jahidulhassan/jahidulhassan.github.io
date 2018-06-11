@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="websiteList.css">
+</head>
+<body>
+
+<div>
+
+<nav>
+    <ul class="main-ul">
+
+        <li class="main-li"><a href="https://jahidulhassan.github.io/fivwork.html" target="_blank" class="menu" style="padding: 10px">Fivwork</a></li>
+        <li class="main-li"><a href="https://jahidulhassan.github.io/personal%20porfolio/personal%20portfolio.html" target="_blank" class="menu" style="padding: 10px">portfolio</a></li>
+        <li class="main-li"><a href="https://jahidulhassan.github.io/apple/index.html" target="_blank" class="menu" style="padding: 10px">Apple</a></li>
+        <li class="main-li"><a href="https://jahidulhassan.github.io/ebook/ebook.html" target="_blank" class="menu" style="padding: 10px">Ebook</a></li>
+        <li class="main-li"><a href="https://jahidulhassan.github.io/ftp%20server%20new/ftpserver.html" target="_blank" class="menu" style="padding: 10px">FTP</a></li>
+        <li class="main-li"><a href="https://jahidulhassan.github.io/website%20new/index.html" target="_blank" class="menu" style="padding: 10px">Web</a></li>
+        <li class="main-li"><a href="https://jahidulhassan.github.io/div%20portfolio/div.html" target="_blank" class="menu" style="padding: 10px">personal</a></li>
+
+    </ul>
+</nav>
+
+</div>
+</body>
+</html>
