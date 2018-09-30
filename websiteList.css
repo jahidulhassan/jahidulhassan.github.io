@@ -48,7 +48,6 @@ body{
 }
 .main-li{
     float: left;
-    width: 14%;
     border:0px solid red;
     position: relative;
 
