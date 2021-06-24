@@ -61,7 +61,7 @@
 .bg-img {
   /* The image used */
  
-  min-height: 380px;
+  min-height: 500px;
 
   /* Center and scale the image nicely */
   background-position: center;
@@ -107,7 +107,7 @@
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 1000px;
+  max-width: 2000px;
   position: relative;
   margin: auto;
 }
