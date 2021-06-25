@@ -61,7 +61,7 @@
 .bg-img {
   /* The image used */
  
-  min-height: 500px;
+  min-height: 380px;
 
   /* Center and scale the image nicely */
   background-position: center;
@@ -82,7 +82,7 @@
 /* The navbar */
 .topnav {
   overflow: hidden;
-  background-color: #333;
+  background-color: #4DD3D3;
 }
 
 /* Navbar links */
@@ -96,7 +96,7 @@
 }
 
 .topnav a:hover {
-  background-color: #ddd;
+  background-color: #3192CD;
   color: black;
 }
 
@@ -107,7 +107,7 @@
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 2000px;
+  max-width: 1000px;
   position: relative;
   margin: auto;
 }
@@ -176,6 +176,22 @@
   transition: background-color 0.6s ease;
 }
 
+
+.btns{
+    
+    text-align: center;
+  
+}
+.btns:hover{
+    background-color: #007399;
+    transition: .8s;
+    transform: translate(10px);
+	
+}
+
+
+
+
 .active, .dot:hover {
   background-color: #717171;
 }
@@ -206,6 +222,9 @@
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+
+
 
 
 
