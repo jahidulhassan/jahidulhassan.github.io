@@ -3,116 +3,123 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AQL Calculator</title>
+  <title>Your Online AQL Calculator</title>
   <style>
-     body {
+    body {
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      overflow: hidden;
+      background: url('pexels-ann-h-1762851.jpg') center/cover, no-repeat;
+      animation: gradientAnimation 10s infinite linear;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: auto;
-      overflow: auto;
-      background: url('pexels-ann-h-1762851.jpg') center/cover no-repeat;
-      animation: slowBackground 6s linear infinite; /* Adjust the duration (10s) to slow down or speed up the animation */
+      height: 100vh;
     }
 
-    @keyframes slowBackground {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 100% 100%; }
-    }
-
-
-
-    #video-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-  
-    #excel-container {
-      width: 100%;
-      max-width: 940px; /* Maximum width for larger screens */
-      height: 390px;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Border shadow */
-      border: 2px solid #ffffff; /* White border */
-      border-radius: 10px; /* Rounded corners */
-      border-image: linear-gradient(to right, #ffffff, #d3d3d3); /* Gradient border */
-      border-image-slice: 1; /* Ensure the entire border is filled with the gradient */
-      animation: slideInFromRight 1s ease-out; /* Use the animation */
-    }
-  
-    iframe {
-      width: 100%;
-      margin-bottom: 10px;
-      height: 100%;
-      border: none;
-      border-radius: inherit; /* Inherit border-radius from the parent container */
-    }
-  
-    h1 {
-      color: #000000;
-      margin-top: 25px;
-      padding: 15px; /* Add padding for a better look */
-      border: 2px solid #87CEEB; /* Sky blue border */
-      border-radius: 10px; /* Rounded corners */
-      background-color: #87CEEB; /* Sky blue background */
-      box-shadow: 2 8px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
-    }
-  
-    button {
-      background-color: #4CAF50; /* Green */
-      color: white;
-      padding: 10px 20px;
+    #calculator-box {
+      background: linear-gradient(45deg, hsl(199, 100%, 74%), hsl(199, 92%, 45%));
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
       text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin-top: 10px;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
+      animation: scaleAnimation 1s ease-in-out infinite alternate;
+      max-width: 400px;
+      width: 80%;
+      margin: auto;
     }
-  
-    @keyframes slideInFromRight {
-      from {
-        transform: translateX(100%);
-        opacity: 0;
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    #result {
+      margin-top: 20px;
+    }
+
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
       }
-      to {
-        transform: translateX(0);
-        opacity: 1;
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
       }
     }
-  
-    /* Media query for smaller screens */
-    @media screen and (max-width: 940px) {
-      #excel-container {
-        max-width: 100%; /* Full width for smaller screens */
+
+    @keyframes scaleAnimation {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.01);
       }
     }
   </style>
-  
 </head>
 <body>
 
-  <h1>Your Online AQL Calculator</h1>
+  <div id="calculator-box">
+    <h2>Your Online AQL Calculator</h2>
 
-  <div id="excel-container">
-    <iframe width="700" height="403" frameborder="0" scrolling="no" src="https://acstextilesbd-my.sharepoint.com/personal/jahidul_acstextiles_com/_layouts/15/Doc.aspx?sourcedoc={228f0548-07d1-4913-baae-c108132178a8}&action=embedview&wdAllowInteractivity=False&AllowTyping=True&ActiveCell='AQL'!A4&Item='AQL'!A1%3AD4&wdInConfigurator=True&wdInConfigurator=True">
+    <label for="quantity">Total Quantity</label>
+    <input type="number" id="quantity" placeholder="Enter Total Quantity" oninput="calculateAQL()">
 
-    </iframe>
+    <div id="result"></div>
   </div>
 
- 
+  <script>
+    function calculateAQL() {
+      var totalQuantity = parseInt(document.getElementById("quantity").value);
 
- 
+      // Custom AQL levels and corresponding values
+      var aqlLevels = [
+        { lotSize: [2, 8], sampleSize: 2, aql25: 0, aql40: 0 },
+        { lotSize: [9, 15], sampleSize: 3, aql25: 0, aql40: 0 },
+        { lotSize: [16, 25], sampleSize: 5, aql25: 0, aql40: 0 },
+        { lotSize: [26, 50], sampleSize: 8, aql25: 0, aql40: 1 },
+        { lotSize: [51, 90], sampleSize: 13, aql25: 1, aql40: 1 },
+        { lotSize: [91, 150], sampleSize: 20, aql25: 1, aql40: 2 },
+        { lotSize: [151, 280], sampleSize: 32, aql25: 2, aql40: 3 },
+        { lotSize: [281, 500], sampleSize: 50, aql25: 3, aql40: 5 },
+        { lotSize: [501, 1200], sampleSize: 80, aql25: 5, aql40: 7 },
+        { lotSize: [1201, 3200], sampleSize: 125, aql25: 7, aql40: 10 },
+        { lotSize: [3201, 10000], sampleSize: 200, aql25: 10, aql40: 14 },
+        { lotSize: [10001, 35000], sampleSize: 315, aql25: 14, aql40: 21 },
+        { lotSize: [35001, 150000], sampleSize: 500, aql25: 21, aql40: 21 },
+        { lotSize: [150001, 500000], sampleSize: 800, aql25: 21, aql40: 21 },
+        { lotSize: [500001, Infinity], sampleSize: 1250, aql25: 21, aql40: 21 }
+      ];
+
+      var resultHTML = "<h3>Results</h3>";
+
+      // Find the appropriate AQL values based on the given lot size
+      var aqlValues = aqlLevels.find(function (level) {
+        return totalQuantity >= level.lotSize[0] && totalQuantity <= level.lotSize[1];
+      });
+
+      if (aqlValues) {
+        var acceptQty25 = aqlValues.aql25;
+        var acceptQty40 = aqlValues.aql40;
+
+        resultHTML += "<p>AQL 2.5% - Sample Size: " + aqlValues.sampleSize + ", Accept Quantity: " + acceptQty25 + "</p>";
+        resultHTML += "<p>AQL 4.0% - Sample Size: " + aqlValues.sampleSize + ", Accept Quantity: " + acceptQty40 + "</p>";
+      } else {
+        resultHTML += "<p>No AQL values found for the given lot size range.</p>";
+      }
+
+      document.getElementById("result").innerHTML = resultHTML;
+    }
+  </script>
 
 </body>
 </html>
