@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Online AQL Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      overflow: hidden;
+      background: url('pexels-ann-h-1762851.jpg') center/cover, no-repeat;
+      animation: gradientAnimation 10s infinite linear;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #calculator-box {
+      background: linear-gradient(45deg, hsl(199, 100%, 74%), hsl(199, 92%, 45%));
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      animation: scaleAnimation 1s ease-in-out infinite alternate;
+      max-width: 400px;
+      width: 80%;
+      margin: auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    #result {
+      margin-top: 20px;
+    }
+
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes scaleAnimation {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.01);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="calculator-box">
+    <h2>Your Online AQL Calculator</h2>
+
+    <label for="quantity">Total Quantity</label>
+    <input type="number" id="quantity" placeholder="Enter Total Quantity" oninput="calculateAQL()">
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateAQL() {
+      var totalQuantity = parseInt(document.getElementById("quantity").value);
+
+      // Custom AQL levels and corresponding values
+      var aqlLevels = [
+        { lotSize: [2, 8], sampleSize: 2, aql25: 0, aql40: 0 },
+        { lotSize: [9, 15], sampleSize: 3, aql25: 0, aql40: 0 },
+        { lotSize: [16, 25], sampleSize: 5, aql25: 0, aql40: 0 },
+        { lotSize: [26, 50], sampleSize: 8, aql25: 0, aql40: 1 },
+        { lotSize: [51, 90], sampleSize: 13, aql25: 1, aql40: 1 },
+        { lotSize: [91, 150], sampleSize: 20, aql25: 1, aql40: 2 },
+        { lotSize: [151, 280], sampleSize: 32, aql25: 2, aql40: 3 },
+        { lotSize: [281, 500], sampleSize: 50, aql25: 3, aql40: 5 },
+        { lotSize: [501, 1200], sampleSize: 80, aql25: 5, aql40: 7 },
+        { lotSize: [1201, 3200], sampleSize: 125, aql25: 7, aql40: 10 },
+        { lotSize: [3201, 10000], sampleSize: 200, aql25: 10, aql40: 14 },
+        { lotSize: [10001, 35000], sampleSize: 315, aql25: 14, aql40: 21 },
+        { lotSize: [35001, 150000], sampleSize: 500, aql25: 21, aql40: 21 },
+        { lotSize: [150001, 500000], sampleSize: 800, aql25: 21, aql40: 21 },
+        { lotSize: [500001, Infinity], sampleSize: 1250, aql25: 21, aql40: 21 }
+      ];
+
+      var resultHTML = "<h3>Results</h3>";
+
+      // Find the appropriate AQL values based on the given lot size
+      var aqlValues = aqlLevels.find(function (level) {
+        return totalQuantity >= level.lotSize[0] && totalQuantity <= level.lotSize[1];
+      });
+
+      if (aqlValues) {
+        var acceptQty25 = aqlValues.aql25;
+        var acceptQty40 = aqlValues.aql40;
+
+        resultHTML += "<p>AQL 2.5% - Sample Size: " + aqlValues.sampleSize + ", Accept Quantity: " + acceptQty25 + "</p>";
+        resultHTML += "<p>AQL 4.0% - Sample Size: " + aqlValues.sampleSize + ", Accept Quantity: " + acceptQty40 + "</p>";
+      } else {
+        resultHTML += "<p>No AQL values found for the given lot size range.</p>";
+      }
+
+      document.getElementById("result").innerHTML = resultHTML;
+    }
+  </script>
+
+</body>
+</html>

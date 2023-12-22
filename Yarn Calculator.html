@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yarn Calculator</title>
+  <style>
+     body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      overflow: auto;
+      background: url('pexels-ann-h-1762851.jpg') center/cover no-repeat;
+    }
+
+   
+
+
+    #video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+  
+    #excel-container {
+      width: 100%;
+      max-width: 1050px; /* Maximum width for larger screens */
+      height: 980px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Border shadow */
+      border: 2px solid #ffffff; /* White border */
+      border-radius: 10px; /* Rounded corners */
+      border-image: linear-gradient(to right, #ffffff, #d3d3d3); /* Gradient border */
+      border-image-slice: 1; /* Ensure the entire border is filled with the gradient */
+      animation: slideInFromRight 1s ease-out; /* Use the animation */
+    }
+  
+    iframe {
+      width: 100%;
+      margin-bottom: 10px;
+      height: 100%;
+      border: none;
+      border-radius: inherit; /* Inherit border-radius from the parent container */
+    }
+  
+    h1 {
+      color: #000000;
+      margin-top: 10px;
+      padding: 5px; /* Add padding for a better look */
+      border: 2px solid #87CEEB; /* Sky blue border */
+      border-radius: 10px; /* Rounded corners */
+      background-color: #87CEEB; /* Sky blue background */
+      box-shadow: 2 8px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
+    }
+  
+    button {
+      background-color: #4CAF50; /* Green */
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+  
+    @keyframes slideInFromRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+  
+    /* Media query for smaller screens */
+    @media screen and (max-width: 940px) {
+      #excel-container {
+        max-width: 100%; /* Full width for smaller screens */
+      }
+    }
+  </style>
+  
+</head>
+<body>
+
+  <h1>Your Online Yarn Calculator</h1>
+
+  <div id="excel-container">
+    <iframe width="700" height="450" frameborder="0" scrolling="no" src="https://acstextilesbd-my.sharepoint.com/personal/jahidul_acstextiles_com/_layouts/15/Doc.aspx?sourcedoc={228f0548-07d1-4913-baae-c108132178a8}&action=embedview&wdAllowInteractivity=False&AllowTyping=True&Item='AQL'!A1%3AD4&wdInConfigurator=True&wdInConfigurator=True"></iframe>
+  </div>
+
+ 
+
+ 
+
+</body>
+</html>
