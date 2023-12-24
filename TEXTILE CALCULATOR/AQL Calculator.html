@@ -27,6 +27,7 @@
       max-width: 400px;
       width: 80%;
       margin: auto;
+      position: relative; /* Added position relative for absolute positioning */
     }
 
     label {
@@ -44,7 +45,15 @@
       margin-top: 20px;
     }
 
-    @keyframes gradientAnimation {
+    #copyright {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 15px;
+      color: #ffffff;
+    }
+
+    /* @keyframes gradientAnimation {
       0% {
         background-position: 0% 50%;
       }
@@ -54,7 +63,7 @@
       100% {
         background-position: 0% 50%;
       }
-    }
+    } */
 
     @keyframes scaleAnimation {
       0% {
@@ -75,6 +84,8 @@
     <input type="number" id="quantity" placeholder="Enter Total Quantity" oninput="calculateAQL()">
 
     <div id="result"></div>
+
+    <div id="copyright">Copyright by @Jahid</div>
   </div>
 
   <script>
