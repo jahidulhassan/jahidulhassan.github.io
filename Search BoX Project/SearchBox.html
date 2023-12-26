@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+       body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('pexels-steve-johnson-1269968.jpg') center/cover;
+    color: #000000;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: auto;
+}
+
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to bottom, #ffffff, #ececec); /* Adjust colors as needed */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: auto;
+    animation: fadeIn 0.8s ease-out;
+}
+
+
+
+        .container:hover {
+
+            scale: 1.02;
+            transition: 0.5s ease-in;
+        }
+
+        
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        h1:hover {
+            text-align: center;
+            color: #005dc0de;
+            scale: 1.02;
+            transition:0.5s ease-in-out;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 2px solid #ced4da;
+            border-radius: 10px;
+            box-sizing: border-box;
+            transition: border-color 0.2s ease-in-out;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        #searchResults {
+            margin-top: 20px;
+        }
+
+        .result {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #007bff;
+            color: #000000;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        form {
+            display: none;
+            margin-top: 20px;
+            background-color: #007bff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        form button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #fff;
+            color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+    <title>Swift Searches, Instant Results</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Swift Searches, Instant Results</h1>
+        <input type="text" id="searchInput" placeholder="Your Name, Organization, Blood Group">
+        <div id="searchResults"></div>
+        <button id="addDataBtn">Add New Data</button>
+        <form id="addDataForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="position">Position:</label>
+            <input type="text" id="position" name="position" required>
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" required>
+            <label for="bloodGroup">Blood Group:</label>
+            <input type="text" id="bloodGroup" name="bloodGroup" required>
+            <label for="company">Company:</label>
+            <input type="text" id="company" name="company" required>
+            <label for="image">Image Path (Your WhatsApp profile image copy address):</label>
+            <input type="text" id="image" name="image" placeholder="Your WhatsApp profile image copy address" required>
+            <button type="button" onclick="addNewData()">Add Data</button>
+        </form>
+    </div>
+
+    <script>
+        // Hardcoded data
+        let data = [
+           
+            {
+                Name: "Jahidul Hassan",
+                Position: "SR. Merchandiser",
+                Mobile: "01952004180",
+                BloodGroup: "O+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-sin6-4.cdn.whatsapp.net/v/t61.24694-24/411341225_792150089415541_8661142330970669627_n.jpg?ccb=11-4&oh=01_AdTgvX8n-ZWefUm-f8pKayfSE8e43ALbrEEth4ZmBOSV-w&oe=6595ECB0&_nc_sid=e6ed6c&_nc_cat=109"
+            },
+
+            {
+                Name: "MOHAMMAD SHIBLEY",
+                Position: "DIRECTOR",
+                Mobile: "01711-530156",
+                BloodGroup: "N/A",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/358145633_1204816546858423_7166340110616030106_n.jpg?ccb=11-4&oh=01_AdSyEk4TAVDNRUg4C1m8B30UpqGeZYUk649GuEX2UWc9cw&oe=65961C55&_nc_sid=e6ed6c&_nc_cat=100"
+            },
+            {
+                Name: "A.K.M. ANOWERUL MOSTOFA",
+                Position: "GM",
+                Mobile: "01730-712433",
+                BloodGroup: "O+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/345979272_965130648137732_3563744089370225457_n.jpg?ccb=11-4&oh=01_AdQ56olPBzMSZcDhxqvoavA6rBjpTGZndOC53Wu9P5wOwA&oe=6595FAF4&_nc_sid=e6ed6c&_nc_cat=103"
+            },
+            {
+                Name: "Heda yet-Ul-Islam Shoaib",
+                Position: "AGM",
+                Mobile: "01676-250801",
+                BloodGroup: "N/A",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-sin6-4.cdn.whatsapp.net/v/t61.24694-24/324800925_1357857631606542_3024691769231996892_n.jpg?ccb=11-4&oh=01_AdRasGId9XdaBaquXA71JU9PEny2CCRmWh49jwPwzgYPGA&oe=6596052F&_nc_sid=e6ed6c&_nc_cat=109"
+            },
+            {
+                Name: "Md. Hasibul Hossain",
+                Position: "MANAGER",
+                Mobile: "01735-635276",
+                BloodGroup: "O+",
+                Company: "ACS Textiles Ltd.",
+                Image: "tps://media-sin6-4.cdn.whatsapp.net/v/t61.24694-24/324800925_1357857631606542_3024691769231996892_n.jpg?ccb=11-4&oh=01_AdRasGId9XdaBaquXA71JU9PEny2CCRmWh49jwPwzgYPGA&oe=6596052F&_nc_sid=e6ed6c&_nc_cat=109"
+            },
+            {
+                Name: "Mr. Mehedi Hasan",
+                Position: "AGM",
+                Mobile: "01724-589542",
+                BloodGroup: "N/A",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-sin6-4.cdn.whatsapp.net/v/t61.24694-24/185160543_301879868774307_5210160905958042020_n.jpg?ccb=11-4&oh=01_AdRBc-3TQnbv2fT0zDCZYkv8V_jWIgXLCl6Wn7HIQLTuDg&oe=659635AF&_nc_sid=e6ed6c&_nc_cat=105"
+            },
+            {
+                Name: "PAYAR AHAMMAD",
+                Position: "AGM",
+                Mobile: "01921-032009",
+                BloodGroup: "O+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-sin6-4.cdn.whatsapp.net/v/t61.24694-24/151729972_969558803874901_9118539100369916203_n.jpg?ccb=11-4&oh=01_AdS4A3v3GjfUIIXxS0yc1mu6xDfO-JoeQqLYJO0Muu6iug&oe=65961992&_nc_sid=e6ed6c&_nc_cat=110"
+            },
+            {
+                Name: "SHAFAYET HOSSAIN KHAN",
+                Position: "AGM",
+                Mobile: "01716-455679",
+                BloodGroup: "A+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-sin6-4.cdn.whatsapp.net/v/t61.24694-24/119171063_175772240833412_4872004527229172550_n.jpg?ccb=11-4&oh=01_AdT2BUO-vJO1c6YzUTRo5eL6nJKIAIzdY756TGNdYW0elA&oe=659556F0&_nc_sid=e6ed6c&_nc_cat=102"
+            },
+            {
+                Name: "MOHAMMED SELIM",
+                Position: "MANAGER",
+                Mobile: "01911-245699",
+                BloodGroup: "A+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-sin6-4.cdn.whatsapp.net/v/t61.24694-24/386254230_1328754437806949_2368470555235390166_n.jpg?ccb=11-4&oh=01_AdSRakBG6rnNSwwQcnbV2UNXetdKTeiZ5mnjuhB6zHXCWA&oe=6592273F&_nc_sid=e6ed6c&_nc_cat=106"
+            },
+            {
+                Name: "MD. TAREQ RAHMAN",
+                Position: "MANAGER",
+                Mobile: "01778-990022",
+                BloodGroup: "O+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/252561886_589426399009736_967347791696981780_n.jpg?ccb=11-4&oh=01_AdQ2ZSzodgk_ZYUckRJgiYqLRrutUUd9dJZPvb5foznxaw&oe=6596875D&_nc_sid=e6ed6c&_nc_cat=111"
+            },
+            {
+                Name: "SHEIK SHAHIDUL ISLAM SHAJIB",
+                Position: "MANAGER",
+                Mobile: "01913-297897",
+                BloodGroup: "O+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/344402705_538951708435953_672177479338009697_n.jpg?ccb=11-4&oh=01_AdQFUXPOwmNm7jAuVwRmltr44LhCa3-MpOVixOwwm0IUGQ&oe=6596A33A&_nc_sid=e6ed6c&_nc_cat=103"
+            },
+            {
+                Name: "Riyasat Jamil",
+                Position: "MANAGER",
+                Mobile: "01790-594777",
+                BloodGroup: "A+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/159446608_3141867686059051_1801782471882568358_n.jpg?ccb=11-4&oh=01_AdRHybYO6ayNywxb-8_Tw8cIp4UEa-u8V1qSUqVZyUVe1w&oe=65968205&_nc_sid=e6ed6c&_nc_cat=100"
+            },
+            {
+                Name: "MEHERUN NESHA RUNY",
+                Position: "MANAGER",
+                Mobile: "01734-695163",
+                BloodGroup: "B+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/382524591_320201340847019_4905187169690890285_n.jpg?ccb=11-4&oh=01_AdRL33vPuF_FXtTfxoy60PmI9J8_FwJMJseYt1vSDFVVFA&oe=65968EF1&_nc_sid=e6ed6c&_nc_cat=102"
+            },
+            {
+                Name: "MOSTAQUE A. SHAMIM",
+                Position: "ASST. MANAGER",
+                Mobile: "01712-613046",
+                BloodGroup: "B+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/411442112_3518310531763646_8886756057000188623_n.jpg?ccb=11-4&oh=01_AdQKN7zQBsIGufdd4xiBlaeAkVRtej9ptpb5WCNwaXLfng&oe=6596AFF8&_nc_sid=e6ed6c&_nc_cat=106"
+            },
+            {
+                Name: "MD. MAHI UDDIN",
+                Position: "SR. MERCHANDISER",
+                Mobile: "01643-045993",
+                BloodGroup: "AB+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/404176649_925787415543679_1989268686312678325_n.jpg?ccb=11-4&oh=01_AdRMDDt7Lgcj2D8C4syP953nSzVbCTOufMGc0Hf_5zNqdA&oe=6596B61F&_nc_sid=e6ed6c&_nc_cat=106"
+            },
+            {
+                Name: "MD. AL-AMIN",
+                Position: "SR. MERCHANDISER",
+                Mobile: "01712-080185",
+                BloodGroup: "O+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/370547512_796223745629904_4835707809504154727_n.jpg?ccb=11-4&oh=01_AdQhTZQd8sQfedstbQWQ2VznG6B7uCVjReHN5nF3QhqcRQ&oe=6596B03B&_nc_sid=e6ed6c&_nc_cat=103"
+            },
+            {
+                Name: "A.S.M KAISAR RISVI",
+                Position: "SR. MERCHANDISER",
+                Mobile: "01798-362421",
+                BloodGroup: "B+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/359713625_874700390873242_6594850795484870960_n.jpg?ccb=11-4&oh=01_AdTzA_NnpGWfP1An3IFbYeoBstZwLTZoPaEFvFa9yuZ1ZQ&oe=6596A36F&_nc_sid=e6ed6c&_nc_cat=108"
+            },
+            {
+                Name: "MD. RUBEL",
+                Position: "SR. MERCHANDISER",
+                Mobile: "01680-085749",
+                BloodGroup: "A+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/252609943_729835767988291_2589747213779095581_n.jpg?ccb=11-4&oh=01_AdT77-S4wk9KeH7fzGndHbYAOtTj4T2r_uYnWjh1NcyLjQ&oe=6596A3E4&_nc_sid=e6ed6c&_nc_cat=104"
+            },
+            {
+                Name: "SADMAN FAHAD",
+                Position: "ASST. MANAGER",
+                Mobile: "01677-414682",
+                BloodGroup: "B+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/370290307_348676224408470_4947948424306233334_n.jpg?ccb=11-4&oh=01_AdRmtljTQD3x7Xny9kb5RD0kpdqTvmyjArvC33Za03eblg&oe=65968574&_nc_sid=e6ed6c&_nc_cat=106"
+            },
+            {
+                Name: "MOHAMED FAHAD PACKIR",
+                Position: "MANAGER",
+                Mobile: "01300-245847",
+                BloodGroup: "O+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media.licdn.com/dms/image/C5103AQF3wGU21khg8w/profile-displayphoto-shrink_800_800/0/1562747614379?e=1709164800&v=beta&t=yc-d57884j7xNmOUpQrulg2V5gyDqq3RYoS93JRncus"
+            },
+            {
+                Name: "MD. ABIDUR RAHMAN",
+                Position: "SR. EXECUTIVE",
+                Mobile: "01786-610355",
+                BloodGroup: "A+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/255370777_192431719813510_3763484604711283491_n.jpg?ccb=11-4&oh=01_AdTXaw8yWt8kw09tW8PfIYZxjo70_a6NLsyBT-jUGSOC2w&oe=6596A655&_nc_sid=e6ed6c&_nc_cat=105"
+            },
+            {
+                Name: "TANJIL AHMAD",
+                Position: "SR. MERCHANDISER",
+                Mobile: "01709-603788",
+                BloodGroup: "N/A",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/361416843_682333043318980_6114876581170338370_n.jpg?ccb=11-4&oh=01_AdSm4f8yAttwBVN2SMVtn6xKkrcJNYmIyLVeBhonRh7SpQ&oe=6596B7A5&_nc_sid=e6ed6c&_nc_cat=105"
+            },
+            {
+                Name: "MOMINUL MISHU",
+                Position: "SR. MERCHANDISER",
+                Mobile: "01515-253226",
+                BloodGroup: "B+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/399729789_869818218479489_8788908422286241598_n.jpg?ccb=11-4&oh=01_AdQwhhyEtS1e_PVRYXsb2-fZ7rObov5AqqKJDJ3ucjT0wQ&oe=6596BE69&_nc_sid=e6ed6c&_nc_cat=109"
+            },
+            {
+                Name: "MD. KAMR-UL HASAN LEON",
+                Position: "SR. MERCHANDISER",
+                Mobile: "01672-441884",
+                BloodGroup: "A+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/104267332_865985763910870_975203853469139928_n.jpg?ccb=11-4&oh=01_AdSCuI1NmBUFSZ4Q6sIsuHEAtLHFXKMKv4oPewwZoM1ldg&oe=6596AC20&_nc_sid=e6ed6c&_nc_cat=105"
+            },
+            {
+                Name: "Md. Masum Billah (Shukhan)",
+                Position: "AGM",
+                Mobile: "01717-416551",
+                BloodGroup: "N/A",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/405775821_876393647308209_1429939093063129926_n.jpg?ccb=11-4&oh=01_AdRahTASwOQ_ghLInWAC7TzEWnCnST91mHzv8BZDBSNj-Q&oe=659697D6&_nc_sid=e6ed6c&_nc_cat=107"
+            },
+            {
+                Name: "ZUBAIR MAHMUD HASAN",
+                Position: "MANAGER",
+                Mobile: "01913-395077",
+                BloodGroup: "O+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/408833188_348656177885837_1634249130585390252_n.jpg?ccb=11-4&oh=01_AdT0IVYivzr-HCrHavr9aapUiSZm6uTAP_eoy_ByvJ6csg&oe=6596A81F&_nc_sid=e6ed6c&_nc_cat=103"
+            },
+            {
+                Name: "GOLAM KIBRIA PALASH",
+                Position: "MANAGER",
+                Mobile: "01716-456767",
+                BloodGroup: "O+",
+                Company: "ACS Textiles Ltd.",
+                Image: "htps://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/408833188_348656177885837_1634249130585390252_n.jpg?ccb=11-4&oh=01_AdT0IVYivzr-HCrHavr9aapUiSZm6uTAP_eoy_ByvJ6csg&oe=6596A81F&_nc_sid=e6ed6c&_nc_cat=103"
+            },
+            {
+                Name: "SAIFUL ALAM SAGAR",
+                Position: "ASST. MANAGER",
+                Mobile: "01700-528253",
+                BloodGroup: "O+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/380443956_622696136613283_5919389279109581785_n.jpg?ccb=11-4&oh=01_AdSbBPI8HVgmH2mKZdpQXITJ50HzBtVs75KMHlK07t1taw&oe=6596A559&_nc_sid=e6ed6c&_nc_cat=100"
+            },
+            {
+                Name: "FAIZA ALAM KHEYA",
+                Position: "JR. MERCHANDISER",
+                Mobile: "01521-332211",
+                BloodGroup: "O+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/400945785_364018475997437_5272009389029213264_n.jpg?ccb=11-4&oh=01_AdS0cGhJeOOoNeXygaJbOIqhwNDaG0YHoGCZbWI_6tvDpQ&oe=6596BFB4&_nc_sid=e6ed6c&_nc_cat=109"
+            },
+            {
+                Name: "JAKARIA HABIB",
+                Position: "JR. MERCHANDISER",
+                Mobile: "01521-332211",
+                BloodGroup: "B+",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/402961587_1523898761763756_6988538411100335087_n.jpg?ccb=11-4&oh=01_AdSV5_ko8rRsY_PU5f_nZ_3zVUVoJMtJfQjafDL7uEqvbw&oe=6596A05B&_nc_sid=e6ed6c&_nc_cat=106"
+            },
+            {
+                Name: "RaFi AhmaD AnanDo",
+                Position: "JR. MERCHANDISER",
+                Mobile: "N/A",
+                BloodGroup: "N/A",
+                Company: "ACS Textiles Ltd.",
+                Image: "https:/media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/402961587_1523898761763756_6988538411100335087_n.jpg?ccb=11-4&oh=01_AdSV5_ko8rRsY_PU5f_nZ_3zVUVoJMtJfQjafDL7uEqvbw&oe=6596A05B&_nc_sid=e6ed6c&_nc_cat=106"
+            },
+            {
+                Name: "MOHAMMAD IMRAN",
+                Position: "JR. MERCHANDISER",
+                Mobile: "+880 1618-233623",
+                BloodGroup: "N/A",
+                Company: "ACS Textiles Ltd.",
+                Image: "https://media-ccu1-2.cdn.whatsapp.net/v/t61.24694-24/407199896_897191831942783_6964493639653564764_n.jpg?ccb=11-4&oh=01_AdThe5BI1G26f6FcMcA8Sdzcl569o60QotglBLApOJEpBA&oe=6597500A&_nc_sid=e6ed6c&_nc_cat=104"
+            },
+
+
+        //  ACS TEXTILES (BD)
+
+
+
+
+
+
+
+
+
+
+
+            // Add more data as needed
+        ];
+
+        function saveDataToStorage() {
+            // This function won't be used since data is hardcoded
+        }
+
+        function toggleForm() {
+            const addDataForm = document.getElementById('addDataForm');
+            addDataForm.style.display = addDataForm.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function search() {
+            const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+            const searchResults = document.getElementById('searchResults');
+
+            searchResults.innerHTML = '';
+
+            if (searchTerm !== '') {
+                const results = data.filter(item => {
+                    for (const key in item) {
+                        if (item[key].toString().toLowerCase().includes(searchTerm)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+
+                results.forEach(result => {
+                    const resultDiv = document.createElement('div');
+                    resultDiv.classList.add('result');
+                    resultDiv.innerHTML = `
+                        <img src="${result.Image}" alt="${result.Name}" />
+                        <p><strong>Name:</strong> ${result.Name}</p>
+                        <p><strong>Position:</strong> ${result.Position}</p>
+                        <p><strong>Mobile Number:</strong> ${result.Mobile}</p>
+                        <p><strong>Blood Group:</strong> ${result.BloodGroup}</p>
+                        <p><strong>Company:</strong> ${result.Company}</p>
+                    `;
+                    searchResults.appendChild(resultDiv);
+                });
+            }
+        }
+
+        function addNewData() {
+            const newData = {
+                Name: document.getElementById('name').value,
+                Position: document.getElementById('position').value,
+                Mobile: document.getElementById('mobile').value,
+                BloodGroup: document.getElementById('bloodGroup').value,
+                Company: document.getElementById('company').value,
+                Image: document.getElementById('image').value
+            };
+
+            data.push(newData);
+            // Save data to localStorage (won't be used)
+            search();
+            document.getElementById('addDataForm').reset();
+            document.getElementById('addDataForm').style.display = 'none';
+        }
+
+        document.getElementById('searchInput').addEventListener('input', search);
+        document.getElementById('addDataBtn').addEventListener('click', toggleForm);
+
+        // Initial search on page load
+        search();
+    </script>
+
+</body>
+
+</html>
