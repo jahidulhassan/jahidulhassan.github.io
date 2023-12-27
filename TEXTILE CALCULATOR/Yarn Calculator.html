@@ -1,111 +1,1831 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yarn Calculator</title>
-  <style>
-     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: auto;
-      overflow: auto;
-      background: url('pexels-ann-h-1762851.jpg') center/cover no-repeat;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yarn Calculator</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
 
-   
+    <style>
+      
+      body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+    background-position: center;
+    background-image: url('https://thumbs.dreamstime.com/b/abstract-autumn-background-beautiful-leaves-texture-34325133.jpg');
+}
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 5px solid black;
+}
 
-    #video-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+h1 {
+    text-align: center;
+    color: #ffffff;
+    padding: 10px;
+    margin: 20px auto;
+    background-color: #46b15e;
+    width: 35%;
+    font-family: Roboto, sans-serif;
+    font-size: 40px;
+    border-radius: 15px;
+    box-shadow: 10px 15px 20px rgb(106, 104, 104);
+    border: 2px solid white;
+
+}
+
+h1:hover {
+    transform: scale(1.03);
+    transition: 0.2s ease-in-out;
+}
+
+h2:hover {
+    transform: scale(1.02);
+    transition: 0.2s ease-in-out;
+}
+
+h2 {
+    text-align: center;
+    color: #fcfcfc;
+    padding: 10px;
+    border: 2px solid white;
+    margin: 15px auto;
+    background-color: #46b15e;
+    width: 20%;
+    font-family: Roboto, sans-serif;
+    font-size: 30px;
+    border-radius: 15px;
+    box-shadow: 15px 21px 25px rgb(121, 121, 121);
+}
+
+.outer-background {
+    background-color: #9b9b9b;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.table-container {
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+table {
+    width: 90%;
+    text-align: center;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 15px 21px 25px rgb(76 76 76);
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 10px;
+}
+
+table:hover {
+    transform: scale(1.02);
+    transition: 0.2s ease-in-out;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+}
+
+th {
+    background-color: #4bcb4f;
+    color: white;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #423f3f;
+    border-radius: 6px;
+}
+
+@media only screen and (max-width: 600px) {
+    table, .third-table-container {
+        width: 30%;
     }
-  
-    #excel-container {
-      width: 100%;
-      max-width: 1050px; /* Maximum width for larger screens */
-      height: 980px;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Border shadow */
-      border: 2px solid #ffffff; /* White border */
-      border-radius: 10px; /* Rounded corners */
-      border-image: linear-gradient(to right, #ffffff, #d3d3d3); /* Gradient border */
-      border-image-slice: 1; /* Ensure the entire border is filled with the gradient */
-      animation: slideInFromRight 1s ease-out; /* Use the animation */
-    }
-  
-    iframe {
-      width: 100%;
-      margin-bottom: 10px;
-      height: 100%;
-      border: none;
-      border-radius: inherit; /* Inherit border-radius from the parent container */
-    }
-  
     h1 {
-      color: #000000;
-      margin-top: 10px;
-      padding: 5px; /* Add padding for a better look */
-      border: 2px solid #87CEEB; /* Sky blue border */
-      border-radius: 10px; /* Rounded corners */
-      background-color: #87CEEB; /* Sky blue background */
-      box-shadow: 2 8px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
+        width: 60%;
+        font-size: 25px;
     }
-  
-    button {
-      background-color: #4CAF50; /* Green */
-      color: white;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin-top: 10px;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
+    p {
+        font-size: 15px;
     }
-  
-    @keyframes slideInFromRight {
-      from {
-        transform: translateX(100%);
+    h2 {
+        width: 25%;
+        font-size: 20px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    .third-table-container {
+    width: 60%;
+    margin: 0 auto;
+}
+}
+
+.third-table-container {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.third-table-container:hover {
+    transform: scale(1.02);
+    transition: 0.3s ease-in-out;
+}
+
+.third-table-container table {
+    width: 100%;
+    border: 1px solid rgb(62, 62, 62);
+    box-shadow: 8px 16px 23px rgb(121, 121, 121);
+}
+
+.vertical-headers th {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.third-table-container table {
+    width: 100%;
+}
+
+.vertical-header-row th {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-align: center;
+}
+
+.third-table-container td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+@media only screen and (max-width: 600px) {
+    input {
+        font-size: 14px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
         opacity: 0;
-      }
-      to {
-        transform: translateX(0);
+    }
+    to {
         opacity: 1;
-      }
     }
-  
-    /* Media query for smaller screens */
-    @media screen and (max-width: 940px) {
-      #excel-container {
-        max-width: 100%; /* Full width for smaller screens */
-      }
+}
+
+h1, h2, table, .third-table-container {
+    animation: fadeIn 1s ease-in-out;
+}
+      
+      
+      /* Style to display $ sign in the input field */
+    .currency-input:before {
+        content: '$';
+        position: absolute;
+        padding-left: 5px;
+        padding-top: 3px;
+        color: #333;
     }
-  </style>
-  
+
+    .currency-input {
+        padding-left: 20px;
+    }
+
+      
+    </style>
 </head>
+
 <body>
 
-  <h1>Your Online Yarn Calculator</h1>
 
-  <div id="excel-container">
-    <iframe width="700" height="450" frameborder="0" scrolling="no" src="https://acstextilesbd-my.sharepoint.com/personal/jahidul_acstextiles_com/_layouts/15/Doc.aspx?sourcedoc={228f0548-07d1-4913-baae-c108132178a8}&action=embedview&wdAllowInteractivity=False&AllowTyping=True&Item='AQL'!A1%3AD4&wdInConfigurator=True&wdInConfigurator=True"></iframe>
-  </div>
+    <h1>Your Online Yarn Calculator </br>
+    <!-- <p style="font-size: 20px;">Work Smarter, Save Time—Your Resourceful Choice</p> -->
+    </h1>
+
+</br>
+
+    <!-- First Table -->
+    <!-- <h2>Yarn Details</h2> -->
+    <table>
+        <thead>
+            <tr>
+                <th>Warp</th>
+                <th>Weft</th>
+                <th>End</th>
+                <th>Pick</th>
+                <th>Shrinkage (%)</th>
+                <th>Warp (%)</th>
+                <th>Weft (%)</th>
+                <th>Warp Price ($)</th>
+                <th>Weft Price ($)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="number" id="warpInput"></td>
+                <td><input type="number" id="weftInput"></td>
+                <td><input type="number" id="endInput"></td>
+                <td><input type="number" id="pickInput"></td>
+                <td><input type="text" id="shrinkageInput" oninput="formatPercentage(this)"></td>
+                <td><input type="text" id="warpPercentageInput" oninput="formatPercentage(this)"></td>
+                <td><input type="text" id="weftPercentageInput" oninput="formatPercentage(this)"></td>
+                <td><input type="text" id="warpPriceInput" oninput="formatDollars(this)"></td>
+                <td><input type="text" id="weftPriceInput" oninput="formatDollars(this)"></td>
+            </tr>
+            <!-- You can add more rows as needed -->
+        </tbody>
+    </table>
+
+    <!-- Second Table --> </br>
+    <h2>Yarn Calculator</h2>
+   <table>
+    <thead>
+        <tr>
+            <th>ITEM</th>
+            <th>QTY</th>
+            <th>CONS</th>
+            <th>WIDTH (in)</th>
+            <th>TOTAL METER</th>
+            <th>Warp</th>
+            <th>Weft</th>
+            <th>Total Yarn</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Existing row -->
+        <tr>
+            <td><input type="text" id="itemInput"></td>
+            <td><input type="number" id="qtyInput"></td>
+            <td><input type="number" id="consInput"></td>
+            <td><input type="text" id="widthInput" oninput="formatWidth(this)"></td>
+            <td><input type="text" id="totalMeterInput" readonly></td>
+            <td><input type="text" id="warpInputSecond" readonly></td>
+            <td><input type="text" id="weftInputSecond" readonly></td>
+            <td><input type="text" id="totalYarnInput" readonly></td>
+        </tr>
+        <!-- Additional row -->
+        <tr>
+            <td><input type="text" id="itemInput2"></td>
+            <td><input type="number" id="qtyInput2"></td>
+            <td><input type="number" id="consInput2"></td>
+            <td><input type="text" id="widthInput2" oninput="formatWidth(this)"></td>
+            <td><input type="text" id="totalMeterInput2" readonly></td>
+            <td><input type="text" id="warpInputSecond2" readonly></td>
+            <td><input type="text" id="weftInputSecond2" readonly></td>
+            <td><input type="text" id="totalYarnInput2" readonly></td>
+        </tr>
+        <!-- You can add more rows as needed -->
+      
+      <tr>
+    <td><input type="text" id="itemInput3"></td>
+    <td><input type="number" id="qtyInput3"></td>
+    <td><input type="number" id="consInput3"></td>
+    <td><input type="text" id="widthInput3" oninput="formatWidth(this)"></td>
+    <td><input type="text" id="totalMeterInput3" readonly></td>
+    <td><input type="text" id="warpInputSecond3" readonly></td>
+    <td><input type="text" id="weftInputSecond3" readonly></td>
+    <td><input type="text" id="totalYarnInput3" readonly></td>
+</tr>
+      
+      <!-- Fourth Row -->
+<tr>
+    <td><input type="text" id="itemInput4"></td>
+    <td><input type="number" id="qtyInput4"></td>
+    <td><input type="number" id="consInput4"></td>
+    <td><input type="text" id="widthInput4" oninput="formatWidth(this)"></td>
+    <td><input type="text" id="totalMeterInput4" readonly></td>
+    <td><input type="text" id="warpInputSecond4" readonly></td>
+    <td><input type="text" id="weftInputSecond4" readonly></td>
+    <td><input type="text" id="totalYarnInput4" readonly></td>
+</tr>
+
+      
+      <!-- Fifth Row -->
+<tr>
+    <td><input type="text" id="itemInput5"></td>
+    <td><input type="number" id="qtyInput5"></td>
+    <td><input type="number" id="consInput5"></td>
+    <td><input type="text" id="widthInput5" oninput="formatWidth(this)"></td>
+    <td><input type="text" id="totalMeterInput5" readonly></td>
+    <td><input type="text" id="warpInputSecond5" readonly></td>
+    <td><input type="text" id="weftInputSecond5" readonly></td>
+    <td><input type="text" id="totalYarnInput5" readonly></td>
+</tr>
+
+      <!-- Sixth Row -->
+<tr>
+    <td><input type="text" id="itemInput6"></td>
+    <td><input type="number" id="qtyInput6"></td>
+    <td><input type="number" id="consInput6"></td>
+    <td><input type="text" id="widthInput6" oninput="formatWidth(this)"></td>
+    <td><input type="text" id="totalMeterInput6" readonly></td>
+    <td><input type="text" id="warpInputSecond6" readonly></td>
+    <td><input type="text" id="weftInputSecond6" readonly></td>
+    <td><input type="text" id="totalYarnInput6" readonly></td>
+</tr>
+
+      <!-- Seventh Row -->
+<tr>
+    <td><input type="text" id="itemInput7"></td>
+    <td><input type="number" id="qtyInput7"></td>
+    <td><input type="number" id="consInput7"></td>
+    <td><input type="text" id="widthInput7" oninput="formatWidth(this)"></td>
+    <td><input type="text" id="totalMeterInput7" readonly></td>
+    <td><input type="text" id="warpInputSecond7" readonly></td>
+    <td><input type="text" id="weftInputSecond7" readonly></td>
+    <td><input type="text" id="totalYarnInput7" readonly></td>
+</tr>
+      
+      <!-- Eighth Row -->
+<tr>
+    <td><input type="text" id="itemInput8"></td>
+    <td><input type="number" id="qtyInput8"></td>
+    <td><input type="number" id="consInput8"></td>
+    <td><input type="text" id="widthInput8" oninput="formatWidth(this)"></td>
+    <td><input type="text" id="totalMeterInput8" readonly></td>
+    <td><input type="text" id="warpInputSecond8" readonly></td>
+    <td><input type="text" id="weftInputSecond8" readonly></td>
+    <td><input type="text" id="totalYarnInput8" readonly></td>
+</tr>
+      
+      <!-- 9th Row -->
+<tr>
+    <td><input type="text" id="itemInput9"></td>
+    <td><input type="number" id="qtyInput9"></td>
+    <td><input type="number" id="consInput9"></td>
+    <td><input type="text" id="widthInput9" oninput="formatWidth(this)"></td>
+    <td><input type="text" id="totalMeterInput9" readonly></td>
+    <td><input type="text" id="warpInputSecond9" readonly></td>
+    <td><input type="text" id="weftInputSecond9" readonly></td>
+    <td><input type="text" id="totalYarnInput9" readonly></td>
+</tr>
+
+<!-- 10th Row -->
+<tr>
+    <td><input type="text" id="itemInput10"></td>
+    <td><input type="number" id="qtyInput10"></td>
+    <td><input type="number" id="consInput10"></td>
+    <td><input type="text" id="widthInput10" oninput="formatWidth(this)"></td>
+    <td><input type="text" id="totalMeterInput10" readonly></td>
+    <td><input type="text" id="warpInputSecond10" readonly></td>
+    <td><input type="text" id="weftInputSecond10" readonly></td>
+    <td><input type="text" id="totalYarnInput10" readonly></td>
+</tr>
+
+
+      
+        <tr style="background-color: #4bcb4f;">
+            <td colspan="1" style="text-align: right;"><b style="font-size: 20px;">Sum</b></td>
+            <td><input type="text" id="sumQty" readonly></td>
+            <td></td>
+            <td></td>
+            <td><input type="text" id="sumTotalMeter" readonly></td>
+            <td><input type="text" id="sumWarp" readonly></td>
+            <td><input type="text" id="sumWeft" readonly></td>
+            <td><input type="text" id="sumTotalYarn" readonly></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Third Table -->
+<h2>Order Details</h2>
+<div class="third-table-container">
+    <table>
+        <tbody>
+            <tr>
+                <th class="vertical-header-row">Order Value($)</th>
+                <td><input type="text" id="orderValueInput" class="currency-input"></td>
+            </tr>
+            <tr>
+                <th class="vertical-header-row">Yarn Value</th>
+                <td><input type="text" id="yarnValueInput"></td>
+            </tr>
+            <tr>
+                <th class="vertical-header-row">Back to Back in %</th>
+                <td><input type="text" id="backToBackInput" readonly></td>
+            </tr>
+            <!-- You can add more rows as needed -->
+        </tbody>
+    </table>
+</div>
+    
+
+    <!-- Your existing script tag -->
+<script>
+    // Function to format input as percentage
+    function formatPercentage(element) {
+        var value = element.value.replace('%', ''); // Remove existing '%' if any
+        if (!isNaN(value)) {
+            element.value = value + '%';
+        }
+    }
+
+    // Function to format input as dollars
+    function formatDollars(element) {
+        var value = element.value.replace('$', ''); // Remove existing '$' if any
+        if (!isNaN(value)) {
+            element.value = '$' + value;
+        }
+    }
+
+    // Function to format input as inches
+    function formatWidth(element) {
+        var value = element.value.replace(/[^\d.]/g, ''); // Remove non-numeric characters
+        if (!isNaN(value)) {
+            element.value = value + ' in';
+        } else {
+            element.value = ''; // If not a number, clear the input
+        }
+    }
+
+    // Function to perform calculations for Total Meter
+    function calculateTotalMeter() {
+        // Get input values
+        var qty = parseFloat(document.getElementById("qtyInput").value) || 0;
+        var cons = parseFloat(document.getElementById("consInput").value) || 0;
+        var shrinkage = parseFloat(document.getElementById("shrinkageInput").value.replace('%', '')) || 0;
+
+        // Calculate Total Meter
+        var totalMeter = ((qty * cons) + ((qty * cons) * (shrinkage / 100))).toFixed(2);
+
+        // Display result
+        document.getElementById("totalMeterInput").value = totalMeter;
+
+        // Trigger Warp and Weft calculations when Total Meter changes
+        calculateWarp();
+        calculateWeft();
+        calculateTotalYarn();
+        calculateSum();
+    }
+
+    // Function to perform calculations for Warp in 2nd table
+    function calculateWarp() {
+        // Get input values
+        var end = parseFloat(document.getElementById("endInput").value) || 0;
+        var width = parseFloat(document.getElementById("widthInput").value) || 0;
+        var warpFirst = parseFloat(document.getElementById("warpInput").value) || 0;
+        var warpPercentage = parseFloat(document.getElementById("warpPercentageInput").value.replace('%', '')) || 0;
+        var totalMeter = parseFloat(document.getElementById("totalMeterInput").value) || 0;
+
+        // Calculate Warp in 2nd table
+        var warpSecond = (((end * width) / 768.1 / warpFirst) + (((end * width) / 768.1 / warpFirst) * (warpPercentage / 100))) / 2.2046 * totalMeter;
+
+        // Display result
+        document.getElementById("warpInputSecond").value = warpSecond.toFixed(2);
+    }
+
+    // Function to perform calculations for Weft in 2nd table
+    function calculateWeft() {
+        // Get input values
+        var pick = parseFloat(document.getElementById("pickInput").value) || 0;
+        var width = parseFloat(document.getElementById("widthInput").value) || 0;
+        var weftFirst = parseFloat(document.getElementById("weftInput").value) || 0;
+        var weftPercentage = parseFloat(document.getElementById("weftPercentageInput").value.replace('%', '')) || 0;
+        var totalMeter = parseFloat(document.getElementById("totalMeterInput").value) || 0;
+
+        // Calculate Weft in 2nd table
+        var weftSecond = (((pick * width) / 768.1 / weftFirst) + (((pick * width) / 768.1 / weftFirst) * (weftPercentage / 100))) / 2.2046 * totalMeter;
+
+        // Display result
+        document.getElementById("weftInputSecond").value = weftSecond.toFixed(2);
+    }
+
+    // Function to calculate Total Yarn in 2nd table
+    function calculateTotalYarn() {
+        var warpSecond = parseFloat(document.getElementById("warpInputSecond").value) || 0;
+        var weftSecond = parseFloat(document.getElementById("weftInputSecond").value) || 0;
+
+        // Calculate Total Yarn
+        var totalYarn = (warpSecond + weftSecond).toFixed(2);
+
+        // Display result
+        document.getElementById("totalYarnInput").value = totalYarn;
+    }
+
+    // Function to calculate and display sum of QTY, TOTAL METER, Warp, Weft, Total Yarn
+    function calculateSum() {
+        var sumQty = 0;
+        var sumTotalMeter = 0;
+        var sumWarp = 0;
+        var sumWeft = 0;
+        var sumTotalYarn = 0;
+
+        // Get all QTY values
+        var qtyInputs = document.querySelectorAll("#qtyInput, #qtyInput2");
+        qtyInputs.forEach(function (input) {
+            sumQty += parseFloat(input.value) || 0;
+        });
+
+        // Get all TOTAL METER values
+        var totalMeterInputs = document.querySelectorAll("#totalMeterInput, #totalMeterInput2");
+        totalMeterInputs.forEach(function (input) {
+            sumTotalMeter += parseFloat(input.value) || 0;
+        });
+
+        // Get all Warp values
+        var warpInputs = document.querySelectorAll("#warpInputSecond, #warpInputSecond2");
+        warpInputs.forEach(function (input) {
+            sumWarp += parseFloat(input.value) || 0;
+        });
+
+        // Get all Weft values
+        var weftInputs = document.querySelectorAll("#weftInputSecond, #weftInputSecond2");
+        weftInputs.forEach(function (input) {
+            sumWeft += parseFloat(input.value) || 0;
+        });
+
+        // Get all Total Yarn values
+        var totalYarnInputs = document.querySelectorAll("#totalYarnInput, #totalYarnInput2");
+        totalYarnInputs.forEach(function (input) {
+            sumTotalYarn += parseFloat(input.value) || 0;
+        });
+
+        // Display sum values
+        document.getElementById("sumQty").value = sumQty.toFixed(2);
+        document.getElementById("sumTotalMeter").value = sumTotalMeter.toFixed(2);
+        document.getElementById("sumWarp").value = sumWarp.toFixed(2);
+        document.getElementById("sumWeft").value = sumWeft.toFixed(2);
+        document.getElementById("sumTotalYarn").value = sumTotalYarn.toFixed(2);
+    }
+
+    // Attach the calculate functions to input events
+    var inputsMeter = document.querySelectorAll("#qtyInput, #qtyInput2, #consInput, #shrinkageInput");
+    var inputsWarp = document.querySelectorAll("#endInput, #widthInput, #warpInput, #warpPercentageInput, #widthInput2");
+    var inputsWeft = document.querySelectorAll("#pickInput, #widthInput, #weftInput, #weftPercentageInput, #widthInput2");
+
+    inputsMeter.forEach(function (input) {
+        input.addEventListener("input", calculateTotalMeter);
+    });
+
+    inputsWarp.forEach(function (input) {
+        input.addEventListener("input", calculateWarp);
+    });
+
+    inputsWeft.forEach(function (input) {
+        input.addEventListener("input", calculateWeft);
+    });
+
+    // Calculate Weft, Warp, and Total Yarn when the page loads
+    document.addEventListener("DOMContentLoaded", function () {
+        calculateWeft();
+        calculateWarp();
+        setTimeout(calculateTotalYarn, 0);
+        setTimeout(calculateSum, 0);
+    });
+  
+  // Function to perform calculations for Total Meter for the second row
+    function calculateTotalMeterSecond() {
+        // Get input values for the second row
+        var qty = parseFloat(document.getElementById("qtyInput2").value) || 0;
+        var cons = parseFloat(document.getElementById("consInput2").value) || 0;
+        var shrinkage = parseFloat(document.getElementById("shrinkageInput").value.replace('%', '')) || 0;
+
+        // Calculate Total Meter for the second row
+        var totalMeter = ((qty * cons) + ((qty * cons) * (shrinkage / 100))).toFixed(2);
+
+        // Display result for the second row
+        document.getElementById("totalMeterInput2").value = totalMeter;
+
+        // Trigger Warp and Weft calculations when Total Meter changes for the second row
+        calculateWarpSecond();
+        calculateWeftSecond();
+        calculateTotalYarnSecond();
+        calculateSum();
+    }
+
+    // Function to perform calculations for Warp in 2nd table for the second row
+    function calculateWarpSecond() {
+        // Get input values for the second row
+        var end = parseFloat(document.getElementById("endInput").value) || 0;
+        var width = parseFloat(document.getElementById("widthInput2").value) || 0;
+        var warpFirst = parseFloat(document.getElementById("warpInput").value) || 0;
+        var warpPercentage = parseFloat(document.getElementById("warpPercentageInput").value.replace('%', '')) || 0;
+        var totalMeter = parseFloat(document.getElementById("totalMeterInput2").value) || 0;
+
+        // Calculate Warp in 2nd table for the second row
+        var warpSecond = (((end * width) / 768.1 / warpFirst) + (((end * width) / 768.1 / warpFirst) * (warpPercentage / 100))) / 2.2046 * totalMeter;
+
+        // Display result for the second row
+        document.getElementById("warpInputSecond2").value = warpSecond.toFixed(2);
+    }
+
+    // Function to perform calculations for Weft in 2nd table for the second row
+    function calculateWeftSecond() {
+        // Get input values for the second row
+        var pick = parseFloat(document.getElementById("pickInput").value) || 0;
+        var width = parseFloat(document.getElementById("widthInput2").value) || 0;
+        var weftFirst = parseFloat(document.getElementById("weftInput").value) || 0;
+        var weftPercentage = parseFloat(document.getElementById("weftPercentageInput").value.replace('%', '')) || 0;
+        var totalMeter = parseFloat(document.getElementById("totalMeterInput2").value) || 0;
+
+        // Calculate Weft in 2nd table for the second row
+        var weftSecond = (((pick * width) / 768.1 / weftFirst) + (((pick * width) / 768.1 / weftFirst) * (weftPercentage / 100))) / 2.2046 * totalMeter;
+
+        // Display result for the second row
+        document.getElementById("weftInputSecond2").value = weftSecond.toFixed(2);
+    }
+
+    // Function to calculate Total Yarn in 2nd table for the second row
+    function calculateTotalYarnSecond() {
+        var warpSecond = parseFloat(document.getElementById("warpInputSecond2").value) || 0;
+        var weftSecond = parseFloat(document.getElementById("weftInputSecond2").value) || 0;
+
+        // Calculate Total Yarn for the second row
+        var totalYarn = (warpSecond + weftSecond).toFixed(2);
+
+        // Display result for the second row
+        document.getElementById("totalYarnInput2").value = totalYarn;
+    }
+
+    // Attach the calculate functions to input events for the second row
+    var inputsMeterSecond = document.querySelectorAll("#qtyInput2, #consInput2, #shrinkageInput");
+    var inputsWarpSecond = document.querySelectorAll("#endInput, #widthInput2, #warpInput, #warpPercentageInput");
+    var inputsWeftSecond = document.querySelectorAll("#pickInput, #widthInput2, #weftInput, #weftPercentageInput");
+
+    inputsMeterSecond.forEach(function (input) {
+        input.addEventListener("input", calculateTotalMeterSecond);
+    });
+
+    inputsWarpSecond.forEach(function (input) {
+        input.addEventListener("input", calculateWarpSecond);
+    });
+
+    inputsWeftSecond.forEach(function (input) {
+        input.addEventListener("input", calculateWeftSecond);
+    });
+
+    // Additional code to trigger initial calculations for the second row
+    document.getElementById("qtyInput2").addEventListener("input", calculateTotalMeterSecond);
+    document.getElementById("consInput2").addEventListener("input", calculateTotalMeterSecond);
+  
+  
+  // Function to perform calculations for Total Meter for the third row
+function calculateTotalMeterThird() {
+    // Get input values for the third row
+    var qty = parseFloat(document.getElementById("qtyInput3").value) || 0;
+    var cons = parseFloat(document.getElementById("consInput3").value) || 0;
+    var shrinkage = parseFloat(document.getElementById("shrinkageInput").value.replace('%', '')) || 0;
+
+    // Calculate Total Meter for the third row
+    var totalMeter = ((qty * cons) + ((qty * cons) * (shrinkage / 100))).toFixed(2);
+
+    // Display result for the third row
+    document.getElementById("totalMeterInput3").value = totalMeter;
+
+    // Trigger Warp and Weft calculations when Total Meter changes for the third row
+    calculateWarpThird();
+    calculateWeftThird();
+    calculateTotalYarnThird();
+    calculateSum();
+}
+
+// Function to perform calculations for Warp in 2nd table for the third row
+function calculateWarpThird() {
+    // Get input values for the third row
+    var end = parseFloat(document.getElementById("endInput").value) || 0;
+    var width = parseFloat(document.getElementById("widthInput3").value) || 0;
+    var warpFirst = parseFloat(document.getElementById("warpInput").value) || 0;
+    var warpPercentage = parseFloat(document.getElementById("warpPercentageInput").value.replace('%', '')) || 0;
+    var totalMeter = parseFloat(document.getElementById("totalMeterInput3").value) || 0;
+
+    // Calculate Warp in 2nd table for the third row
+    var warpSecond = (((end * width) / 768.1 / warpFirst) + (((end * width) / 768.1 / warpFirst) * (warpPercentage / 100))) / 2.2046 * totalMeter;
+
+    // Display result for the third row
+    document.getElementById("warpInputSecond3").value = warpSecond.toFixed(2);
+}
+
+// Function to perform calculations for Weft in 2nd table for the third row
+function calculateWeftThird() {
+    // Get input values for the third row
+    var pick = parseFloat(document.getElementById("pickInput").value) || 0;
+    var width = parseFloat(document.getElementById("widthInput3").value) || 0;
+    var weftFirst = parseFloat(document.getElementById("weftInput").value) || 0;
+    var weftPercentage = parseFloat(document.getElementById("weftPercentageInput").value.replace('%', '')) || 0;
+    var totalMeter = parseFloat(document.getElementById("totalMeterInput3").value) || 0;
+
+    // Calculate Weft in 2nd table for the third row
+    var weftSecond = (((pick * width) / 768.1 / weftFirst) + (((pick * width) / 768.1 / weftFirst) * (weftPercentage / 100))) / 2.2046 * totalMeter;
+
+    // Display result for the third row
+    document.getElementById("weftInputSecond3").value = weftSecond.toFixed(2);
+}
+
+// Function to calculate Total Yarn in 2nd table for the third row
+function calculateTotalYarnThird() {
+    var warpSecond = parseFloat(document.getElementById("warpInputSecond3").value) || 0;
+    var weftSecond = parseFloat(document.getElementById("weftInputSecond3").value) || 0;
+
+    // Calculate Total Yarn for the third row
+    var totalYarn = (warpSecond + weftSecond).toFixed(2);
+
+    // Display result for the third row
+    document.getElementById("totalYarnInput3").value = totalYarn;
+}
+
+// Attach the calculate functions to input events for the third row
+var inputsMeterThird = document.querySelectorAll("#qtyInput3, #consInput3, #shrinkageInput");
+var inputsWarpThird = document.querySelectorAll("#endInput, #widthInput3, #warpInput, #warpPercentageInput");
+var inputsWeftThird = document.querySelectorAll("#pickInput, #widthInput3, #weftInput, #weftPercentageInput");
+
+inputsMeterThird.forEach(function (input) {
+    input.addEventListener("input", calculateTotalMeterThird);
+});
+
+inputsWarpThird.forEach(function (input) {
+    input.addEventListener("input", calculateWarpThird);
+});
+
+inputsWeftThird.forEach(function (input) {
+    input.addEventListener("input", calculateWeftThird);
+});
+
+// Additional code to trigger initial calculations for the third row
+document.getElementById("qtyInput3").addEventListener("input", calculateTotalMeterThird);
+document.getElementById("consInput3").addEventListener("input", calculateTotalMeterThird);
+
+  // Additional code to trigger initial calculations for the third row
+document.getElementById("qtyInput3").addEventListener("input", calculateTotalMeterThird);
+document.getElementById("consInput3").addEventListener("input", calculateTotalMeterThird);
+
+ // Function to calculate and display sum of QTY, TOTAL METER, Warp, Weft, Total Yarn
+function calculateSum() {
+    var sumQty = 0;
+    var sumTotalMeter = 0;
+    var sumWarp = 0;
+    var sumWeft = 0;
+    var sumTotalYarn = 0;
+
+    // Get all QTY values
+    var qtyInputs = document.querySelectorAll("#qtyInput, #qtyInput2, #qtyInput3");
+    qtyInputs.forEach(function (input) {
+        sumQty += parseFloat(input.value) || 0;
+    });
+
+    // Get all TOTAL METER values
+    var totalMeterInputs = document.querySelectorAll("#totalMeterInput, #totalMeterInput2, #totalMeterInput3");
+    totalMeterInputs.forEach(function (input) {
+        sumTotalMeter += parseFloat(input.value) || 0;
+    });
+
+    // Get all Warp values
+    var warpInputs = document.querySelectorAll("#warpInputSecond, #warpInputSecond2, #warpInputSecond3");
+    warpInputs.forEach(function (input) {
+        sumWarp += parseFloat(input.value) || 0;
+    });
+
+    // Get all Weft values
+    var weftInputs = document.querySelectorAll("#weftInputSecond, #weftInputSecond2, #weftInputSecond3");
+    weftInputs.forEach(function (input) {
+        sumWeft += parseFloat(input.value) || 0;
+    });
+
+    // Get all Total Yarn values
+    var totalYarnInputs = document.querySelectorAll("#totalYarnInput, #totalYarnInput2, #totalYarnInput3");
+    totalYarnInputs.forEach(function (input) {
+        sumTotalYarn += parseFloat(input.value) || 0;
+    });
+
+    // Display sum values
+    document.getElementById("sumQty").value = sumQty.toFixed(2);
+    document.getElementById("sumTotalMeter").value = sumTotalMeter.toFixed(2);
+    document.getElementById("sumWarp").value = sumWarp.toFixed(2);
+    document.getElementById("sumWeft").value = sumWeft.toFixed(2);
+    document.getElementById("sumTotalYarn").value = sumTotalYarn.toFixed(2);
+}
+// Additional code to trigger calculations for the third row
+document.getElementById("qtyInput3").addEventListener("input", calculateTotalMeterThird);
+document.getElementById("consInput3").addEventListener("input", calculateTotalMeterThird);
+ 
+  // Function to perform calculations for Total Meter for the fourth row
+function calculateTotalMeterFourth() {
+    // Get input values for the fourth row
+    var qty = parseFloat(document.getElementById("qtyInput4").value) || 0;
+    var cons = parseFloat(document.getElementById("consInput4").value) || 0;
+    var shrinkage = parseFloat(document.getElementById("shrinkageInput").value.replace('%', '')) || 0;
+
+    // Calculate Total Meter for the fourth row
+    var totalMeter = ((qty * cons) + ((qty * cons) * (shrinkage / 100))).toFixed(2);
+
+    // Display result for the fourth row
+    document.getElementById("totalMeterInput4").value = totalMeter;
+
+    // Trigger Warp and Weft calculations when Total Meter changes for the fourth row
+    calculateWarpFourth();
+    calculateWeftFourth();
+    calculateTotalYarnFourth();
+    calculateSum();
+}
+
+// Function to perform calculations for Warp in 2nd table for the fourth row
+function calculateWarpFourth() {
+    // Get input values for the fourth row
+    var end = parseFloat(document.getElementById("endInput").value) || 0;
+    var width = parseFloat(document.getElementById("widthInput4").value) || 0;
+    var warpFirst = parseFloat(document.getElementById("warpInput").value) || 0;
+    var warpPercentage = parseFloat(document.getElementById("warpPercentageInput").value.replace('%', '')) || 0;
+    var totalMeter = parseFloat(document.getElementById("totalMeterInput4").value) || 0;
+
+    // Calculate Warp in 2nd table for the fourth row
+    var warpSecond = (((end * width) / 768.1 / warpFirst) + (((end * width) / 768.1 / warpFirst) * (warpPercentage / 100))) / 2.2046 * totalMeter;
+
+    // Display result for the fourth row
+    document.getElementById("warpInputSecond4").value = warpSecond.toFixed(2);
+}
+
+// Function to perform calculations for Weft in 2nd table for the fourth row
+function calculateWeftFourth() {
+    // Get input values for the fourth row
+    var pick = parseFloat(document.getElementById("pickInput").value) || 0;
+    var width = parseFloat(document.getElementById("widthInput4").value) || 0;
+    var weftFirst = parseFloat(document.getElementById("weftInput").value) || 0;
+    var weftPercentage = parseFloat(document.getElementById("weftPercentageInput").value.replace('%', '')) || 0;
+    var totalMeter = parseFloat(document.getElementById("totalMeterInput4").value) || 0;
+
+    // Calculate Weft in 2nd table for the fourth row
+    var weftSecond = (((pick * width) / 768.1 / weftFirst) + (((pick * width) / 768.1 / weftFirst) * (weftPercentage / 100))) / 2.2046 * totalMeter;
+
+    // Display result for the fourth row
+    document.getElementById("weftInputSecond4").value = weftSecond.toFixed(2);
+}
+
+// Function to calculate Total Yarn in 2nd table for the fourth row
+function calculateTotalYarnFourth() {
+    var warpSecond = parseFloat(document.getElementById("warpInputSecond4").value) || 0;
+    var weftSecond = parseFloat(document.getElementById("weftInputSecond4").value) || 0;
+
+    // Calculate Total Yarn for the fourth row
+    var totalYarn = (warpSecond + weftSecond).toFixed(2);
+
+    // Display result for the fourth row
+    document.getElementById("totalYarnInput4").value = totalYarn;
+}
+
+// Attach the calculate functions to input events for the fourth row
+var inputsMeterFourth = document.querySelectorAll("#qtyInput4, #consInput4, #shrinkageInput");
+var inputsWarpFourth = document.querySelectorAll("#endInput, #widthInput4, #warpInput, #warpPercentageInput");
+var inputsWeftFourth = document.querySelectorAll("#pickInput, #widthInput4, #weftInput, #weftPercentageInput");
+
+inputsMeterFourth.forEach(function (input) {
+    input.addEventListener("input", calculateTotalMeterFourth);
+});
+
+inputsWarpFourth.forEach(function (input) {
+    input.addEventListener("input", calculateWarpFourth);
+});
+
+inputsWeftFourth.forEach(function (input) {
+    input.addEventListener("input", calculateWeftFourth);
+});
+
+// Additional code to trigger initial calculations for the fourth row
+document.getElementById("qtyInput4").addEventListener("input", calculateTotalMeterFourth);
+document.getElementById("consInput4").addEventListener("input", calculateTotalMeterFourth);
+  
+// Additional code to trigger calculations for the fourth row
+document.getElementById("qtyInput4").addEventListener("input", calculateTotalMeterFourth);
+document.getElementById("consInput4").addEventListener("input", calculateTotalMeterFourth);
+
+// Function to calculate and display sum of QTY, TOTAL METER, Warp, Weft, Total Yarn
+function calculateSum() {
+    var sumQty = 0;
+    var sumTotalMeter = 0;
+    var sumWarp = 0;
+    var sumWeft = 0;
+    var sumTotalYarn = 0;
+
+    // Get all QTY values
+    var qtyInputs = document.querySelectorAll("#qtyInput, #qtyInput2, #qtyInput3, #qtyInput4");
+    qtyInputs.forEach(function (input) {
+        sumQty += parseFloat(input.value) || 0;
+    });
+
+    // Get all TOTAL METER values
+    var totalMeterInputs = document.querySelectorAll("#totalMeterInput, #totalMeterInput2, #totalMeterInput3, #totalMeterInput4");
+    totalMeterInputs.forEach(function (input) {
+        sumTotalMeter += parseFloat(input.value) || 0;
+    });
+
+    // Get all Warp values
+    var warpInputs = document.querySelectorAll("#warpInputSecond, #warpInputSecond2, #warpInputSecond3, #warpInputSecond4");
+    warpInputs.forEach(function (input) {
+        sumWarp += parseFloat(input.value) || 0;
+    });
+
+    // Get all Weft values
+    var weftInputs = document.querySelectorAll("#weftInputSecond, #weftInputSecond2, #weftInputSecond3, #weftInputSecond4");
+    weftInputs.forEach(function (input) {
+        sumWeft += parseFloat(input.value) || 0;
+    });
+
+    // Get all Total Yarn values
+    var totalYarnInputs = document.querySelectorAll("#totalYarnInput, #totalYarnInput2, #totalYarnInput3, #totalYarnInput4");
+    totalYarnInputs.forEach(function (input) {
+        sumTotalYarn += parseFloat(input.value) || 0;
+    });
+
+    // Display sum values
+    document.getElementById("sumQty").value = sumQty.toFixed(2);
+    document.getElementById("sumTotalMeter").value = sumTotalMeter.toFixed(2);
+    document.getElementById("sumWarp").value = sumWarp.toFixed(2);
+    document.getElementById("sumWeft").value = sumWeft.toFixed(2);
+    document.getElementById("sumTotalYarn").value = sumTotalYarn.toFixed(2);
+}
+     
+// Additional code to trigger calculations for the fourth row
+document.getElementById("qtyInput4").addEventListener("input", calculateTotalMeterFourth);
+document.getElementById("consInput4").addEventListener("input", calculateTotalMeterFourth);
+   
+  // Function to perform calculations for Total Meter for the fifth row
+function calculateTotalMeterFifth() {
+    // Get input values for the fifth row
+    var qty = parseFloat(document.getElementById("qtyInput5").value) || 0;
+    var cons = parseFloat(document.getElementById("consInput5").value) || 0;
+    var shrinkage = parseFloat(document.getElementById("shrinkageInput").value.replace('%', '')) || 0;
+
+    // Calculate Total Meter for the fifth row
+    var totalMeter = ((qty * cons) + ((qty * cons) * (shrinkage / 100))).toFixed(2);
+
+    // Display result for the fifth row
+    document.getElementById("totalMeterInput5").value = totalMeter;
+
+    // Trigger Warp and Weft calculations when Total Meter changes for the fifth row
+    calculateWarpFifth();
+    calculateWeftFifth();
+    calculateTotalYarnFifth();
+    calculateSum();
+}
+
+// Function to perform calculations for Warp in 2nd table for the fifth row
+function calculateWarpFifth() {
+    // Get input values for the fifth row
+    var end = parseFloat(document.getElementById("endInput").value) || 0;
+    var width = parseFloat(document.getElementById("widthInput5").value) || 0;
+    var warpFirst = parseFloat(document.getElementById("warpInput").value) || 0;
+    var warpPercentage = parseFloat(document.getElementById("warpPercentageInput").value.replace('%', '')) || 0;
+    var totalMeter = parseFloat(document.getElementById("totalMeterInput5").value) || 0;
+
+    // Calculate Warp in 2nd table for the fifth row
+    var warpSecond = (((end * width) / 768.1 / warpFirst) + (((end * width) / 768.1 / warpFirst) * (warpPercentage / 100))) / 2.2046 * totalMeter;
+
+    // Display result for the fifth row
+    document.getElementById("warpInputSecond5").value = warpSecond.toFixed(2);
+}
+
+// Function to perform calculations for Weft in 2nd table for the fifth row
+function calculateWeftFifth() {
+    // Get input values for the fifth row
+    var pick = parseFloat(document.getElementById("pickInput").value) || 0;
+    var width = parseFloat(document.getElementById("widthInput5").value) || 0;
+    var weftFirst = parseFloat(document.getElementById("weftInput").value) || 0;
+    var weftPercentage = parseFloat(document.getElementById("weftPercentageInput").value.replace('%', '')) || 0;
+    var totalMeter = parseFloat(document.getElementById("totalMeterInput5").value) || 0;
+
+    // Calculate Weft in 2nd table for the fifth row
+    var weftSecond = (((pick * width) / 768.1 / weftFirst) + (((pick * width) / 768.1 / weftFirst) * (weftPercentage / 100))) / 2.2046 * totalMeter;
+
+    // Display result for the fifth row
+    document.getElementById("weftInputSecond5").value = weftSecond.toFixed(2);
+}
+
+// Function to calculate Total Yarn in 2nd table for the fifth row
+function calculateTotalYarnFifth() {
+    var warpSecond = parseFloat(document.getElementById("warpInputSecond5").value) || 0;
+    var weftSecond = parseFloat(document.getElementById("weftInputSecond5").value) || 0;
+
+    // Calculate Total Yarn for the fifth row
+    var totalYarn = (warpSecond + weftSecond).toFixed(2);
+
+    // Display result for the fifth row
+    document.getElementById("totalYarnInput5").value = totalYarn;
+}
+
+// Attach the calculate functions to input events for the fifth row
+var inputsMeterFifth = document.querySelectorAll("#qtyInput5, #consInput5, #shrinkageInput");
+var inputsWarpFifth = document.querySelectorAll("#endInput, #widthInput5, #warpInput, #warpPercentageInput");
+var inputsWeftFifth = document.querySelectorAll("#pickInput, #widthInput5, #weftInput, #weftPercentageInput");
+
+inputsMeterFifth.forEach(function (input) {
+    input.addEventListener("input", calculateTotalMeterFifth);
+});
+
+inputsWarpFifth.forEach(function (input) {
+    input.addEventListener("input", calculateWarpFifth);
+});
+
+inputsWeftFifth.forEach(function (input) {
+    input.addEventListener("input", calculateWeftFifth);
+});
+
+// Additional code to trigger calculations for the fifth row
+document.getElementById("qtyInput5").addEventListener("input", calculateTotalMeterFifth);
+document.getElementById("consInput5").addEventListener("input", calculateTotalMeterFifth);
+
+  // Additional code to trigger calculations for the fifth row
+document.getElementById("qtyInput5").addEventListener("input", calculateTotalMeterFifth);
+document.getElementById("consInput5").addEventListener("input", calculateTotalMeterFifth);
 
  
+  // Function to calculate and display sum of QTY, TOTAL METER, Warp, Weft, Total Yarn
+function calculateSum() {
+    var sumQty = 0;
+    var sumTotalMeter = 0;
+    var sumWarp = 0;
+    var sumWeft = 0;
+    var sumTotalYarn = 0;
 
- 
+    // Get all QTY values
+    var qtyInputs = document.querySelectorAll("#qtyInput, #qtyInput2, #qtyInput3, #qtyInput4, #qtyInput5");
+    qtyInputs.forEach(function (input) {
+        sumQty += parseFloat(input.value) || 0;
+    });
+
+    // Get all TOTAL METER values
+    var totalMeterInputs = document.querySelectorAll("#totalMeterInput, #totalMeterInput2, #totalMeterInput3, #totalMeterInput4, #totalMeterInput5");
+    totalMeterInputs.forEach(function (input) {
+        sumTotalMeter += parseFloat(input.value) || 0;
+    });
+
+    // Get all Warp values
+    var warpInputs = document.querySelectorAll("#warpInputSecond, #warpInputSecond2, #warpInputSecond3, #warpInputSecond4, #warpInputSecond5");
+    warpInputs.forEach(function (input) {
+        sumWarp += parseFloat(input.value) || 0;
+    });
+
+    // Get all Weft values
+    var weftInputs = document.querySelectorAll("#weftInputSecond, #weftInputSecond2, #weftInputSecond3, #weftInputSecond4, #weftInputSecond5");
+    weftInputs.forEach(function (input) {
+        sumWeft += parseFloat(input.value) || 0;
+    });
+
+    // Get all Total Yarn values
+    var totalYarnInputs = document.querySelectorAll("#totalYarnInput, #totalYarnInput2, #totalYarnInput3, #totalYarnInput4, #totalYarnInput5");
+    totalYarnInputs.forEach(function (input) {
+        sumTotalYarn += parseFloat(input.value) || 0;
+    });
+
+    // Display sum values
+    document.getElementById("sumQty").value = sumQty.toFixed(2);
+    document.getElementById("sumTotalMeter").value = sumTotalMeter.toFixed(2);
+    document.getElementById("sumWarp").value = sumWarp.toFixed(2);
+    document.getElementById("sumWeft").value = sumWeft.toFixed(2);
+    document.getElementById("sumTotalYarn").value = sumTotalYarn.toFixed(2);
+}
+
+  // Additional code to trigger calculations for the fifth row
+document.getElementById("qtyInput5").addEventListener("input", calculateTotalMeterFifth);
+document.getElementById("consInput5").addEventListener("input", calculateTotalMeterFifth);
+
+  // Function to perform calculations for Total Meter for the sixth row
+function calculateTotalMeterSixth() {
+    // Get input values for the sixth row
+    var qty = parseFloat(document.getElementById("qtyInput6").value) || 0;
+    var cons = parseFloat(document.getElementById("consInput6").value) || 0;
+    var shrinkage = parseFloat(document.getElementById("shrinkageInput").value.replace('%', '')) || 0;
+
+    // Calculate Total Meter for the sixth row
+    var totalMeter = ((qty * cons) + ((qty * cons) * (shrinkage / 100))).toFixed(2);
+
+    // Display result for the sixth row
+    document.getElementById("totalMeterInput6").value = totalMeter;
+
+    // Trigger Warp and Weft calculations when Total Meter changes for the sixth row
+    calculateWarpSixth();
+    calculateWeftSixth();
+    calculateTotalYarnSixth();
+    calculateSum();
+}
+
+// Function to perform calculations for Warp in 2nd table for the sixth row
+function calculateWarpSixth() {
+    // Get input values for the sixth row
+    var end = parseFloat(document.getElementById("endInput").value) || 0;
+    var width = parseFloat(document.getElementById("widthInput6").value) || 0;
+    var warpFirst = parseFloat(document.getElementById("warpInput").value) || 0;
+    var warpPercentage = parseFloat(document.getElementById("warpPercentageInput").value.replace('%', '')) || 0;
+    var totalMeter = parseFloat(document.getElementById("totalMeterInput6").value) || 0;
+
+    // Calculate Warp in 2nd table for the sixth row
+    var warpSecond = (((end * width) / 768.1 / warpFirst) + (((end * width) / 768.1 / warpFirst) * (warpPercentage / 100))) / 2.2046 * totalMeter;
+
+    // Display result for the sixth row
+    document.getElementById("warpInputSecond6").value = warpSecond.toFixed(2);
+}
+
+// Function to perform calculations for Weft in 2nd table for the sixth row
+function calculateWeftSixth() {
+    // Get input values for the sixth row
+    var pick = parseFloat(document.getElementById("pickInput").value) || 0;
+    var width = parseFloat(document.getElementById("widthInput6").value) || 0;
+    var weftFirst = parseFloat(document.getElementById("weftInput").value) || 0;
+    var weftPercentage = parseFloat(document.getElementById("weftPercentageInput").value.replace('%', '')) || 0;
+    var totalMeter = parseFloat(document.getElementById("totalMeterInput6").value) || 0;
+
+    // Calculate Weft in 2nd table for the sixth row
+    var weftSecond = (((pick * width) / 768.1 / weftFirst) + (((pick * width) / 768.1 / weftFirst) * (weftPercentage / 100))) / 2.2046 * totalMeter;
+
+    // Display result for the sixth row
+    document.getElementById("weftInputSecond6").value = weftSecond.toFixed(2);
+}
+
+// Function to calculate Total Yarn in 2nd table for the sixth row
+function calculateTotalYarnSixth() {
+    var warpSecond = parseFloat(document.getElementById("warpInputSecond6").value) || 0;
+    var weftSecond = parseFloat(document.getElementById("weftInputSecond6").value) || 0;
+
+    // Calculate Total Yarn for the sixth row
+    var totalYarn = (warpSecond + weftSecond).toFixed(2);
+
+    // Display result for the sixth row
+    document.getElementById("totalYarnInput6").value = totalYarn;
+}
+
+// Attach the calculate functions to input events for the sixth row
+var inputsMeterSixth = document.querySelectorAll("#qtyInput6, #consInput6, #shrinkageInput");
+var inputsWarpSixth = document.querySelectorAll("#endInput, #widthInput6, #warpInput, #warpPercentageInput");
+var inputsWeftSixth = document.querySelectorAll("#pickInput, #widthInput6, #weftInput, #weftPercentageInput");
+
+inputsMeterSixth.forEach(function (input) {
+    input.addEventListener("input", calculateTotalMeterSixth);
+});
+
+inputsWarpSixth.forEach(function (input) {
+    input.addEventListener("input", calculateWarpSixth);
+});
+
+inputsWeftSixth.forEach(function (input) {
+    input.addEventListener("input", calculateWeftSixth);
+});
+
+// Additional code to trigger calculations for the sixth row
+document.getElementById("qtyInput6").addEventListener("input", calculateTotalMeterSixth);
+document.getElementById("consInput6").addEventListener("input", calculateTotalMeterSixth);
+
+  // Additional code to trigger calculations for the sixth row
+document.getElementById("qtyInput6").addEventListener("input", calculateTotalMeterSixth);
+document.getElementById("consInput6").addEventListener("input", calculateTotalMeterSixth);
+
+  // Function to calculate and display sum of QTY, TOTAL METER, Warp, Weft, Total Yarn
+function calculateSum() {
+    var sumQty = 0;
+    var sumTotalMeter = 0;
+    var sumWarp = 0;
+    var sumWeft = 0;
+    var sumTotalYarn = 0;
+
+    // Get all QTY values
+    var qtyInputs = document.querySelectorAll("#qtyInput, #qtyInput2, #qtyInput3, #qtyInput4, #qtyInput5, #qtyInput6");
+    qtyInputs.forEach(function (input) {
+        sumQty += parseFloat(input.value) || 0;
+    });
+
+    // Get all TOTAL METER values
+    var totalMeterInputs = document.querySelectorAll("#totalMeterInput, #totalMeterInput2, #totalMeterInput3, #totalMeterInput4, #totalMeterInput5, #totalMeterInput6");
+    totalMeterInputs.forEach(function (input) {
+        sumTotalMeter += parseFloat(input.value) || 0;
+    });
+
+    // Get all Warp values
+    var warpInputs = document.querySelectorAll("#warpInputSecond, #warpInputSecond2, #warpInputSecond3, #warpInputSecond4, #warpInputSecond5, #warpInputSecond6");
+    warpInputs.forEach(function (input) {
+        sumWarp += parseFloat(input.value) || 0;
+    });
+
+    // Get all Weft values
+    var weftInputs = document.querySelectorAll("#weftInputSecond, #weftInputSecond2, #weftInputSecond3, #weftInputSecond4, #weftInputSecond5, #weftInputSecond6");
+    weftInputs.forEach(function (input) {
+        sumWeft += parseFloat(input.value) || 0;
+    });
+
+    // Get all Total Yarn values
+    var totalYarnInputs = document.querySelectorAll("#totalYarnInput, #totalYarnInput2, #totalYarnInput3, #totalYarnInput4, #totalYarnInput5, #totalYarnInput6");
+    totalYarnInputs.forEach(function (input) {
+        sumTotalYarn += parseFloat(input.value) || 0;
+    });
+
+    // Display sum values
+    document.getElementById("sumQty").value = sumQty.toFixed(2);
+    document.getElementById("sumTotalMeter").value = sumTotalMeter.toFixed(2);
+    document.getElementById("sumWarp").value = sumWarp.toFixed(2);
+    document.getElementById("sumWeft").value = sumWeft.toFixed(2);
+    document.getElementById("sumTotalYarn").value = sumTotalYarn.toFixed(2);
+}
+
+  // Additional code to trigger calculations for the sixth row
+document.getElementById("qtyInput6").addEventListener("input", calculateTotalMeterSixth);
+document.getElementById("consInput6").addEventListener("input", calculateTotalMeterSixth);
+
+  
+ // Function to perform calculations for Total Meter for the seventh row
+function calculateTotalMeterSeventh() {
+    // Get input values for the seventh row
+    var qty = parseFloat(document.getElementById("qtyInput7").value) || 0;
+    var cons = parseFloat(document.getElementById("consInput7").value) || 0;
+    var shrinkage = parseFloat(document.getElementById("shrinkageInput").value.replace('%', '')) || 0;
+
+    // Calculate Total Meter for the seventh row
+    var totalMeter = ((qty * cons) + ((qty * cons) * (shrinkage / 100))).toFixed(2);
+
+    // Display result for the seventh row
+    document.getElementById("totalMeterInput7").value = totalMeter;
+
+    // Trigger Warp and Weft calculations when Total Meter changes for the seventh row
+    calculateWarpSeventh();
+    calculateWeftSeventh();
+    calculateTotalYarnSeventh();
+    calculateSum();
+}
+
+// Function to perform calculations for Warp in 2nd table for the seventh row
+function calculateWarpSeventh() {
+    // Get input values for the seventh row
+    var end = parseFloat(document.getElementById("endInput").value) || 0;
+    var width = parseFloat(document.getElementById("widthInput7").value) || 0;
+    var warpFirst = parseFloat(document.getElementById("warpInput").value) || 0;
+    var warpPercentage = parseFloat(document.getElementById("warpPercentageInput").value.replace('%', '')) || 0;
+    var totalMeter = parseFloat(document.getElementById("totalMeterInput7").value) || 0;
+
+    // Calculate Warp in 2nd table for the seventh row
+    var warpSecond = (((end * width) / 768.1 / warpFirst) + (((end * width) / 768.1 / warpFirst) * (warpPercentage / 100))) / 2.2046 * totalMeter;
+
+    // Display result for the seventh row
+    document.getElementById("warpInputSecond7").value = warpSecond.toFixed(2);
+}
+
+// Function to perform calculations for Weft in 2nd table for the seventh row
+function calculateWeftSeventh() {
+    // Get input values for the seventh row
+    var pick = parseFloat(document.getElementById("pickInput").value) || 0;
+    var width = parseFloat(document.getElementById("widthInput7").value) || 0;
+    var weftFirst = parseFloat(document.getElementById("weftInput").value) || 0;
+    var weftPercentage = parseFloat(document.getElementById("weftPercentageInput").value.replace('%', '')) || 0;
+    var totalMeter = parseFloat(document.getElementById("totalMeterInput7").value) || 0;
+
+    // Calculate Weft in 2nd table for the seventh row
+    var weftSecond = (((pick * width) / 768.1 / weftFirst) + (((pick * width) / 768.1 / weftFirst) * (weftPercentage / 100))) / 2.2046 * totalMeter;
+
+    // Display result for the seventh row
+    document.getElementById("weftInputSecond7").value = weftSecond.toFixed(2);
+}
+
+// Function to calculate Total Yarn in 2nd table for the seventh row
+function calculateTotalYarnSeventh() {
+    var warpSecond = parseFloat(document.getElementById("warpInputSecond7").value) || 0;
+    var weftSecond = parseFloat(document.getElementById("weftInputSecond7").value) || 0;
+
+    // Calculate Total Yarn for the seventh row
+    var totalYarn = (warpSecond + weftSecond).toFixed(2);
+
+    // Display result for the seventh row
+    document.getElementById("totalYarnInput7").value = totalYarn;
+}
+
+// Attach the calculate functions to input events for the seventh row
+var inputsMeterSeventh = document.querySelectorAll("#qtyInput7, #consInput7, #shrinkageInput");
+var inputsWarpSeventh = document.querySelectorAll("#endInput, #widthInput7, #warpInput, #warpPercentageInput");
+var inputsWeftSeventh = document.querySelectorAll("#pickInput, #widthInput7, #weftInput, #weftPercentageInput");
+
+inputsMeterSeventh.forEach(function (input) {
+    input.addEventListener("input", calculateTotalMeterSeventh);
+});
+
+inputsWarpSeventh.forEach(function (input) {
+    input.addEventListener("input", calculateWarpSeventh);
+});
+
+inputsWeftSeventh.forEach(function (input) {
+    input.addEventListener("input", calculateWeftSeventh);
+});
+
+// Additional code to trigger calculations for the seventh row
+document.getElementById("qtyInput7").addEventListener("input", calculateTotalMeterSeventh);
+document.getElementById("consInput7").addEventListener("input", calculateTotalMeterSeventh);
+
+  // Additional code to trigger calculations for the seventh row
+document.getElementById("qtyInput7").addEventListener("input", calculateTotalMeterSeventh);
+document.getElementById("consInput7").addEventListener("input", calculateTotalMeterSeventh);
+
+  
+// Function to calculate and display sum of QTY, TOTAL METER, Warp, Weft, Total Yarn
+function calculateSum() {
+    var sumQty = 0;
+    var sumTotalMeter = 0;
+    var sumWarp = 0;
+    var sumWeft = 0;
+    var sumTotalYarn = 0;
+
+    // Get all QTY values
+    var qtyInputs = document.querySelectorAll("#qtyInput, #qtyInput2, #qtyInput3, #qtyInput4, #qtyInput5, #qtyInput6, #qtyInput7");
+    qtyInputs.forEach(function (input) {
+        sumQty += parseFloat(input.value) || 0;
+    });
+
+    // Get all TOTAL METER values
+    var totalMeterInputs = document.querySelectorAll("#totalMeterInput, #totalMeterInput2, #totalMeterInput3, #totalMeterInput4, #totalMeterInput5, #totalMeterInput6, #totalMeterInput7");
+    totalMeterInputs.forEach(function (input) {
+        sumTotalMeter += parseFloat(input.value) || 0;
+    });
+
+    // Get all Warp values
+    var warpInputs = document.querySelectorAll("#warpInputSecond, #warpInputSecond2, #warpInputSecond3, #warpInputSecond4, #warpInputSecond5, #warpInputSecond6, #warpInputSecond7");
+    warpInputs.forEach(function (input) {
+        sumWarp += parseFloat(input.value) || 0;
+    });
+
+    // Get all Weft values
+    var weftInputs = document.querySelectorAll("#weftInputSecond, #weftInputSecond2, #weftInputSecond3, #weftInputSecond4, #weftInputSecond5, #weftInputSecond6, #weftInputSecond7");
+    weftInputs.forEach(function (input) {
+        sumWeft += parseFloat(input.value) || 0;
+    });
+
+    // Get all Total Yarn values
+    var totalYarnInputs = document.querySelectorAll("#totalYarnInput, #totalYarnInput2, #totalYarnInput3, #totalYarnInput4, #totalYarnInput5, #totalYarnInput6, #totalYarnInput7");
+    totalYarnInputs.forEach(function (input) {
+        sumTotalYarn += parseFloat(input.value) || 0;
+    });
+
+    // Display sum values
+    document.getElementById("sumQty").value = sumQty.toFixed(2);
+    document.getElementById("sumTotalMeter").value = sumTotalMeter.toFixed(2);
+    document.getElementById("sumWarp").value = sumWarp.toFixed(2);
+    document.getElementById("sumWeft").value = sumWeft.toFixed(2);
+    document.getElementById("sumTotalYarn").value = sumTotalYarn.toFixed(2);
+}
+
+  
+  // Additional code to trigger calculations for the seventh row
+document.getElementById("qtyInput7").addEventListener("input", calculateTotalMeterSeventh);
+document.getElementById("consInput7").addEventListener("input", calculateTotalMeterSeventh);
+
+  // Function to perform calculations for Total Meter for the eighth row
+function calculateTotalMeterEighth() {
+    // Get input values for the eighth row
+    var qty = parseFloat(document.getElementById("qtyInput8").value) || 0;
+    var cons = parseFloat(document.getElementById("consInput8").value) || 0;
+    var shrinkage = parseFloat(document.getElementById("shrinkageInput").value.replace('%', '')) || 0;
+
+    // Calculate Total Meter for the eighth row
+    var totalMeter = ((qty * cons) + ((qty * cons) * (shrinkage / 100))).toFixed(2);
+
+    // Display result for the eighth row
+    document.getElementById("totalMeterInput8").value = totalMeter;
+
+    // Trigger Warp and Weft calculations when Total Meter changes for the eighth row
+    calculateWarpEighth();
+    calculateWeftEighth();
+    calculateTotalYarnEighth();
+    calculateSum();
+}
+
+// Function to perform calculations for Warp in 2nd table for the eighth row
+function calculateWarpEighth() {
+    // Get input values for the eighth row
+    var end = parseFloat(document.getElementById("endInput").value) || 0;
+    var width = parseFloat(document.getElementById("widthInput8").value) || 0;
+    var warpFirst = parseFloat(document.getElementById("warpInput").value) || 0;
+    var warpPercentage = parseFloat(document.getElementById("warpPercentageInput").value.replace('%', '')) || 0;
+    var totalMeter = parseFloat(document.getElementById("totalMeterInput8").value) || 0;
+
+    // Calculate Warp in 2nd table for the eighth row
+    var warpSecond = (((end * width) / 768.1 / warpFirst) + (((end * width) / 768.1 / warpFirst) * (warpPercentage / 100))) / 2.2046 * totalMeter;
+
+    // Display result for the eighth row
+    document.getElementById("warpInputSecond8").value = warpSecond.toFixed(2);
+}
+
+// Function to perform calculations for Weft in 2nd table for the eighth row
+function calculateWeftEighth() {
+    // Get input values for the eighth row
+    var pick = parseFloat(document.getElementById("pickInput").value) || 0;
+    var width = parseFloat(document.getElementById("widthInput8").value) || 0;
+    var weftFirst = parseFloat(document.getElementById("weftInput").value) || 0;
+    var weftPercentage = parseFloat(document.getElementById("weftPercentageInput").value.replace('%', '')) || 0;
+    var totalMeter = parseFloat(document.getElementById("totalMeterInput8").value) || 0;
+
+    // Calculate Weft in 2nd table for the eighth row
+    var weftSecond = (((pick * width) / 768.1 / weftFirst) + (((pick * width) / 768.1 / weftFirst) * (weftPercentage / 100))) / 2.2046 * totalMeter;
+
+    // Display result for the eighth row
+    document.getElementById("weftInputSecond8").value = weftSecond.toFixed(2);
+}
+
+// Function to calculate Total Yarn in 2nd table for the eighth row
+function calculateTotalYarnEighth() {
+    var warpSecond = parseFloat(document.getElementById("warpInputSecond8").value) || 0;
+    var weftSecond = parseFloat(document.getElementById("weftInputSecond8").value) || 0;
+
+    // Calculate Total Yarn for the eighth row
+    var totalYarn = (warpSecond + weftSecond).toFixed(2);
+
+    // Display result for the eighth row
+    document.getElementById("totalYarnInput8").value = totalYarn;
+}
+
+// Attach the calculate functions to input events for the eighth row
+var inputsMeterEighth = document.querySelectorAll("#qtyInput8, #consInput8, #shrinkageInput");
+var inputsWarpEighth = document.querySelectorAll("#endInput, #widthInput8, #warpInput, #warpPercentageInput");
+var inputsWeftEighth = document.querySelectorAll("#pickInput, #widthInput8, #weftInput, #weftPercentageInput");
+
+inputsMeterEighth.forEach(function (input) {
+    input.addEventListener("input", calculateTotalMeterEighth);
+});
+
+inputsWarpEighth.forEach(function (input) {
+    input.addEventListener("input", calculateWarpEighth);
+});
+
+inputsWeftEighth.forEach(function (input) {
+    input.addEventListener("input", calculateWeftEighth);
+});
+
+// Additional code to trigger calculations for the eighth row
+document.getElementById("qtyInput8").addEventListener("input", calculateTotalMeterEighth);
+document.getElementById("consInput8").addEventListener("input", calculateTotalMeterEighth);
+
+  // Additional code to trigger calculations for the eighth row
+document.getElementById("qtyInput8").addEventListener("input", calculateTotalMeterEighth);
+document.getElementById("consInput8").addEventListener("input", calculateTotalMeterEighth);
+
+  // Function to calculate and display sum of QTY, TOTAL METER, Warp, Weft, Total Yarn
+function calculateSum() {
+    var sumQty = 0;
+    var sumTotalMeter = 0;
+    var sumWarp = 0;
+    var sumWeft = 0;
+    var sumTotalYarn = 0;
+
+    // Get all QTY values
+    var qtyInputs = document.querySelectorAll("#qtyInput, #qtyInput2, #qtyInput3, #qtyInput4, #qtyInput5, #qtyInput6, #qtyInput7, #qtyInput8");
+    qtyInputs.forEach(function (input) {
+        sumQty += parseFloat(input.value) || 0;
+    });
+
+    // Get all TOTAL METER values
+    var totalMeterInputs = document.querySelectorAll("#totalMeterInput, #totalMeterInput2, #totalMeterInput3, #totalMeterInput4, #totalMeterInput5, #totalMeterInput6, #totalMeterInput7, #totalMeterInput8");
+    totalMeterInputs.forEach(function (input) {
+        sumTotalMeter += parseFloat(input.value) || 0;
+    });
+
+    // Get all Warp values
+    var warpInputs = document.querySelectorAll("#warpInputSecond, #warpInputSecond2, #warpInputSecond3, #warpInputSecond4, #warpInputSecond5, #warpInputSecond6, #warpInputSecond7, #warpInputSecond8");
+    warpInputs.forEach(function (input) {
+        sumWarp += parseFloat(input.value) || 0;
+    });
+
+    // Get all Weft values
+    var weftInputs = document.querySelectorAll("#weftInputSecond, #weftInputSecond2, #weftInputSecond3, #weftInputSecond4, #weftInputSecond5, #weftInputSecond6, #weftInputSecond7, #weftInputSecond8");
+    weftInputs.forEach(function (input) {
+        sumWeft += parseFloat(input.value) || 0;
+    });
+
+    // Get all Total Yarn values
+    var totalYarnInputs = document.querySelectorAll("#totalYarnInput, #totalYarnInput2, #totalYarnInput3, #totalYarnInput4, #totalYarnInput5, #totalYarnInput6, #totalYarnInput7, #totalYarnInput8");
+    totalYarnInputs.forEach(function (input) {
+        sumTotalYarn += parseFloat(input.value) || 0;
+    });
+
+    // Display sum values
+    document.getElementById("sumQty").value = sumQty.toFixed(2);
+    document.getElementById("sumTotalMeter").value = sumTotalMeter.toFixed(2);
+    document.getElementById("sumWarp").value = sumWarp.toFixed(2);
+    document.getElementById("sumWeft").value = sumWeft.toFixed(2);
+    document.getElementById("sumTotalYarn").value = sumTotalYarn.toFixed(2);
+}
+
+  // Additional code to trigger calculations for the eighth row
+document.getElementById("qtyInput8").addEventListener("input", calculateTotalMeterEighth);
+document.getElementById("consInput8").addEventListener("input", calculateTotalMeterEighth);
+
+  
+  // Function to perform calculations for Total Meter for the 9th row
+function calculateTotalMeterNinth() {
+    // Get input values for the 9th row
+    var qty = parseFloat(document.getElementById("qtyInput9").value) || 0;
+    var cons = parseFloat(document.getElementById("consInput9").value) || 0;
+    var shrinkage = parseFloat(document.getElementById("shrinkageInput").value.replace('%', '')) || 0;
+
+    // Calculate Total Meter for the 9th row
+    var totalMeter = ((qty * cons) + ((qty * cons) * (shrinkage / 100))).toFixed(2);
+
+    // Display result for the 9th row
+    document.getElementById("totalMeterInput9").value = totalMeter;
+
+    // Trigger Warp and Weft calculations when Total Meter changes for the 9th row
+    calculateWarpNinth();
+    calculateWeftNinth();
+    calculateTotalYarnNinth();
+    calculateSum();
+}
+
+// Function to perform calculations for Warp in 2nd table for the 9th row
+function calculateWarpNinth() {
+    // Get input values for the 9th row
+    var end = parseFloat(document.getElementById("endInput").value) || 0;
+    var width = parseFloat(document.getElementById("widthInput9").value) || 0;
+    var warpFirst = parseFloat(document.getElementById("warpInput").value) || 0;
+    var warpPercentage = parseFloat(document.getElementById("warpPercentageInput").value.replace('%', '')) || 0;
+    var totalMeter = parseFloat(document.getElementById("totalMeterInput9").value) || 0;
+
+    // Calculate Warp in 2nd table for the 9th row
+    var warpSecond = (((end * width) / 768.1 / warpFirst) + (((end * width) / 768.1 / warpFirst) * (warpPercentage / 100))) / 2.2046 * totalMeter;
+
+    // Display result for the 9th row
+    document.getElementById("warpInputSecond9").value = warpSecond.toFixed(2);
+}
+
+// Function to perform calculations for Weft in 2nd table for the 9th row
+function calculateWeftNinth() {
+    // Get input values for the 9th row
+    var pick = parseFloat(document.getElementById("pickInput").value) || 0;
+    var width = parseFloat(document.getElementById("widthInput9").value) || 0;
+    var weftFirst = parseFloat(document.getElementById("weftInput").value) || 0;
+    var weftPercentage = parseFloat(document.getElementById("weftPercentageInput").value.replace('%', '')) || 0;
+    var totalMeter = parseFloat(document.getElementById("totalMeterInput9").value) || 0;
+
+    // Calculate Weft in 2nd table for the 9th row
+    var weftSecond = (((pick * width) / 768.1 / weftFirst) + (((pick * width) / 768.1 / weftFirst) * (weftPercentage / 100))) / 2.2046 * totalMeter;
+
+    // Display result for the 9th row
+    document.getElementById("weftInputSecond9").value = weftSecond.toFixed(2);
+}
+
+// Function to calculate Total Yarn in 2nd table for the 9th row
+function calculateTotalYarnNinth() {
+    var warpSecond = parseFloat(document.getElementById("warpInputSecond9").value) || 0;
+    var weftSecond = parseFloat(document.getElementById("weftInputSecond9").value) || 0;
+
+    // Calculate Total Yarn for the 9th row
+    var totalYarn = (warpSecond + weftSecond).toFixed(2);
+
+    // Display result for the 9th row
+    document.getElementById("totalYarnInput9").value = totalYarn;
+}
+
+// Attach the calculate functions to input events for the 9th row
+var inputsMeterNinth = document.querySelectorAll("#qtyInput9, #consInput9, #shrinkageInput");
+var inputsWarpNinth = document.querySelectorAll("#endInput, #widthInput9, #warpInput, #warpPercentageInput");
+var inputsWeftNinth = document.querySelectorAll("#pickInput, #widthInput9, #weftInput, #weftPercentageInput");
+
+inputsMeterNinth.forEach(function (input) {
+    input.addEventListener("input", calculateTotalMeterNinth);
+});
+
+inputsWarpNinth.forEach(function (input) {
+    input.addEventListener("input", calculateWarpNinth);
+});
+
+inputsWeftNinth.forEach(function (input) {
+    input.addEventListener("input", calculateWeftNinth);
+});
+
+// Additional code to trigger calculations for the 9th row
+document.getElementById("qtyInput9").addEventListener("input", calculateTotalMeterNinth);
+document.getElementById("consInput9").addEventListener("input", calculateTotalMeterNinth);
+
+  // Additional code to trigger calculations for the 9th row
+document.getElementById("qtyInput9").addEventListener("input", calculateTotalMeterNinth);
+document.getElementById("consInput9").addEventListener("input", calculateTotalMeterNinth);
+
+  
+  // Function to calculate and display sum of QTY, TOTAL METER, Warp, Weft, Total Yarn
+function calculateSum() {
+    var sumQty = 0;
+    var sumTotalMeter = 0;
+    var sumWarp = 0;
+    var sumWeft = 0;
+    var sumTotalYarn = 0;
+
+    // Get all QTY values
+    var qtyInputs = document.querySelectorAll("#qtyInput, #qtyInput2, #qtyInput3, #qtyInput4, #qtyInput5, #qtyInput6, #qtyInput7, #qtyInput8, #qtyInput9");
+    qtyInputs.forEach(function (input) {
+        sumQty += parseFloat(input.value) || 0;
+    });
+
+    // Get all TOTAL METER values
+    var totalMeterInputs = document.querySelectorAll("#totalMeterInput, #totalMeterInput2, #totalMeterInput3, #totalMeterInput4, #totalMeterInput5, #totalMeterInput6, #totalMeterInput7, #totalMeterInput8, #totalMeterInput9");
+    totalMeterInputs.forEach(function (input) {
+        sumTotalMeter += parseFloat(input.value) || 0;
+    });
+
+    // Get all Warp values
+    var warpInputs = document.querySelectorAll("#warpInputSecond, #warpInputSecond2, #warpInputSecond3, #warpInputSecond4, #warpInputSecond5, #warpInputSecond6, #warpInputSecond7, #warpInputSecond8, #warpInputSecond9");
+    warpInputs.forEach(function (input) {
+        sumWarp += parseFloat(input.value) || 0;
+    });
+
+    // Get all Weft values
+    var weftInputs = document.querySelectorAll("#weftInputSecond, #weftInputSecond2, #weftInputSecond3, #weftInputSecond4, #weftInputSecond5, #weftInputSecond6, #weftInputSecond7, #weftInputSecond8, #weftInputSecond9");
+    weftInputs.forEach(function (input) {
+        sumWeft += parseFloat(input.value) || 0;
+    });
+
+    // Get all Total Yarn values
+    var totalYarnInputs = document.querySelectorAll("#totalYarnInput, #totalYarnInput2, #totalYarnInput3, #totalYarnInput4, #totalYarnInput5, #totalYarnInput6, #totalYarnInput7, #totalYarnInput8, #totalYarnInput9");
+    totalYarnInputs.forEach(function (input) {
+        sumTotalYarn += parseFloat(input.value) || 0;
+    });
+
+    // Display sum values
+    document.getElementById("sumQty").value = sumQty.toFixed(2);
+    document.getElementById("sumTotalMeter").value = sumTotalMeter.toFixed(2);
+    document.getElementById("sumWarp").value = sumWarp.toFixed(2);
+    document.getElementById("sumWeft").value = sumWeft.toFixed(2);
+    document.getElementById("sumTotalYarn").value = sumTotalYarn.toFixed(2);
+}
+// Additional code to trigger calculations for the 9th row
+document.getElementById("qtyInput9").addEventListener("input", calculateTotalMeterNinth);
+document.getElementById("consInput9").addEventListener("input", calculateTotalMeterNinth);
+
+  
+  // Function to perform calculations for Total Meter for the 10th row
+function calculateTotalMeterTenth() {
+    // Get input values for the 10th row
+    var qty = parseFloat(document.getElementById("qtyInput10").value) || 0;
+    var cons = parseFloat(document.getElementById("consInput10").value) || 0;
+    var shrinkage = parseFloat(document.getElementById("shrinkageInput").value.replace('%', '')) || 0;
+
+    // Calculate Total Meter for the 10th row
+    var totalMeter = ((qty * cons) + ((qty * cons) * (shrinkage / 100))).toFixed(2);
+
+    // Display result for the 10th row
+    document.getElementById("totalMeterInput10").value = totalMeter;
+
+    // Trigger Warp and Weft calculations when Total Meter changes for the 10th row
+    calculateWarpTenth();
+    calculateWeftTenth();
+    calculateTotalYarnTenth();
+    calculateSum();
+}
+
+// Function to perform calculations for Warp in 2nd table for the 10th row
+function calculateWarpTenth() {
+    // Get input values for the 10th row
+    var end = parseFloat(document.getElementById("endInput").value) || 0;
+    var width = parseFloat(document.getElementById("widthInput10").value) || 0;
+    var warpFirst = parseFloat(document.getElementById("warpInput").value) || 0;
+    var warpPercentage = parseFloat(document.getElementById("warpPercentageInput").value.replace('%', '')) || 0;
+    var totalMeter = parseFloat(document.getElementById("totalMeterInput10").value) || 0;
+
+    // Calculate Warp in 2nd table for the 10th row
+    var warpSecond = (((end * width) / 768.1 / warpFirst) + (((end * width) / 768.1 / warpFirst) * (warpPercentage / 100))) / 2.2046 * totalMeter;
+
+    // Display result for the 10th row
+    document.getElementById("warpInputSecond10").value = warpSecond.toFixed(2);
+}
+
+// Function to perform calculations for Weft in 2nd table for the 10th row
+function calculateWeftTenth() {
+    // Get input values for the 10th row
+    var pick = parseFloat(document.getElementById("pickInput").value) || 0;
+    var width = parseFloat(document.getElementById("widthInput10").value) || 0;
+    var weftFirst = parseFloat(document.getElementById("weftInput").value) || 0;
+    var weftPercentage = parseFloat(document.getElementById("weftPercentageInput").value.replace('%', '')) || 0;
+    var totalMeter = parseFloat(document.getElementById("totalMeterInput10").value) || 0;
+
+    // Calculate Weft in 2nd table for the 10th row
+    var weftSecond = (((pick * width) / 768.1 / weftFirst) + (((pick * width) / 768.1 / weftFirst) * (weftPercentage / 100))) / 2.2046 * totalMeter;
+
+    // Display result for the 10th row
+    document.getElementById("weftInputSecond10").value = weftSecond.toFixed(2);
+}
+
+// Function to calculate Total Yarn in 2nd table for the 10th row
+function calculateTotalYarnTenth() {
+    var warpSecond = parseFloat(document.getElementById("warpInputSecond10").value) || 0;
+    var weftSecond = parseFloat(document.getElementById("weftInputSecond10").value) || 0;
+
+    // Calculate Total Yarn for the 10th row
+    var totalYarn = (warpSecond + weftSecond).toFixed(2);
+
+    // Display result for the 10th row
+    document.getElementById("totalYarnInput10").value = totalYarn;
+}
+
+// Attach the calculate functions to input events for the 10th row
+var inputsMeterTenth = document.querySelectorAll("#qtyInput10, #consInput10, #shrinkageInput");
+var inputsWarpTenth = document.querySelectorAll("#endInput, #widthInput10, #warpInput, #warpPercentageInput");
+var inputsWeftTenth = document.querySelectorAll("#pickInput, #widthInput10, #weftInput, #weftPercentageInput");
+
+inputsMeterTenth.forEach(function (input) {
+    input.addEventListener("input", calculateTotalMeterTenth);
+});
+
+inputsWarpTenth.forEach(function (input) {
+    input.addEventListener("input", calculateWarpTenth);
+});
+
+inputsWeftTenth.forEach(function (input) {
+    input.addEventListener("input", calculateWeftTenth);
+});
+
+// Additional code to trigger calculations for the 10th row
+document.getElementById("qtyInput10").addEventListener("input", calculateTotalMeterTenth);
+document.getElementById("consInput10").addEventListener("input", calculateTotalMeterTenth);
+
+  // Additional code to trigger calculations for the 10th row
+document.getElementById("qtyInput10").addEventListener("input", calculateTotalMeterTenth);
+document.getElementById("consInput10").addEventListener("input", calculateTotalMeterTenth);
+
+  
+  // Function to calculate and display sum of QTY, TOTAL METER, Warp, Weft, Total Yarn
+function calculateSum() {
+    var sumQty = 0;
+    var sumTotalMeter = 0;
+    var sumWarp = 0;
+    var sumWeft = 0;
+    var sumTotalYarn = 0;
+
+    // Get all QTY values
+    var qtyInputs = document.querySelectorAll("#qtyInput, #qtyInput2, #qtyInput3, #qtyInput4, #qtyInput5, #qtyInput6, #qtyInput7, #qtyInput8, #qtyInput9, #qtyInput10");
+    qtyInputs.forEach(function (input) {
+        sumQty += parseFloat(input.value) || 0;
+    });
+
+    // Get all TOTAL METER values
+    var totalMeterInputs = document.querySelectorAll("#totalMeterInput, #totalMeterInput2, #totalMeterInput3, #totalMeterInput4, #totalMeterInput5, #totalMeterInput6, #totalMeterInput7, #totalMeterInput8, #totalMeterInput9, #totalMeterInput10");
+    totalMeterInputs.forEach(function (input) {
+        sumTotalMeter += parseFloat(input.value) || 0;
+    });
+
+    // Get all Warp values
+    var warpInputs = document.querySelectorAll("#warpInputSecond, #warpInputSecond2, #warpInputSecond3, #warpInputSecond4, #warpInputSecond5, #warpInputSecond6, #warpInputSecond7, #warpInputSecond8, #warpInputSecond9, #warpInputSecond10");
+    warpInputs.forEach(function (input) {
+        sumWarp += parseFloat(input.value) || 0;
+    });
+
+    // Get all Weft values
+    var weftInputs = document.querySelectorAll("#weftInputSecond, #weftInputSecond2, #weftInputSecond3, #weftInputSecond4, #weftInputSecond5, #weftInputSecond6, #weftInputSecond7, #weftInputSecond8, #weftInputSecond9, #weftInputSecond10");
+    weftInputs.forEach(function (input) {
+        sumWeft += parseFloat(input.value) || 0;
+    });
+
+    // Get all Total Yarn values
+    var totalYarnInputs = document.querySelectorAll("#totalYarnInput, #totalYarnInput2, #totalYarnInput3, #totalYarnInput4, #totalYarnInput5, #totalYarnInput6, #totalYarnInput7, #totalYarnInput8, #totalYarnInput9, #totalYarnInput10");
+    totalYarnInputs.forEach(function (input) {
+        sumTotalYarn += parseFloat(input.value) || 0;
+    });
+
+    // Display sum values
+    document.getElementById("sumQty").value = sumQty.toFixed(2);
+    document.getElementById("sumTotalMeter").value = sumTotalMeter.toFixed(2);
+    document.getElementById("sumWarp").value = sumWarp.toFixed(2);
+    document.getElementById("sumWeft").value = sumWeft.toFixed(2);
+    document.getElementById("sumTotalYarn").value = sumTotalYarn.toFixed(2);
+}
+// Additional code to trigger calculations for the 10th row
+document.getElementById("qtyInput10").addEventListener("input", calculateTotalMeterTenth);
+document.getElementById("consInput10").addEventListener("input", calculateTotalMeterTenth);
+
+  
+ // Get the input elements
+    var orderValueInput = document.getElementById('orderValueInput');
+    var yarnValueInput = document.getElementById('yarnValueInput');
+    var backToBackInput = document.getElementById('backToBackInput');
+
+    // Add an event listener to calculate Back to Back percentage when inputs change
+    orderValueInput.addEventListener('input', calculateBackToBack);
+    yarnValueInput.addEventListener('input', calculateBackToBack);
+
+    // Initial calculation on page load
+    calculateBackToBack();
+
+    // Function to calculate Back to Back percentage
+    function calculateBackToBack() {
+        // Get values from input fields
+        var orderValueStr = orderValueInput.value.replace('$', ''); // Remove '$' sign if present
+        var orderValue = parseFloat(orderValueStr);
+        var yarnValue = parseFloat(yarnValueInput.value);
+
+        // Check if values are valid numbers
+        if (!isNaN(orderValue) && !isNaN(yarnValue) && orderValue !== 0) {
+            // Calculate Back to Back percentage
+            var backToBackPercentage = (yarnValue / orderValue) * 100;
+
+            // Update the Back to Back input field with the calculated percentage and add '%' sign
+            backToBackInput.value = backToBackPercentage.toFixed(2) + '%';
+        } else {
+            // Handle invalid input
+            backToBackInput.value = 'Invalid Input';
+        }
+    }
+  
+</script>
 
 </body>
+
 </html>
