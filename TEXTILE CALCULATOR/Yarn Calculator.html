@@ -206,7 +206,104 @@ h1, h2, table, .third-table-container {
         padding-left: 20px;
     }
 
-      
+    /* Styles for the button */
+    button {
+        background-color: #46b15e;
+        border-radius: 10px;
+        border: 2px solid white;
+        padding: 10px; /* Adjust padding using relative units */
+        margin: 2em auto; /* Adjust margin using relative units */
+        width: 30%; /* Adjust width using relative units */
+        max-width: 120px; /* Set a maximum width */
+        box-shadow: 8px 16px 23px rgb(121, 121, 121);
+        font-size: 1.5em; /* Adjust font size using relative units */
+        color: #f2f2f2;
+        cursor: pointer; /* Show clickable cursor */
+        text-align: center; /* Center the button */
+        display: block; /* Ensure it takes full width */
+    }
+
+    /* Additional styles for responsiveness */
+    @media screen and (max-width: 600px) {
+        button {
+            width: 15%; /* Adjust width for smaller screens */
+        }
+    }
+    button:hover {
+        scale: 1.05;
+        transition: 02 ease-in-out;
+    }
+
+      /* Style for print copy */
+    @media print {
+        body {
+            text-align: center;
+        }
+
+        .printable {
+            margin: auto;
+            width: 80%; /* Adjust as needed */
+        }
+
+        table {
+            width: 90%;
+            text-align: center;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 15px 21px 25px rgb(76 76 76);
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 10px;
+            table-layout: fixed; /* Ensure fixed table layout */
+        }
+
+        h2 {
+            text-align: center;
+            color: #fcfcfc;
+            padding: 10px;
+            border: 2px solid white;
+            margin: 15px auto;
+            background-color: #46b15e;
+            width: 20%;
+            font-family: Roboto, sans-serif;
+            font-size: 30px;
+            border-radius: 15px;
+            box-shadow: 15px 21px 25px rgb(121, 121, 121);
+}
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            padding: 10px;
+            margin: 20px auto;
+            background-color: #46b15e;
+            width: 35%;
+            font-family: Roboto, sans-serif;
+            font-size: 40px;
+            border-radius: 15px;
+            box-shadow: 10px 15px 20px rgb(106, 104, 104);
+            border: 2px solid white;
+
+        }
+
+        table, th, td {
+            border: 1px solid #000; /* Add your desired border color */
+            color: #333; /* Add your desired text color */
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center; /* Center text */
+        }
+
+        th {
+            background-color: #f2f2f2; /* Add your desired header background color */
+        }
+
+        .third-table-container {
+            width: 80%; /* Adjust width for the third table container */
+            margin: 20px auto;
+        }
+    }
     </style>
 </head>
 
@@ -221,8 +318,8 @@ h1, h2, table, .third-table-container {
 
     <!-- First Table -->
     <!-- <h2>Yarn Details</h2> -->
-    <table>
-        <thead>
+<table id="firstTable">
+  <thead>
             <tr>
                 <th>Warp</th>
                 <th>Weft</th>
@@ -253,8 +350,8 @@ h1, h2, table, .third-table-container {
 
     <!-- Second Table --> </br>
     <h2>Yarn Calculator</h2>
-   <table>
-    <thead>
+<table id="secondTable">
+  <thead>
         <tr>
             <th>ITEM</th>
             <th>QTY</th>
@@ -405,7 +502,7 @@ h1, h2, table, .third-table-container {
 <!-- Third Table -->
 <h2>Order Details</h2>
 <div class="third-table-container">
-    <table>
+    <table id="thirdTable">
         <tbody>
             <tr>
                 <th class="vertical-header-row">Order Value($)</th>
@@ -422,7 +519,15 @@ h1, h2, table, .third-table-container {
             <!-- You can add more rows as needed -->
         </tbody>
     </table>
+  
 </div>
+
+<div>
+    <button id="printButton" onclick="printTables()">Print</button>
+  
+</div>
+
+
     
 
     <!-- Your existing script tag -->
@@ -1823,6 +1928,64 @@ document.getElementById("consInput10").addEventListener("input", calculateTotalM
             backToBackInput.value = 'Invalid Input';
         }
     }
+  
+ function printTables() {
+    // Clone the first table
+    var firstTableClone = document.getElementById('firstTable').cloneNode(true);
+
+    // Replace input elements with their current values in the cloned first table
+    var firstTableInputs = firstTableClone.getElementsByTagName('input');
+    for (var i = 0; i < firstTableInputs.length; i++) {
+        if (firstTableInputs[i].type !== 'button') {
+            firstTableInputs[i].setAttribute('value', firstTableInputs[i].value);
+        }
+    }
+
+    // Clone the second table
+    var secondTableClone = document.getElementById('secondTable').cloneNode(true);
+
+    // Replace input elements with their current values in the cloned second table
+    var secondTableInputs = secondTableClone.getElementsByTagName('input');
+    for (var i = 0; i < secondTableInputs.length; i++) {
+        if (secondTableInputs[i].type !== 'button') {
+            secondTableInputs[i].setAttribute('value', secondTableInputs[i].value);
+        }
+    }
+
+    // Clone the third table
+    var thirdTableClone = document.getElementById('thirdTable').cloneNode(true);
+
+    // Replace input elements with their current values in the cloned third table
+    var thirdTableInputs = thirdTableClone.getElementsByTagName('input');
+    for (var i = 0; i < thirdTableInputs.length; i++) {
+        if (thirdTableInputs[i].type !== 'button') {
+            thirdTableInputs[i].setAttribute('value', thirdTableInputs[i].value);
+        }
+    }
+
+    // Create a new window
+    var printWindow = window.open('', '_blank');
+    
+    // Write the cloned tables content to the new window
+    printWindow.document.write('<html><head><title>Print Tables</title></head><body>');
+    printWindow.document.write('<style>@media print{body{visibility: hidden;} .printable{visibility: visible;}}</style>');
+    printWindow.document.write('<div class="printable">');
+    printWindow.document.write('<h1>Your Online Yarn Calculator</h1>');
+    printWindow.document.write(firstTableClone.outerHTML);
+    printWindow.document.write('<h2>Yarn Calculaotor</h2>');
+    printWindow.document.write(secondTableClone.outerHTML);
+    printWindow.document.write('<h2>Order Details</h2>');
+    printWindow.document.write(thirdTableClone.outerHTML);
+    printWindow.document.write('</div>');
+    printWindow.document.write('</body></html>');
+
+    // Close the document stream
+    printWindow.document.close();
+
+    // Print the new window
+    printWindow.print();
+}
+  
   
 </script>
 
