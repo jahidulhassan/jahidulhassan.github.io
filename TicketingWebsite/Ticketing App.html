@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticketing</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: auto;
+            background-color: #f0f0f0;
+            flex-direction: column; /* Added for vertical alignment */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            background-color: #9dcce9;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 15px;
+        }
+
+        @media screen and (max-width: 768px) {
+    /* Add styles for smaller screens */
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .user-input {
+        width: 90%;
+    }
+    .bottom-portion{
+        width: 80%;
+    }
+
+    /* Add more responsive styles as needed */
+}
+
+
+        .cell {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1a9fd2;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cell:hover {
+            background-color: #e0e0e0;
+        }
+
+        .booked {
+            background-color: #a0a0a0 !important;
+        }
+
+        .car-icon {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Align to the right */
+            grid-column: 1 / span 4;
+            grid-row: 1;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .car-icon img {
+            width: 50px; /* Adjust the size of the car icon */
+            height: auto;
+        }
+
+        .user-input {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column; /* Added for vertical alignment */
+            margin-bottom: 20px; /* Added for spacing */
+            margin-top: 20px; /* Added for spacing */
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+            background-color: rgb(30, 226, 213);
+        }
+
+        .user-input:hover {
+            scale: 1.02;
+            transition: 01s ease-in-out;
+            box-shadow: 5px 5px 20px rgb(78, 78, 78);
+        }
+
+        .user-input label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            text-align: left; /* Align labels to the left */
+            width: 100%; /* Full width for labels */
+        }
+
+        .user-input input {
+            margin: 5px;
+            padding: 8px;
+            width: 95%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        .user-input input[type="date"] {
+            width: 95%; /* Updated to take full width */
+        }
+
+        .user-input .date-inputs {
+            display: flex;
+            gap: 20px; /* Increased gap between date inputs */
+            width: 100%;
+            justify-content: space-between; /* Adjusted to evenly space date inputs */
+        }
+
+        .user-input input:focus {
+            border-color: #1a9fd2;
+        }
+
+        .bottom-portion {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .bottom-portion label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .bottom-portion button {
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #1a9fd2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .bottom-portion .total-bill {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+      
+      /* New CSS styles for the bottom portion */
+    .bottom-portion {
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #53d6df;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        width: 30%;
+        /* flex-direction: column; */
+        align-items: center;
+    }
+    .bottom-portion:hover {
+        scale: 1.03;
+        transition: 01s ease-in-out;
+    }
+
+    .bottom-portion label {
+        font-size: 16px;
+        margin-bottom: 5px;
+        text-align: left;
+        width: 100%;
+    }
+
+    .bottom-portion span {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .total-bill {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        width: 30%;
+        font-size: 16px;
+        background-color: #1a9fd2;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #13709e;
+        
+    }
+      
+      
+      /* Print-specific styles */
+        @media print {
+            body {
+                text-align: center;
+            }
+
+            .bottom-portion {
+                margin: 20px auto;
+                padding: 20px;
+                background-color: #53d6df;
+                border-radius: 15px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                display: flex;
+                width: 80%;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .bottom-portion:hover {
+                scale: 1.03;
+                transition: 01s ease-in-out;
+            }
+
+            .bottom-portion label {
+                font-size: 16px;
+                margin-bottom: 5px;
+                text-align: left;
+                width: 100%;
+            }
+
+            .bottom-portion span {
+                font-weight: bold;
+                margin-bottom: 10px;
+                display: block;
+            }
+
+            .total-bill {
+                margin-top: 10px;
+                font-size: 18px;
+                font-weight: bold;
+            }
+        }
+      
+    </style>
+   
+<script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+        const container = document.getElementById('busContainer');
+        const bottomPortion = document.getElementById('bottomPortion');
+        let selectedSeats = [];
+
+        // Create car icon in the first row, spanning 4 columns
+        const carIcon = document.createElement('div');
+        carIcon.classList.add('car-icon');
+        const carImg = document.createElement('img');
+        carImg.src = 'https://cdn2.vectorstock.com/i/1000x1000/56/51/car-steering-wheel-icon-vector-26135651.jpg';
+        carIcon.appendChild(carImg);
+        container.appendChild(carIcon);
+
+        // Create 18 rows and 4 columns of seats starting from the second row
+        for (let row = 2; row <= 19; row++) {
+            for (let col = 1; col <= 4; col++) {
+                const seat = document.createElement('div');
+                seat.classList.add('cell');
+                seat.dataset.row = row - 1;
+                seat.dataset.col = col;
+
+                // Calculate seat name (A1, A2, A3, ...)
+                const seatName = String.fromCharCode(64 + Math.ceil(row / 2)) + col;
+                seat.innerHTML = seatName;
+
+                seat.addEventListener('click', function () {
+                    // Toggle booking status on click
+                    this.classList.toggle('booked');
+                    updateBottomPortion();
+                });
+
+                container.appendChild(seat);
+            }
+            row++; // Skip a row for the gap
+        }
+
+        // Update the bottom portion initially
+        updateBottomPortion();
+
+        // Function to update the bottom portion with selected seats
+        function updateBottomPortion() {
+            selectedSeats = Array.from(container.querySelectorAll('.booked')).map(seat => seat.innerText);
+            const fromInput = document.getElementById('fromInput').value;
+            const toInput = document.getElementById('toInput').value;
+            const dateInput = document.getElementById('dateInput').value;
+            const totalBill = selectedSeats.length * 700;
+
+            bottomPortion.innerHTML = `
+                <label for="fromCity">From:</label>
+                <span id="fromCity">${fromInput}</span>
+                <label for="toCity">To:</label>
+                <span id="toCity">${toInput}</span>
+                <label for="journeyDate">Journey Date:</label>
+                <span id="journeyDate">${dateInput}</span>
+                <label for="yourSeat">Your Seat:</label>
+                <span id="yourSeat">${selectedSeats.join(', ')}</span>
+                <div class="total-bill" id="totalBill">
+                    Total Bill: BDT ${totalBill}
+                </div>
+                <button onclick="printTicket()">Print</button>
+            `;
+        }
+
+        // Function to simulate printing the ticket (replace with actual print logic)
+        window.printTicket = function () {
+            const printContent = document.getElementById('bottomPortion').innerHTML;
+
+            // Create a new window or iframe
+            const printWindow = window.open('', '_blank');
+
+            // Write the content to the new window or iframe
+            printWindow.document.write('<html><head><title>Print</title>');
+            // Add the styles for printing
+            printWindow.document.write('<style>');
+            printWindow.document.write(`
+                body {
+                    text-align: center;
+                    font-family: 'Arial', sans-serif;
+                }
+
+                h2 {
+                    margin-top: 20px;
+                }
+
+                table {
+                    width: 80%;
+                    border-collapse: collapse;
+                    margin: 20px auto;
+                }
+
+                th, td {
+                    border: 1px solid #ddd;
+                    padding: 8px;
+                    text-align: left;
+                }
+
+                .bottom-portion {
+                    margin: 20px auto;
+                    padding: 20px;
+                    background-color: #53d6df;
+                    border-radius: 15px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    display: flex;
+                    width: 80%;
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .bottom-portion:hover {
+                    scale: 1.03;
+                    transition: 01s ease-in-out;
+                }
+
+                .bottom-portion label {
+                    font-size: 16px;
+                    margin-bottom: 5px;
+                    text-align: left;
+                    width: 100%;
+                }
+
+                .bottom-portion span {
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                    display: block;
+                }
+
+                .total-bill {
+                    margin-top: 20px;
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+            `);
+            printWindow.document.write('</style></head><body>');
+
+            // Add the "Booking Summary" at the top
+            printWindow.document.write('<h2>Booking Summary</h2>');
+
+            // Convert the printed content to a table
+            printWindow.document.write('<table>');
+            printWindow.document.write('<tr><th>Description</th><th>Value</th></tr>');
+            printWindow.document.write('<tr><td>From:</td><td>' + document.getElementById('fromCity').innerText + '</td></tr>');
+            printWindow.document.write('<tr><td>To:</td><td>' + document.getElementById('toCity').innerText + '</td></tr>');
+            printWindow.document.write('<tr><td>Journey Date:</td><td>' + document.getElementById('journeyDate').innerText + '</td></tr>');
+            printWindow.document.write('<tr><td>Your Seat:</td><td>' + document.getElementById('yourSeat').innerText + '</td></tr>');
+            printWindow.document.write('<tr><td>Total Bill:</td><td>' + document.getElementById('totalBill').innerText + '</td></tr>');
+            printWindow.document.write('</table>');
+
+            printWindow.document.write('</body></html>');
+
+            // Print the content
+            printWindow.print();
+
+            // Close the new window or iframe
+            printWindow.document.close();
+        }
+    });
+</script>
+
+  
+</head>
+<body>
+
+    <div class="user-input">
+        <label for="fromInput">From:</label>
+        <input type="text" id="fromInput" placeholder="Enter a City">
+
+        <label for="toInput">To:</label>
+        <input type="text" id="toInput" placeholder="Enter a City">
+
+        <div class="date-inputs">
+            <div>
+                <label for="dateInput">Date of Journey:</label>
+                <input type="date" id="dateInput" placeholder="Pick a Date">
+            </div>
+            <div>
+                <label for="returnInput">Return Journey:</label>
+                <input type="date" id="returnInput" placeholder="Pick a Date">
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="busContainer"></div>
+
+    <div class="bottom-portion" id="bottomPortion"></div>
+
+   
+
+</body>
+</html>
