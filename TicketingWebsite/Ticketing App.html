@@ -11,7 +11,9 @@
             align-items: center;
             justify-content: center;
             height: auto;
-            background-color: #f0f0f0;
+            /* background-color: #f0f0f0; */
+            background: rgb(213,240,232);
+            background: radial-gradient(circle, rgba(213,240,232,1) 0%, rgba(18,185,217,1) 40%, rgba(31,177,205,1) 66%, rgba(52,181,191,1) 91%);
             flex-direction: column; /* Added for vertical alignment */
             font-family: 'Arial', sans-serif;
         }
@@ -87,15 +89,15 @@
             background-color: #fff;
             padding: 25px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(232, 231, 231, 0.1);
             animation: fadeIn 1s ease-in-out;
-            background-color: rgb(30, 226, 213);
+            background-color: rgb(109 209 228);
         }
 
         .user-input:hover {
             scale: 1.02;
             transition: 01s ease-in-out;
-            box-shadow: 5px 5px 20px rgb(78, 78, 78);
+            box-shadow: 5px 5px 20px rgb(71, 69, 69);
         }
 
         .user-input label {
@@ -172,7 +174,7 @@
     .bottom-portion {
         margin: 20px auto;
         padding: 20px;
-        background-color: #53d6df;
+        background-color: rgb(113 213 233);
         border-radius: 15px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         display: flex;
@@ -183,6 +185,7 @@
     .bottom-portion:hover {
         scale: 1.03;
         transition: 01s ease-in-out;
+        box-shadow: 4px 15px 20px rgb(67, 67, 67);
     }
 
     .bottom-portion label {
