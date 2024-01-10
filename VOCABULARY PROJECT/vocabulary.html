@@ -1,0 +1,2595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNET4coNATuFn3TwH9_dn5FvMp2hjKPANHGA&usqp=CAU" type="image/png">
+
+    <title>English Vocabulary Learning</title>
+    <style>
+            body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #F3F4F4;
+            background-image: url('https://cdn.pixabay.com/photo/2020/02/06/01/52/frame-4822807_1280.png');
+            background-size: cover; Add cover to make the background cover the entire element
+            background-repeat: no-repeat; Set background image to not repeat
+        }
+
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            width: 50%;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            width: 50%;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #ffffff;
+        }
+
+        h2 {
+            color: #f7f7f7;
+            background-color: #007DB8;
+            padding: 15px;
+            width: 20%;
+            border-radius: 13px;
+            margin: 10px auto;
+            margin-top: 5px;
+
+
+        }
+        h2:hover{
+
+            scale: 1.10;
+            transition: 0.02s ease-in-out;
+            box-shadow: 1px 1px 10px rgba(26, 26, 26, 0.7)
+        }
+
+        #mostFrequent, #todaysWord, #wordList, #questionSection {
+            margin-top: 20px;
+            /* background-color: #fff; */
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .wordContainer {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            background-color: rgb(211 222 224);
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .wordDetails {
+            display: none;
+            margin-top: 10px;
+        }
+
+        #choicesContainer {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+
+        #choicesContainer label {
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #3bba3f;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 17px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 2px;
+            
+        }
+        button:hover {
+
+            scale: 1.08;
+            transition: 0.1s ease-in-out;
+        }
+
+        #searchInput{
+            width: 70%
+            
+            
+        }
+
+        
+        #searchInput:hover{
+            box-shadow: 3px 3px 20px rgb(221, 214, 214);
+            border:0px solid;
+            
+        }
+
+        
+
+
+        #questionSection {
+            display: none;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            background-color: #42c8ea;
+            border-radius: 20px;
+            width: 70%;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        
+        #questionContainer {
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            background-color: #6fe1fd;
+            border-radius: 10px;
+            width: 95%;
+            margin: 20px auto;
+            align-items: center;
+            font-size: 20px;
+            padding: 10px;
+        }
+
+        .alert {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .alert-success {
+            background-color: #5cb85c;
+            color: white;
+        }
+
+        .alert-danger {
+            background-color: #d9534f;
+            color: white;
+        }
+
+        
+
+        #markingResult {
+            background-color: rgb(211, 222, 224);
+            border-radius: 10px;
+            width: 90%;
+            margin: 20px auto;
+            padding: 10px;
+        }
+
+        @media only screen and (max-width: 750px) {
+            input {
+                width: 100%;
+            }
+
+            #mostFrequent, #todaysWord, #wordList, #questionSection {
+                padding: 5px;
+            }
+
+            .wordContainer {
+                width: auto;
+            }
+            #questionSection {
+                width: 90%;
+            }
+            #questionContainer{
+                width: 85%; 
+            }
+            #choicesContainer {
+           
+            font-size: 15px;
+        }
+        }
+      
+      .custom-alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    z-index: 999;
+}
+
+.custom-alert.success {
+    background-color: #4CAF50; /* Green */
+}
+
+.custom-alert.error {
+    background-color: #f44336; /* Red */
+}
+
+.custom-alert.warning {
+    background-color: #ff9800; /* Orange */
+}
+      
+    </style>
+</head>
+<body>
+
+    <div style="box-shadow: 2px 2px 10px rgb(77, 76, 76);margin: 20px auto;padding: 10px;border-radius: 15px;width: 40%;margin-top: 20%;background-color: #007db8;">
+
+    <h1>Learning Vocabulary with Fun</h1>
+    <!-- <label for="searchInput">Search for a word:</label></br> -->
+    <input type="text" id="searchInput" oninput="searchDictionary()">
+
+    <div id="result"></div>
+
+    </div>
+
+    
+
+
+
+    <!-- <div id="mostFrequent">
+        <h2>Most Frequent Words</h2> -->
+        <!-- Most frequent words container as before -->
+
+        <!-- Example word container (you can add more) -->
+        <!-- <div class="wordContainer" onclick="expandWord('example-word')">
+            <strong>Example Word</strong>
+            <div class="wordDetails" id="example-wordDetails">
+                <p>Bangla Meaning: উদাহরণ শব্দ</p>
+                <p>Mnemonic: Create your own mnemonic</p>
+                <p>Example: This is an example sentence.</p>
+            </div>
+        </div>
+    </div> -->
+
+    <div id="todaysWord" style="box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);background-color: #42c8ea;border-radius: 20px;width: 70%;margin: 20px auto;margin-top: 40px;">
+        <h2>Today's Word</h2>
+        <div id="todaysWordContainer">
+            <!-- Today's word container will be dynamically populated here -->
+        </div>
+    </div>
+  
+
+<div style="box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);background-color: #42c8ea;border-radius: 20px;width: 70%;margin: 20px auto;margin-top: 40px;padding:20px"> 
+  
+  <h2>Multiple Choice</h2>
+  
+  <button class="testButton" onclick="toggleTestSection(0)">Test 01</button>
+  <button class="testButton" onclick="toggleTestSection(1)">Test 02</button>
+  <button class="testButton" onclick="toggleTestSection(2)">Test 03</button>
+  <button class="testButton" onclick="toggleTestSection(3)">Test 04</button>
+  <button class="testButton" onclick="toggleTestSection(4)">Test 05</button>
+  <button class="testButton" onclick="toggleTestSection(5)">Test 06</button>
+  <button class="testButton" onclick="toggleTestSection(6)">Test 07</button>
+  <button class="testButton" onclick="toggleTestSection(7)">Test 08</button>
+  <button class="testButton" onclick="toggleTestSection(8)">Test 09</button>
+  <button class="testButton" onclick="toggleTestSection(9)">Test 10</button>
+
+    <!-- Add 8 more buttons for Test 03 to Test 10 -->
+
+    <div id="questionSection">
+        
+      
+      
+      
+        <div id="questionContainer" style="border: 2px solid rgb(255, 255, 255);padding: 10px;border-radius: 10px;box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7)">
+            <!-- Question container will be dynamically populated here -->
+        </div>
+        <button onclick="submitAnswer()" style="margin: 20px auto;">Submit Answer</button>
+        <div id="markingResult"></div>
+    </div>
+</div>
+
+
+    <div id="wordList" style="background-color: #6fe1fd;box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);border-radius: 20px;width: 70%;margin: 20px auto;margin-top: 40px;">
+        <h2>Word List</h2>
+        <div id="wordListContainer">
+            <!-- Word list container will be dynamically populated here -->
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;font-size: 20px;border-top: 2px dotted #a29f9f;width: 50%;margin: 20px auto;">
+    <p>&copy; 2024 Copyright@Jahid</p>
+</div>
+
+    
+
+
+
+    <script>
+
+
+        const dictionary = {
+            'Abate': 'হ্রাস করা',
+            'Aberrant': 'অত্যন্ত মন্দ',
+            'Abeyance': 'স্থগিততা',
+            'Abscond': 'পালাই যাওয়া',
+            'Abstemious': 'মিতাচারী',
+            'Admonish': 'সতর্ক করা',
+            'Adulterate': 'মিশ্রিত করা',
+            'Aesthetic': 'সৌন্দর্যমূলক',
+            'Aggregate': 'সমৃদ্ধি',
+            'Alacrity': 'তৎপরতা',
+            'Amalgamate': 'মিশিয়ে যোগ করা',
+            'Ambiguous': 'অস্পষ্ট',
+            'Ambivalence': 'দ্বন্দ্ব',
+            'Ameliorate': 'ভাল করা',
+            'Anachronism': 'কালানুকরণ',
+            'Analogous': 'অনুরূপ',
+            'Anomaly': 'অস্বাভাবিক ঘটনা',
+            'Antipathy': 'বিদ্বেষ',
+            'Apathy': 'অবস্বেছ',
+            'Appease': 'শান্ত করা',
+            'Apprise': 'জানানো',
+            'Approbation': 'অনুমোদন',
+            'Arbiter': 'বিচারক',
+            'Arduous': 'কঠিন',
+            'Artless': 'সাধা',
+            'Ascetic': 'তপস্বী',
+            'Assuage': 'শান্ত করা',
+            'Attenuate': 'দুর্বল করা',
+            'Audacious': 'সাহসী',
+            'Austere': 'মৃদু',
+            'Avarice': 'লোভ',
+            'Axiom': 'অধিমাত্রিক',
+            'Belie': 'মিথ্যা প্রতিষ্ঠান করা',
+            'Benevolent': 'উদার',
+            'Bolster': 'সহায় করা',
+            'Bombastic': 'ডাকটারের ভাষা',
+            'Boorish': 'অশিষ্ট',
+            'Cacophony': 'কর্ণধ্বনি',
+            'Capricious': 'অদৃশ্য পরিবর্তনশীল',
+            'Castigate': 'শাস্তি দেওয়া',
+            'Caustic': 'ক্ষারী',
+            'Chicanery': 'চালবাজি',
+            'Cogent': 'বিশ্বস্ত',
+            'Commensurate': 'মাপের সাথে মেলা',
+            'Complaisant': 'মধুরমনা',
+            'Concede': 'অধিকার প্রদান করা',
+            'Convoluted': 'জটিল',
+            'Craven': 'ভীতিমান',
+            'Decorum': 'শৃঙ্গার',
+            'Deferential': 'শ্রদ্ধাশীল',
+            'Delineate': 'প্রতিচিত্রিত করা',
+            'Denigrate': 'অপমান করা',
+            'Deride': 'হাস্য করা',
+            'Desiccate': 'শুকিয়া করা',
+            'Desultory': 'অব্যবস্থিত',
+            'Diatribe': 'আক্ষেপসূচক বক্তৃতা',
+            'Diffidence': 'লাজ',
+            'Dilettante': 'শখের জনপ্রিয়ান',
+            'Disabuse': 'বোকা মোকাবেলা',
+            'Discerning': 'বিশেষ ধারণক্ষম',
+            'Disparate': 'বিভিন্ন',
+            'Dissonance': 'অনানুকূলতা',
+            'Dogmatic': 'দৃঢ়ভাবে বোঝানো',
+            'Ebullience': 'উত্কট উল্লাস',
+            'Eclectic': 'বহুচিত্রিত',
+            'Efficacy': 'কার্যক্ষমতা',
+            'Effrontery': 'বিশেষভাবে শখের মোকাবেলা',
+            'Elegy': 'শোকগান',
+            'Emollient': 'শীতলকর',
+            'Empirical': 'প্রকৃতিসাধিত',
+            'Endemic': 'প্রচলিত',
+            'Enervate': 'দুর্বল করা',
+            'Enigmatic': 'রহস্যময়',
+            'Enumerate': 'সংখ্যা করা',
+            'Ephemeral': 'অল্পকালিক',
+            'Epistolary': 'পত্রবিদ্যা',
+            'Equivocal': 'দ্বিধাপূর্ণ',
+            'Esoteric': 'গুপ্তবাচক',
+            'Estimable': 'মূল্যবান',
+            'Eulogy': 'শ্রদ্ধাঞ্জলি',
+            'Evanescent': 'অতীতে চলে গিয়া',
+            'Exacerbate': 'তীব্র করা',
+            'Exculpate': 'দোষমুক্ত করা',
+            'Exigent': 'জরুরি',
+            'Exonerate': 'মুক্তি দেওয়া',
+            'Explicate': 'ব্যাখ্যা করা',
+            'Extant': 'বর্তমান',
+            'Extol': 'প্রশংসা করা',
+            'Facetious': 'হাস্যজনক',
+            'Fastidious': 'বিরক্ত',
+            'Fatuous': 'বোকা',
+            'Fecund': 'উর্বর',
+            'Fervid': 'উত্কট',
+            'Flag': 'পতাকা',
+            'Foment': 'উত্তেজনা তৈরি করা',
+            'Forestall': 'আগামীকালের অগ্রাধিকার',
+            'Fractious': 'কঠোর',
+            'Garrulous': 'বাকচন্দ্র',
+            'Gregarious': 'সমঞ্জাত',
+            'Guileless': 'বিশেষ ধারণক্ষম',
+
+
+            'abase': 'অত্যধিক অবমাননা করা',
+            'abash': 'লজ্জিত করা',
+            'abate': 'হ্রাস করা',
+            'abbreviate': 'সংক্ষেপ করা',
+            'abdicate': 'পরিত্যাগ করা',
+            'aberrant': 'অস্বাভাবিক',
+            'aberration': 'অস্বাভাবিকতা',
+            'abet': 'সাহায্য করা',
+            'abeyance': 'বিরতি',
+            'abhor': 'ঘৃণা করা',
+            'abide': 'মেনে চলা',
+            'abject': 'অত্যন্ত ধীন',
+            'abjure': 'শপথ কাটাতে বলা',
+            'ablution': 'শৌচ',
+            'abnegation': 'নিষ্ঠা',
+            'abode': 'নিবাস',
+            'abolish': 'উচ্ছেদ করা',
+            'abominable': 'ঘৃণিত',
+            'abominate': 'ঘৃণা করা',
+            'aboriginal': 'আদিবাসী',
+            'abortive': 'ব্যর্থ',
+            'abrasive': 'ঘর্ষণকারী',
+            'abridge': 'সংক্ষেপ করা',
+            'abrogate': 'সসীম করা',
+            'abscission': 'কাটা',
+            'abscond': 'পলাতক',
+            'absolute': 'পূর্ণ',
+            'absolve': 'মুক্তি দেওয়া',
+            'abstain': 'বিরত থাকা',
+            'abstemious': 'সংযত',
+            'abstinence': 'প্রহরণ',
+            'abstract': 'সার',
+            'abstruse': 'গুপ্ত',
+            'abusive': 'অবমাননামূলক',
+            'abut': 'সংলগ্ন থাকা',
+            'abysmal': 'অত্যন্ত গভীর',
+            'abyss': 'অবোধি',
+            'academic': 'শিক্ষাবিদ',
+            'accede': 'অনুমতি দেওয়া',
+            'accelerate': 'তাড়াতাড়ি চলা',
+            'accessible': 'সহজলভ্য',
+            'accessory': 'অনুকর',
+            'acclaim': 'প্রশংসা',
+            'acclimate': 'পুরো হওয়া',
+            'acclivity': 'পাহাড়ের দিকে চলা',
+            'accolade': 'পুরস্কার',
+            'accommodate': 'আবাসিত করা',
+            'accomplice': 'সহযোগী',
+            'accord': 'সামঞ্জস্য',
+            'accost': 'সম্মুখভাবে বলা',
+            'accoutre': 'সাজানো',
+            'accretion': 'সংঘটন',
+            'accrue': 'অর্জিত হওয়া',
+            'acerbity': 'কাটিন্য',
+            'acetic': 'সাইট্রিক',
+            'acidulous': 'খটাইয়া',
+            'acknowledge': 'প্রমাণ করা',
+            'acme': 'চরম',
+            'acne': 'মুখের কোলা',
+            'acoustics': 'ধ্বনিতত্ত্ব',
+            'acquiesce': 'অনুমতি দেওয়া',
+            'acquittal': 'দোষারোপণ',
+            'acrid': 'টুঁটিকোণ',
+            'acrimonious': 'কঠোর',
+            'acrophobia': 'উচ্চতাম স্থানে ভীতি',
+            'actuarial': 'একবক্তাকৃত',
+            'actuary': 'একবক্তা',
+            'actuate': 'চালিত করা',
+            'acuity': 'তীক্ষ্ণতা',
+            'acumen': 'বুদ্ধিমত্তা',
+            'acute': 'তীক্ষ্ণ',
+            'adage': 'প্রচলিত কথা',
+            'adamant': 'অদম্য',
+            'adapt': 'অভিযোজন করা',
+            'addendum': 'অতিরিক্ত অংশ',
+            'addiction': 'অসতৃপ্তি',
+            'addle': 'মুড়ানো',
+            'address': 'ঠিকানা',
+            'adept': 'দক্ষ',
+            'adhere': 'অনুষ্ঠান করা',
+            'adherent': 'অনুষ্ঠানশীল',
+            'adjacent': 'সংলগ্ন',
+            'adjoin': 'সংলগ্ন হত্তয়া',
+            'adjourn': 'স্থগিত করা',
+            'adjunct': 'অভিজ্ঞ',
+            'adjuration': 'আবেগপ্রদ আবেগ',
+            'adjutant': 'সহায়ক',
+            'admonish': 'সতর্ক করা',
+            'adore': 'ভক্তি করা',
+            'adorn': 'সাজানো',
+            'adroit': 'দক্ষ',
+            'adulation': 'আত্ম-ভাজন',
+            'adulterate': 'মিশ্রিত করা',
+            'Advent': 'উগম',
+            'adventitious': 'আকস্মিক',
+            'adversary': 'প্রতিদ্বন্দ্বী',
+            'adverse': 'প্রতিকূল',
+            'adversity': 'কষ্ট',
+            'advert': 'উল্লেখ করা',
+            'advocacy': 'পক্ষপাত',
+            'advocate': 'একধরনের প্রতিষ্ঠাতা',
+            'aegis': 'আচ্ছাদন',
+            'aerie': 'চিড়াখানা',
+            'aery': 'উড়ানখোর',
+            'eyrie': 'চিড়াখানা',
+            'eyry': 'উড়ানখোর',
+            'aesthetic': 'সৌন্দর্যশাস্ত্র',
+            'affable': 'আলিঙ্গনশীল',
+            'affected': 'প্রভাবিত',
+            'affidavit': 'শপথনামা',
+            'affiliation': 'সংস্থা সংলগ্নতা',
+            'affinity': 'অনুরাগ',
+            'affirmation': 'দৃঢ়ীকরণ',
+            'affliction': 'কষ্ট',
+            'affluence': 'ধনসমৃদ্ধি',
+            'affront': 'অপমান',
+            'afterlife': 'পরলোক',
+            'agape': 'অচল',
+            'agenda': 'কার্যক্রম',
+            'agglomeration': 'সমৃদ্ধিসমৃদ্ধ সমূহ',
+            'aggrandize': 'মহাত্মা করা',
+            'aggregate': 'সমষ্টি',
+            'aghast': 'অত্যন্ত আতঙ্কিত',
+            'agility': 'চলন্ত দক্ষতা',
+            'agitate': 'উত্তেজনা করা',
+            'agnostic': 'নির্দেশী',
+            'agog': 'উদ্বিগ্ন',
+            'agrarian': 'খেতি-কৃষি সংক্রান্ত',
+            'airy': 'আবহাওয়াময়',
+            'alacrity': 'উৎসাহ',
+            'alchemy': 'রসযান',
+            'alcove': 'খিলান',
+            'alias': 'উপনাম',
+            'alienate': 'পৃথক করা',
+            'alimentary': 'পাকযোগ্য',
+            'alimony': 'ভোগান্তি',
+            'allay': 'শান্ত করা',
+            'allege': 'দাবী করা',
+            'allegiance': 'নিষ্ঠা',
+            'allegory': 'অলঙ্কারিক কথা',
+            'alleviate': 'হতাশা দূর করা',
+            'alliteration': 'সর্বাধিক ভিন্ন বা সমবাদ',
+            'allocate': 'বরাদ্দ করা',
+            'alloy': 'আলয়',
+            'allude': 'প্রস্তুত করা',
+            'allure': 'আকর্ষণ',
+            'alluvial': 'অলুভিয়াল',
+            'alms': 'একত্রিক',
+            'aloft': 'উচ্চে',
+            'aloof': 'অলক্ষ্য',
+            'altercation': 'দুর্বিমোচন',
+            'altruistic': 'বিনীত',
+            'amalgam': 'মিশ্রণ',
+            'amalgamate': 'মিশ্রিত করা',
+            'amass': 'সংগ্রহ করা',
+            'amazon': 'অ্যামাজন',
+            'ambidextrous': 'উভয়হস্ত',
+            'ambience': 'পরিবেশ',
+            'ambiguous': 'দ্ব্যর্থক',
+            'ambivalence': 'দ্ব্যর্থকতা',
+            'amble': 'হেঁটে চলা',
+            'ambrosia': 'অমৃত',
+            'ambulatory': 'পথচলত্ব',
+            'ambush': 'হুঁশিয়ারি',
+            'ameliorate': 'উন্নত করা',
+            'amenable': 'মান্য',
+            'amend': 'সংশোধন করা',
+            'amenities': 'সৌভাগ্যময় স্থান',
+            'amiable': 'সৌম্য',
+            'amicable': 'মনোমিলিত',
+            'amiss': 'অপ্রয়োজন',
+            'amity': 'বন্ধুত্ব',
+            'amnesia': 'মনবিকার',
+            'amnesty': 'ক্ষমা',
+            'amok': 'আমোক',
+            'amuck': 'মুতক',
+            'amorality': 'নৈতিকতাবিরুদ্ধ',
+            'amorous': 'প্রেমসূচক',
+            'amorphous': 'অমূর্ত',
+            'amphibian': 'জলাভূ',
+            'amphitheater': 'অ্যাম্ফিথিয়েটার',
+            'ample': 'প্রচুর',
+            'amplify': 'বৃদ্ধি করা',
+            'amputate': 'কাটা',
+            'amulet': 'প্রতিরক্ষা কবচ',
+            'anachronism': 'অকালবর্তী',
+            'analgesia': 'নির্দোষ্টকা',
+            'analgesic': 'নির্দোষ্টকা',
+            'analogous': 'অনুরূপ',
+            'analogy': 'উপমা',
+            'anarchist': 'অরাজক',
+            'anarchy': 'অরাজকতা',
+            'anathema': 'শাপ',
+            'ancestry': 'বংশবৃদ্ধি',
+            'anchor': 'এঙ্কর',
+            'ancillary': 'সাহায্যকারী',
+            'anecdote': 'আখ্যান',
+            'anemia': 'রক্তহীনতা',
+            'anesthetic': 'বিশেষজ্ঞ',
+            'anguish': 'বিসম্মোহ',
+            'angular': 'কোনাত্মক',
+            'animadversion': 'আলোচনা',
+            'animated': 'জীবন্ত',
+            'animosity': 'শত্রুভাব',
+            'animus': 'শত্রুতা',
+            'annals': 'বৃত্তান্ত',
+            'anneal': 'শীতল করা',
+            'annex': 'সংযুক্ত করা',
+            'annihilate': 'সম্পূর্ণ ধ্বংস করা',
+            'annotate': 'মন্তব্য যোগ করা',
+            'annuity': 'বার্ষিক বা মাসিক অনুদান',
+            'annul': 'বাতিল করা',
+            'anodyne': 'ব্যাধি শান্তি দেওয়া',
+            'anoint': 'অংগ মোচন করা',
+            'anomalous': 'অসামান্য',
+            'anomaly': 'অসামান্য ঘটনা',
+            'anonymity': 'অজ্ঞাততা',
+            'antagonism': 'প্রতিদ্বন্দ্বিতা',
+            'antecede': 'পূর্বাভাস করা',
+            'antecedent': 'পূর্ববর্তী',
+            'antediluvian': 'প্রবীণ',
+            'anthem': 'সঙ্গীতিক জয়গান',
+            'anthology': 'বাণী সংগ্রহ',
+            'anthropoid': 'মানবমুখী',
+            'anthropologist': 'মানবতাত্ত্বিক',
+            'anthropomorphic': 'মানবরূপ',
+            'anticlimax': 'প্রত্যাশিত অবসান',
+            'antidote': 'বিষাক্ত কিংবা ব্যধি নাশক',
+            'antipathy': 'বৈরীভাব',
+            'antiquated': 'প্রাচীন',
+            'antique': 'প্রাচীন বস্তু',
+            'antiquity': 'প্রাচীনতা',
+            'antiseptic': 'ব্যধিনাশক',
+            'antithesis': 'বিরোধী মূল',
+            'antler': 'শিকরের সিং',
+            'anvil': 'অঙ্কুশ',
+            'apathy': 'অবসাদ',
+            'ape': 'বানর',
+            'aperture': 'ছিদ্র',
+            'apex': 'শৃঙ্গ',
+            'aphasia': 'মৌকুস্তিক',
+            'aphorism': 'উক্তি',
+            'apiarist': 'মৌমাছি প্রচারক',
+            'apiary': 'মৌমাছি খামার',
+            'apiculture': 'মৌমাছি চাষ',
+            'aplomb': 'আত্ম-নিয়ন্ত্রণ',
+            'apocalyptic': 'প্রলয়সূচক',
+            'apocryphal': 'অসত্য',
+            'apogee': 'চন্দ্রাভাসের উচ্চতম অবস্থান',
+            'apolitical': 'রাজনৈতিকভাবে নিরপেক্ষ',
+            'apologist': 'সমর্থক',
+            'apoplexy': 'প্যারালাইসিস',
+            'apostate': 'মূর্তাভক্ত',
+            'apothecary': 'ঔষধকারী',
+            'apothegm': 'উক্তি',
+            'apophthegm': 'উক্তি',
+            'apotheosis': 'দেবতা স্থানান্তর',
+            'appall': 'ভীত করা',
+            'apparent': 'সোজা',
+            'apparition': 'ভূত',
+            'appease': 'শান্ত করা',
+            'appellation': 'নাম',
+            'append': 'যোগ করা',
+            'application': 'আবেগ',
+            'apposite': 'উপযুক্ত',
+            'appraise': 'মূল্যায়ন করা',
+            'appreciate': 'মূল্যায়ন করা',
+            'apprehend': 'ধরা',
+            'apprehensive': 'অস্থির',
+            'apprise': 'জানানো',
+            'approbation': 'অনুমোদন',
+            'appropriate': 'উপযুক্ত',
+            'appurtenance': 'সংলগ্ন সামগ্রী',
+            'apropos': 'প্রস্তুত সময়ে',
+            'aptitude': 'প্রবণতা',
+            'aquiline': 'গৃধ্রবর্ণ',
+            'arable': 'খাদ্যশস্ত্র',
+            'arbiter': 'নির্ণয়কারী',
+            'arbitrary': 'খোলামেলা',
+            'arbitrate': 'সুষ্ঠু নির্ণয় করা',
+            'arboreal': 'বৃক্ষবাসী',
+            'arboretum': 'বৃক্ষারণ্য',
+            'arcade': 'বাড়িঘর',
+            'arcane': 'গূঢ়',
+            'arch': 'মহাদ্বার',
+            'archaeology': 'পুরাতত্ত্ব',
+            'archaic': 'প্রাচীন',
+            'archetype': 'আদিরূপ',
+            'archipelago': 'দ্বীপসমূহ',
+            'archives': 'সংগ্রহশালা',
+            'ardor': 'উত্সাহ',
+            'arduous': 'কঠিন',
+            'argot': 'যার জনপ্রিয়তা নেই তার ভাষা',
+            'aria': 'অপেরা',
+            'arid': 'শুষ্ক',
+            'aristocracy': 'মহারাজাদের সর্বাধিকার',
+            'armada': 'নৌসেনা',
+            'aromatic': 'সুগন্ধিত',
+            'arraign': 'দোষ আদায়',
+            'array': 'বিন্যাস',
+            'arrears': 'বাকি',
+            'arrhythmic': 'অসময়িক',
+            'arrogance': 'অহংকার',
+            'arroyo': 'সূচক নদীর দরিয়া',
+            'arsenal': 'সংগ্রহশালা',
+            'artery': 'রক্তনালি',
+            'artful': 'কৌশলবাজ',
+            'articulate': 'সুস্থতা',
+            'artifact': 'প্রতিষ্ঠান',
+            'artifice': 'কৌশল',
+            'artisan': 'শিল্পকলা',
+            'artless': 'সাধা',
+            'ascendancy': 'প্রাধিক্য',
+            'ascertain': 'সন্দেহ করা',
+            'ascetic': 'তাপস',
+            'ascribe': 'আরোপ করা',
+            'aseptic': 'ব্যধি নাশক',
+            'ashen': 'শ্বেতবর্ণ',
+            'asinine': 'গোড়া',
+            'askance': 'টেনে',
+            'askew': 'চুট্টা করে',
+            'asperity': 'কঠোরতা',
+            'aspersion': 'নিন্দা',
+            'aspirant': 'আকাঙ্ক্ষী',
+            'aspire': 'লক্ষ্য করা',
+            'assail': 'আক্রমণ করা',
+            'assay': 'মৌল্যাংকন',
+            'assent': 'অনুমোদন',
+            'assert': 'কথা বলা',
+            'assiduous': 'মর্মসাধক',
+            'assimilate': 'অনুপ্রাণিত হত্তয়া',
+            'assuage': 'শান্ত করা',
+            'assumption': 'মন্তব্য',
+            'assurance': 'আত্মবিশ্বাস',
+            'asteroid': 'তারকা',
+            'astigmatism': 'দৃষ্টিসংকেত',
+            'astral': 'তারাবলীয়',
+            'astringent': 'শক্তিশালী',
+            'astronomical': 'খগোলবিদ্যা',
+            'astute': 'চাতুর',
+            'asunder': 'ভাঙা',
+            'asylum': 'শরণার্থীঘর',
+            'asymmetric': 'অসমমিতি',
+            'atavism': 'পুরাতন বৈশিষ্ট্য',
+            'atheistic': 'নাস্তিকতাবাদী',
+            'atone': 'প্রায়শ্চিত্ত করা',
+            'atrocity': 'মন্দ কৃত্য',
+            'atrophy': 'অপসারণ',
+            'attentive': 'সতর্ক',
+            'attenuate': 'ক্ষীণ',
+            'attest': 'প্রমাণিত করা',
+            'attire': 'পোষক',
+            'attribute': 'গুণ',
+            'attrition': 'পরিক্ষতি',
+            'atypical': 'অস্বাভাবিক',
+            'audacious': 'সাহসী',
+            'audit': 'পরিদর্শন',
+            'augment': 'বৃদ্ধি করা',
+            'augury': 'ভবিষ্যদ্বাণী',
+            'august': 'মাস',
+            'aureole': 'প্রভাবমণি',
+            'auroral': 'ভোরের আলোর',
+            'auspicious': 'শুভ',
+            'austere': 'মৃদু',
+            'authenticate': 'প্রমাণিত করা',
+            'authoritarian': 'অধিকারবাদী',
+            'authoritative': 'প্রামাণিক',
+            'autocratic': 'একজনের শাসক',
+            'automaton': 'যন্ত্রবিন্যাস',
+            'autonomous': 'স্বায়ত্তশাসিত',
+            'autopsy': 'মৃতদেহ খোলার পরীক্ষা',
+            'auxiliary': 'সহায়ক',
+            'avalanche': 'এভালঞ্চ',
+            'avant-garde': 'অগ্রগামী',
+            'avarice': 'লোভ',
+            'avenge': 'প্রতিশোধ নেওয়া',
+            'aver': 'অভিভাবনা করা',
+            'averse': 'অপচয় করা',
+            'aversion': 'ঘৃণা',
+            'avert': 'প্রতিরোধ করা',
+            'aviary': 'পাখি বাড়ি',
+            'avid': 'কোমল',
+            'avocation': 'বৃত্তি',
+            'avow': 'স্বীকার করা',
+            'avuncular': 'মামীর মতো',
+            'awe': 'ভীতি',
+            'awful': 'ভয়ানক',
+            'awl': 'কাঁটার কোল',
+            'awry': 'ভ্রমিত',
+            'axiom': 'স্বতন্ত্র সত্য',
+            'azure': 'নীলসবুজ',
+            'babble': 'বাচার করা',
+            'bacchanal': 'মদমদে নৃত্য বা পার্টি',
+            'bacchanalia': 'মদমদে নৃত্য বা পার্টি',
+            'bacchanalian': 'মদমদে নৃত্য বা পার্টি',
+            'backslide': 'পূর্ববর্তী অবস্থায় পৌঁছানো',
+            'badger': 'ঝগড়া করা',
+            'badinage': 'লোকসাহিত্য',
+            'baffle': 'বিবাদ হত্তয়া',
+            'bait': 'প্রবৃদ্ধি',
+            'baleful': 'অশুভ',
+            'balk': 'অস্বীকার করা',
+            'ballast': 'উল্লেখহীন মধ্যবার্তা',
+            'balm': 'সান্ত্বনা',
+            'balmy': 'মিষ্টি',
+            'banal': 'সাধারণ',
+            'bandy': 'বিতর্কে কথা আড়ানো',
+            'bane': 'নাশক',
+            'bank': 'ব্যাংক',
+            'bantering': 'কৌতুহলে',
+            'bar': 'বার',
+            'barb': 'কাঁটা',
+            'bard': 'কবি',
+            'barefaced': 'প্রকাশ্য',
+            'bargain': 'মোলমোল',
+            'baroque': 'অতিরিক্ত প্রসারিত',
+            'barrage': 'বারেজ',
+            'barrister': 'আইনজীব',
+            'barterer': 'বিনিময়কারী',
+            'base': 'ভিত্তি',
+            'bask': 'আনন্দিত হত্তয়া',
+            'bastard': 'হতভমিক',
+            'bastion': 'কোট',
+            'bate': 'কমানো',
+            'battalion': 'একটি বাহিনীর সমন্বয়',
+            'bauble': 'কাঙ্কন',
+            'bawdy': 'দোষপূর্ণ',
+            'bearing': 'আপনার রক্তপাতের দিকে',
+            'beatific': 'আনন্দমূলক',
+            'beatitude': 'ধন্যবাদ',
+            'bedizen': 'অলঙ্কার করা',
+            'bedraggle': 'ওটারে করা',
+            'beeline': 'সরাসরি মাধ্যমে',
+            'befuddle': 'হয়রানি দেওয়া',
+            'beget': 'উত্পন্ন করা',
+            'begrudge': 'অবহেলা করা',
+            'beguile': 'প্রতারিত করা',
+            'behemoth': 'বিশাল জীব',
+            'beholden': 'ঋণী',
+            'behoove': 'উপকারী হত্তয়া',
+            'belabor': 'অত্যধিক আলোচনা করা',
+            'belated': 'বিলম্বিত',
+            'beleaguer': 'সিজাদু',
+            'belie': 'মিথ্যা কথা বলা',
+            'belittle': 'হীনস্থানে তোলা',
+            'bellicose': 'যুদ্ধপ্রিয়',
+            'belligerent': 'যুদ্ধভাগী',
+            'bemoan': 'শোক করা',
+            'bemused': 'অচেতন',
+            'benediction': 'আশীর্বাদ',
+            'benefactor': 'উপকারী',
+            'beneficent': 'কৃতজ্ঞ',
+            'beneficial': 'উপকারী',
+            'beneficiary': 'উপকারী',
+            'benefit': 'উপকার',
+            'benevolent': 'করুণাময়',
+            'benign': 'অনুকূল',
+            'benison': 'আশীর্বাদ',
+            'bent': 'পথ',
+            'bequeath': 'উত্তরাধিকার দেওয়া',
+            'berate': 'ওটারে বলিয়া বলিয়া গালাগালি করা',
+            'bereaved': 'শোকাকুল',
+            'bereavement': 'শোক',
+            'bereft': 'অবিবাধিত',
+            'berserk': 'বৌনাতিক',
+            'beseech': 'প্রার্থনা করা',
+            'beset': 'আবেগ দেওয়া',
+            'besiege': 'সিজাদু করা',
+            'besmirch': 'দূষিত করা',
+            'bestial': 'পশুসদৃশ',
+            'bestow': 'দান করা',
+            'betoken': 'সূচনা করা',
+            'betray': 'প্রদান করা',
+            'betroth': 'আঘটিত করা',
+            'bevy': 'সমুদায়',
+            'beware': 'সাবধান থাকা',
+            'bewitch': 'মোহিত করা',
+            'bicameral': 'দ্বিআলোচনাশীল',
+            'bicker': 'কলাহ',
+            'bid': 'বোলি',
+            'biennial': 'দ্বিবার্ষিক',
+            'bifurcated': 'দ্বিভাগিত',
+            'bigot': 'ধর্মান্ধ',
+            'bigotry': 'ধর্মান্ধতা',
+            'bilious': 'বিলিয়াস',
+            'bilk': 'প্রতারণা করা',
+            'billow': 'ময়লা',
+            'billowing': 'ময়লানো',
+            'bitter': 'কড়া',
+            'bivouac': 'আস্তানা',
+            'bizarre': 'অদ্ভুত',
+            'blackball': 'অস্বীকার করা',
+            'blanch': 'সাদা করা',
+            'bland': 'মিষ্টি',
+            'blandishment': 'মিষ্টি ভাষণ',
+            'blare': 'উত্সাহী শব্দ',
+            'blasphemous': 'পশ্বাদতন্ত্রপূর্ণ',
+            'blasphemy': 'দেবদ্রোহ',
+            'blatant': 'কানপাত বা স্পষ্ট',
+            'bleak': 'শোকাম্বর',
+            'blemish': 'দোষ',
+            'blight': 'পোকামাকড়',
+            'blighted': 'অসুখী',
+            'bliss': 'আনন্দ',
+            'blithe': 'সুখী',
+            'bloat': 'পুঁজ',
+            'blotch': 'ধবকাটা',
+            'blowhard': 'হাওয়াবাজ',
+            'bludgeon': 'বলম্ব',
+            'blue': 'নীল',
+            'blues': 'দু: খিত',
+            'bluff': 'ধারালো',
+            'blunder': 'ভুল',
+            'blunt': 'মোচা',
+            'blurt': 'অবলম্বনে বলা',
+            'blush': 'লাজুক',
+            'bluster': 'শব্দবিদ্যুত',
+            'bode': 'পূর্ববাদ',
+            'bog': 'হাঁড়',
+            'bogus': 'মিথ্যা',
+            'Bohemian': 'বোহেমিয়ান',
+            'boisterous': 'উত্সাহী',
+            'bolster': 'সাহায্য করা',
+            'bolt': 'বল্ট',
+            'bombardment': 'বাধ্যতা',
+            'bombast': 'আত্মসমর্থন',
+            'bombastic': 'ভাষাবাদী',
+            'bookish': 'পাঠশালা বা বইমেলা সংক্রান্ত',
+            'boon': 'আশীর্বাদ',
+            'boor': 'অশিষ্ট',
+            'boorish': 'অশিষ্ট',
+            'boost': 'বৃদ্ধি করা',
+            'botch': 'ঘড়িয়াল',
+            'bouillon': 'মাংসসূপ',
+            'bound': 'সীমাবদ্ধ',
+            'bountiful': 'উদার',
+            'bourgeois': 'বৌর্জোয়া',
+            'bout': 'যুদ্ধ',
+            'bovine': 'গাইবস্তুর',
+            'bowdlerize': 'সংকুচিত করা',
+            'brackish': 'মিশ্রমূল্য',
+            'brag': 'শব্দবদ্ধ',
+            'braggadocio': 'আত্মবিশেষ',
+            'braggart': 'হাড়াল',
+            'braid': 'কুণিয়া',
+            'brand': 'ব্র্যান্ড',
+            'brandish': 'ডাকড়াতে',
+            'bravado': 'ভরোসাময়ক আবেগ',
+            'brave': 'বীর',
+            'brawl': 'ঝগড়া',
+            'brawn': 'হাঁটু',
+            'brawny': 'মজবুত',
+            'brazen': 'নির্লজ্জ',
+            'breach': 'ভেঙ্গে পড়া',
+            'breadth': 'প্রসার',
+            'breed': 'প্রজাতি',
+            'brevity': 'সংক্ষেপ',
+            'bridle': 'মোচ',
+            'brim': 'চুম্বক',
+            'brindled': 'ছায়াপথিত',
+            'brink': 'প্রান্ত',
+            'brisk': 'তীব্র',
+            'bristle': 'দাঁতালি',
+            'bristle': 'দাঁতালি',
+            'brittle': 'ভঙ্গুর',
+            'broach': 'আবর্তন',
+            'brocade': 'ব্রোকেড',
+            'brochure': 'ব্রোশর',
+            'broil': 'ব্রয়িল',
+            'bromide': 'ব্রোমাইড',
+            'brooch': 'ব্রচ',
+            'brood': 'পোঁকা',
+            'brook': 'নদী',
+            'browbeat': 'অভিশাপ দেওয়া',
+            'browse': 'ব্রাউজ',
+            'bruise': 'কোলাহল',
+            'brunt': 'প্রধান আঘাত',
+            'brusque': 'অমিল',
+            'buccaneer': 'জলদস্ত',
+            'bucolic': 'গ্রামীণ',
+            'buffet': 'বুফে',
+            'buffoon': 'মূর্খ',
+            'buffoonery': 'মূর্খতা',
+            'bugaboo': 'ভয়ঙ্কর চিত্র',
+            'bulge': 'স্ফীতি',
+            'bulk': 'বড় অংশ',
+            'bullion': 'সোনার বা রূপার সিকা',
+            'bully': 'ভয়াবহ',
+            'bulwark': 'অস্তরণ',
+            'bump': 'টক',
+            'bungle': 'মোচা দেওয়া',
+            'buoyant': 'উত্সাহী',
+            'bureaucracy': 'দপ্তরিয়াবদ্ধতা',
+            'burgeon': 'ফোটা',
+            'burlesque': 'উপহাসে বহুল করা',
+            'burly': 'দারুণ',
+            'burnish': 'চমকানো',
+            'bust': 'বাস্ট',
+            'buttress': 'প্রমাণপত্র',
+            'buxom': 'বৃহদাক্ষী',
+            'cabal': 'ষড়যন্ত্র',
+            'cache': 'গুপ্তধন',
+            'cacophonous': 'অসময়তঃ বাজায় যাওয়া',
+            'cadaver': 'শবদেহ',
+            'cadaverous': 'মৃত্যুরূপ',
+            'cadence': 'ছন্দ',
+            'cadet': 'ক্যাডেট',
+            'cajole': 'চাপলুস করা',
+            'calamity': 'দু: খিত ঘটনা',
+            'calculated': 'গণনামূলক',
+            'caldron': 'পাত্র',
+            'cauldron': 'পাত্র',
+            'caliber': 'ক্যালিবার',
+            'calligraphy': 'ক্যালিগ্রাফি',
+            'callous': 'অবিদায়ী',
+            'callow': 'অপরিপ্রেয়',
+            'callus': 'গহীন',
+            'calorific': 'তাপজ্বর',
+            'calumny': 'অপমান',
+            'camaraderie': 'বন্ধুত্ব',
+            'cameo': 'ক্যামিও',
+            'camp': 'শিবির',
+            'canard': 'ঝুঁকি',
+            'candor': 'আপরিচ্ছেদ',
+            'canine': 'কুকুরবিশেষ',
+            'canker': 'অসুস্থতা',
+            'canny': 'চালক',
+            'cant': 'অসত্য কথা',
+            'cantankerous': 'ঝগড়ালু',
+            'cantata': 'ক্যানটাটা',
+            'canter': 'আটকানো',
+            'canto': 'গান',
+            'canvass': 'চলচ্চিত্রের অভিনয় করা',
+            'capacious': 'বিশাল',
+            'capacity': 'ধারণক্ষমতা',
+            'capillary': 'ক্যাপিলেরি',
+            'capitulate': 'অধীন হওয়া',
+            'caprice': 'কাপ্রিস',
+            'capricious': 'অদৃষ্টবশত',
+            'capsize': 'পানির উপর উল্টানো',
+            'caption': 'শীর্ষক',
+            'captious': 'আগ্রহশীল',
+            'carafe': 'বড় চামচ',
+            'carapace': 'ক্যারাপেস',
+            'carat': 'ক্যারাট',
+            'karat': 'ক্যারাট',
+            'carcinogenic': 'কার্সিনোজেনিক',
+            'cardinal': 'মুখ্য',
+            'cardiologist': 'হৃদরোগ বিশেষজ্ঞ',
+            'careen': 'ডাকা মারা',
+            'career': 'পেশা',
+            'carefree': 'চিন্তামুক্ত',
+            'caricature': 'চিত্রকলা',
+            'carillon': 'বেল গুলি',
+            'carnage': 'কারনেজ',
+            'carnal': 'যৌন',
+            'carnivorous': 'মাংসাশী',
+            'carousal': 'পার্টি',
+            'carping': 'টেক',
+            'carrion': 'মৃতদেহ',
+            'cartographer': 'মানচিত্রকার',
+            'cascade': 'ঝরনা',
+            'caste': 'জাতি',
+            'castigation': 'শাস্তি',
+            'castrate': 'বন্ধ্য',
+            'casual': 'অসতর্ক',
+            'casualty': 'আহত',
+            'cataclysm': 'মহাবিপুল',
+            'catalyst': 'অনুকূলক',
+            'catapult': 'মহাশক্তি',
+            'cataract': 'মোতিয়াবিন্যাস',
+            'catastrophe': 'বিপর্যয়',
+            'catcall': 'জঘন্য স্বরে কাঁচানো',
+            'catechism': 'ক্যাটিকিজম',
+            'categorical': 'শক্তিশালী',
+            'cater': 'খরচ করা',
+            'catharsis': 'শোক দুর করার প্রক্রিয়া',
+            'cathartic': 'শোক দূর করতে সাহায্যকারী',
+            'catholic': 'ক্যাথলিক',
+            'caucus': 'সভা',
+            'caulk': 'গোটা মেষঠিত করা',
+            'calk': 'গোটা মেষঠিত করা',
+            'causal': 'নামুল্য',
+            'caustic': 'দাহক',
+            'cauterize': 'অংশ দহন করা',
+            'cavalcade': 'অনুষ্ঠান',
+            'cavalier': 'স্বাবলম্বী',
+            'cavil': 'ছুটে যাওয়া',
+            'cede': 'স্বীকৃতি করা',
+            'celerity': 'দ্রুততা',
+            'celestial': 'আকাশগঙ্গা',
+            'celibate': 'একক',
+            'cemetery': 'কবরস্থান',
+            'censor': 'সেন্সর',
+            'censorious': 'আলোচনামূলক',
+            'censure': 'কঠোর সতর্কতা',
+            'centaur': 'এককর্ণ',
+            'centigrade': 'সেঞ্চিগ্রেড',
+            'centrifugal': 'কেন্দ্রবাহুক',
+            'centrifuge': 'সেন্ট্রিফিউজ',
+            'centripetal': 'কেন্দ্রমুখী',
+            'centurion': 'শতাধিকারি',
+            'cerebral': 'মস্তিষ্কবিশিষ্ট',
+            'cerebration': 'মনোচর্চা',
+            'ceremonious': 'কার্যশৈলী',
+            'certitude': 'নিশ্চিততা',
+            'cessation': 'আবর্জনা',
+            'cession': 'সমর্পণ',
+            'chafe': 'চবুক করা',
+            'chaff': 'খড়',
+            'chagrin': 'বিতর্কিত',
+            'chalice': 'পাত্র',
+            'chameleon': 'গিরিগর',
+            'champion': 'চ্যাম্পিয়ন',
+            'championship': 'চ্যাম্পিয়নশিপ',
+            'chancellor': 'চ্যান্সেলর',
+            'chant': 'গান',
+            'chaotic': 'অস্তব্ধ',
+            'chapel': 'চেপেল',
+            'chaperon': 'আতিথেয়তা',
+            'chaplain': 'পূর্বাধ্যক্ষ',
+            'char': 'জুড়ানো',
+            'charisma': 'বল',
+            'charlatan': 'মোগবারী',
+            'charm': 'মোহন',
+            'chary': 'সতর্ক',
+            'chase': 'অনুসরণ করা',
+            'chasm': 'খাঈ',
+            'chassis': 'চাসিস',
+            'chaste': 'শুদ্ধ',
+            'chasten': 'শাস্তি দেওয়া',
+            'chastise': 'শাস্তি দেওয়া',
+            'chauvinist': 'আত্মপ্রশংসক',
+            'check': 'যাচাই',
+            'checkered': 'চেকারমুক্ত',
+            'chequered': 'চেকারমুক্ত',
+            'cherubic': 'অল্পবয়স্ক শিশুর মতো',
+            'chicanery': 'চক্রান্ত কাজ',
+            'chide': 'ভর্তা মারা',
+            'chimerical': 'ভ্রান্ত',
+            'chip': 'চিপ',
+            'chisel': 'চিজেল',
+            'chivalrous': 'বীর',
+            'choice': 'পছন্দ',
+            'choir': 'কয়ার',
+            'choleric': 'তীব্র ক্রোধী',
+            'chore': 'কাজ',
+            'choreography': 'কোরিয়োগ্রাফি',
+            'chortle': 'সংতোষপূর্ণ ধ্বনি',
+            'chorus': 'সমুদায়',
+            'chronic': 'দীর্ঘস্থায়ী',
+            'chronicle': 'দীর্ঘকালের ইতিহাস',
+            'chuckle': 'হাসি',
+            'churlish': 'কঠোর',
+            'ciliated': 'শরীরে বিশিষ্ট চোটযুক্ত',
+            'cipher': 'শূন্য',
+            'circlet': 'মোটা দাগ',
+            'circuit': 'সার্কিট',
+            'circuitous': 'চক্রাকারে',
+            'circumlocution': 'বাগার কথা',
+            'circumscribe': 'সীমাবদ্ধ করা',
+            'circumspect': 'সাবদানশীল',
+            'circumvent': 'পার করা',
+            'cistern': 'জলাশয়',
+            'citadel': 'দুর্গ',
+            'cite': 'উদ্ধৃত করা',
+            'civil': 'নাগরিক',
+            'clairvoyant': 'দূরদর্শী',
+            'clamber': 'প্রাক্কলিত হত্তয়া',
+            'clamor': 'চিড়াচিড়ি',
+            'clandestine': 'গোপন',
+            'clangor': 'গঙ্গন',
+            'clap': 'একঘণ্টা বাজানো',
+            'clapper': 'ঘণ্টার ঝনঝনি',
+            'clarion': 'স্পষ্ট সত্য',
+            'clasp': 'আঁকড়ে ধরা',
+            'claustrophobia': 'স্থলান্তর ভীতি',
+            'clavicle': 'কলার হাড়',
+            'cleave': 'বিভাজন করা',
+            'cleft': 'ভেদ',
+            'clemency': 'দয়া',
+            'cliche': 'অপমানজনক প্রথা',
+            'clientele': 'গ্রাহকবৃন্দ',
+            'climactic': 'চরমাবস্থা',
+            'clime': 'জলবায়ু',
+            'clip': 'ক্লিপ',
+            'clipper': 'কোম্বড়',
+            'clique': 'সম্মিলিত গোষ্ঠী',
+            'cloister': 'বিশ্রামগৃহ',
+            'clot': 'জমা থাকা',
+            'clout': 'আঘাত',
+            'clown': 'বাণিজ্যিক রঙ্গমঞ্চে হাঁড়খোকা কর্তৃপক্ষ',
+            'cloying': 'থোঁড়াবোড়ানো',
+            'coagulate': 'কোয়াগুলেট',
+            'coalesce': 'একত্রিত হত্তয়া',
+            'coalition': 'গণধর্ম',
+            'coax': 'মানায়িত করা',
+            'coda': 'সমাপ্তি',
+            'coddle': 'মমতা দেওয়া',
+            'codicil': 'উইলের অংশ',
+            'codify': 'কোডিফাই',
+            'coercion': 'জোরালোচনা',
+            'coeval': 'সমকালীন',
+            'cog': 'মেমনি',
+            'cogent': 'প্রবল',
+            'cogitate': 'চিন্তা করা',
+            'cognate': 'সঙ্গতি',
+            'cognitive': 'মানসিক',
+            'cognizance': 'পরিচিতি',
+            'cohabit': 'এক ঘরে বাস করা',
+            'cohere': 'একত্র থাকা',
+            'cohesion': 'সংকর',
+            'cohort': 'শহস্রাধিক লোকের একক দল',
+            'coiffure': 'মেকাপ',
+            'coin': 'মুদ্রা',
+            'coincidence': 'সামঞ্জস্য',
+            'colander': 'ঝাল',
+            'collaborate': 'সহযোগিতা করা',
+            'collage': 'কলাজ',
+            'collate': 'সমাহিত করা',
+            'collateral': 'জামিনের',
+            'collation': 'সমাহিত',
+            'collected': 'সংগ্রহিত',
+            'colloquial': 'সাধুভাষাপ্রধান',
+            'colloquy': 'মন্থন',
+            'collusion': 'কপল',
+            'colossal': 'বিশাল',
+            'colossus': 'দৈত্য',
+            'coma': 'অবস্থান্তর',
+            'comatose': 'অসচেতন',
+            'combustible': 'দাহ্য',
+            'comeback': 'পুনরায় দেখানো',
+            'comely': 'চমকদার',
+            'comestible': 'খাদ্য',
+            'comeuppance': 'শাস্তি',
+            'comity': 'শান্তি',
+            'commandeer': 'অধিকরণ নেওয়া',
+            'commemorate': 'স্মরণ করা',
+            'commemorative': 'স্মৃতিরকম',
+            'commensurate': 'সমান',
+            'commiserate': 'অনুগ্রহ করা',
+            'commodious': 'পর্যাপ্ত',
+            'commonplace': 'সাধারিত',
+            'commonwealth': 'কমনওয়েলথ',
+            'communal': 'সাম্প্রদায়িক',
+            'commune': 'আপাতকালীন',
+            'compact': 'কুঁড়ে হওয়া',
+            'compartment': 'কোম্পার্টমেন্ট',
+            'compassion': 'অনুতাপ',
+            'compatible': 'অনুরূপ',
+            'compelling': 'সজীব',
+            'compendium': 'সংক্ষেপসমূহ',
+            'compensate': 'পরিশোধ দেওয়া',
+            'compilation': 'সংকলন',
+            'compile': 'সংকলন করা',
+            'complacency': 'আত্মসন্তোষ',
+            'complaisant': 'উপকৃত',
+            'complement': 'পূরক',
+            'complementary': 'পূরক',
+            'compliance': 'অনুমোদন',
+            'compliant': 'অনুসারী',
+            'complicity': 'সহযোগ',
+            'component': 'উপাদান',
+            'comport': 'বৈহারিক স্বভাব',
+            'compost': 'কম্পোস্ট',
+            'composure': 'শান্তি',
+            'compound': 'যৌথ',
+            'comprehend': 'বোঝা',
+            'comprehensive': 'সামাজিক বিজ্ঞান',
+            'compress': 'সংকোচন',
+            'comprise': 'অন্তর্ভুক্ত',
+            'compromise': 'মধ্যস্থতা',
+            'compulsion': 'বাধ্যতা',
+            'compulsive': 'প্রবল ইচ্ছাশক্তি',
+            'compulsory': 'বাধ্যতামূলক',
+            'compunction': 'অসহজে আত্মকষ্ট',
+            'compute': 'হিসাব করা',
+            'concatenate': 'যোজিত করা',
+            'concave': 'অবক্ষ',
+            'concede': 'অভিজ্ঞান',
+            'conceit': 'আত্মমান',
+            'concentric': 'এক কেন্দ্রীয়',
+            'conception': 'ধারণা',
+            'concerted': 'একত্রিত',
+            'concession': 'ছয়াচক',
+            'conciliatory': 'শান্তিসৃষ্টি',
+            'concise': 'সংক্ষেপ',
+            'conclave': 'গোষ্ঠীবিচার',
+            'conclusive': 'নিষ্কর্ষক',
+            'concoct': 'মিশানো',
+            'concomitant': 'সহযোগী',
+            'concord': 'ঐক্য',
+            'concordat': 'কোণকাটা',
+            'concur': 'একমত হত্তয়া',
+            'concurrent': 'সমীপস্থ',
+            'condescend': 'দয়ালুভাবে নেচারা',
+            'condign': 'যথেষ্ট',
+            'condiment': 'স্বাদুষ্টি',
+            'condole': 'শোক প্রকাশ করা',
+            'condone': 'ক্ষমা করা',
+            'conducive': 'উপকারী',
+            'conduit': 'ধারাপাত',
+            'confidant': 'বিশেষ গোপন',
+            'confidante': 'বিশেষ গোপন',
+            'confide': 'বিশেষ গোপন',
+            'confidence': 'আত্মবিশ্বাস',
+            'confidential': 'বিশেষ গোপন',
+            'confine': 'সীমাবদ্ধ করা',
+            'confiscate': 'জব্দ করা',
+            'conflagration': 'একটি বৃষ্টি',
+            'confluence': 'সংগম',
+            'conformist': 'অনুসারী',
+            'conformity': 'অনুসারণ',
+            'confound': 'বিশৃঙ্খলা করা',
+            'confound': 'গোঁড়ানো',
+            'congeal': 'ঘন হত্তয়া',
+            'congenial': 'সৌজন্যময়',
+            'congenital': 'জন্মজাত',
+            'conglomerate': 'পৃথুলীকৃত',
+            'conglomeration': 'পৃথুলীকরণ',
+            'congruence': 'সমরেখা',
+            'congruent': 'সমরেখ',
+            'conifer': 'কনিফার',
+            'conjecture': 'অনুমান',
+            'conjugal': 'বৈবাহিক',
+            'conjure': 'জাদু করা',
+            'connivance': 'সহকারিতা',
+            'connoisseur': 'ভোজনপনের দক্ষ ব্যক্তি',
+            'connotation': 'অভিপ্রায়',
+            'connubial': 'বৈবাহিক',
+            'consanguineous': 'আত্মবান',
+            'consanguine': 'আত্মবান',
+            'consanguinity': 'আত্মবন্ধুতা',
+            'conscientious': 'কর্মঠ',
+            'conscript': 'সাধু',
+            'consecrate': 'পবিত্র করা',
+            'consensus': 'ঐক্য',
+            'consequential': 'পরিণামস্বরূপ',
+            'conservatory': 'সংরক্ষণাগার',
+            'conservatoire': 'সংরক্ষণাগার',
+            'consign': 'পাঠানো',
+            'consistency': 'সমর্থতা',
+            'console': 'সম্বোধন করা',
+            'consolidation': 'একত্রীকরণ',
+            'consonance': 'সুরসংযোগ',
+            'consonant': 'ব্যঞ্জনধ্বনি',
+            'consort': 'সহবাস করা',
+            'conspiracy': 'ষড়যন্ত্র',
+            'conspire': 'ষড়যন্ত্র করা',
+            'consternation': 'আতঙ্ক',
+            'constituency': 'নির্বাচনী এলাকা',
+            'constituent': 'ঘটক',
+            'constitution': 'সংবিধান',
+            'constraint': 'বাধা',
+            'construe': 'অনুবাদ করা',
+            'consummate': 'পূর্ণ',
+            'contagion': 'সংক্রমণ',
+            'contaminate': 'দূষিত করা',
+            'contempt': 'অবজ্ঞা',
+            'contend': 'প্রতিষ্ঠান',
+            'contention': 'মতভ্রষ্টতা',
+            'contentious': 'বিতণ্ডা',
+            'contest': 'প্রতিযোগিতা',
+            'context': 'প্রসঙ্গ',
+            'contiguous': 'সংলগ্ন',
+            'continence': 'সেমিতা',
+            'contingent': 'আপেক্ষিক',
+            'contortion': 'বিকৃতি',
+            'contraband': 'বন্ধুক',
+            'contravene': 'লঙ্ঘন করা',
+            'contrite': 'নিষ্কোচ',
+            'contrivance': 'প্রযোজনা',
+            'contrive': 'কৌশলে তৈরি করা',
+            'contrived': 'কৌশলসাধ্য',
+            'controvert': 'বিতর্ক করা',
+            'contumacious': 'অদৃষ্ট',
+            'contusion': 'পিস্তল',
+            'conundrum': 'সন্দেহভাজন',
+            'convene': 'আহ্বান করা',
+            'convention': 'সম্মেলন',
+            'conventional': 'ঐকম্বর',
+            'converge': 'একত্রিত হত্তয়া',
+            'conversant': 'পরিচিত',
+            'converse': 'মুখসাক্ষী',
+            'convert': 'ধর্মান্তরিত হত্তয়া',
+            'convex': 'উত্কৃষ্ট',
+            'conveyance': 'বাহন',
+            'conviction': 'দণ্ডাদেশ',
+            'convivial': 'মিলনসার',
+            'convoke': 'আহ্বান করা',
+            'convoluted': 'কুলমুক্ত',
+            'convulsion': 'আকঞ্চন',
+            'copious': 'প্রচুর',
+            'coquette': 'মোহনী',
+            'cordial': 'হৃদয়বর্ধন',
+
+            
+                                    
+            
+            
+           
+            // Add more word definitions as needed
+        };
+
+        const wordOfTheDayList = [
+            { word: 'fantastic', meaning: 'অসাধারণ', mnemonic: 'Think of a fantastic view', example: 'The movie was fantastic!' },
+            { word: 'effervescent', meaning: 'উচ্ছ্বসিত', mnemonic: 'Fizzing like soda', example: 'Her effervescent personality brightened the room.' },
+            { word: 'Abate', meaning: 'To become less intense or widespread', mnemonic: 'Think of "abate" as "abating" or diminishing in intensity.', example: 'The storm began to abate, and the sun emerged.' },
+            { word: 'Aberrant', meaning: 'অত্যন্ত মন্দ', mnemonic: 'Exceptional', example: 'His aberrant behavior surprised everyone.' },
+            { word: 'Abeyance', meaning: 'অমুল্যায়িততা', mnemonic: 'Suspended', example: 'The project is in abeyance until further notice.' },
+            { word: 'Abscond', meaning: 'প্রবৃদ্ধি করা', mnemonic: 'Escape', example: 'The thief tried to abscond with the stolen goods.' },
+            { word: 'Abstemious', meaning: 'মিতাচারী', mnemonic: 'Moderate', example: 'His abstemious lifestyle includes a healthy diet and regular exercise.' },
+            { word: 'Admonish', meaning: 'সতর্ক করা', mnemonic: 'Warn', example: 'The teacher had to admonish the student for disruptive behavior.' },
+            { word: 'Adulterate', meaning: 'মিশ্রিত করা', mnemonic: 'Contaminate', example: 'Some sellers adulterate their products to increase profits.' },
+            { word: 'Aesthetic', meaning: 'সৌন্দর্যশাস্ত্রগত', mnemonic: 'Artistic', example: 'The artist focused on creating an aesthetic masterpiece.' },
+            { word: 'Aggregate', meaning: 'সমৃদ্ধি', mnemonic: 'Total', example: 'The aggregate wealth of the nation increased over the years.' },
+            { word: 'Alacrity', meaning: 'উত্সাহ', mnemonic: 'Eagerness', example: 'She accepted the challenge with alacrity.' },
+            { word: 'Amalgamate', meaning: 'মেলানো', mnemonic: 'Combine', example: 'The two companies decided to amalgamate for mutual benefits.' },
+            { word: 'Ambiguous', meaning: 'অস্পষ্ট', mnemonic: 'Unclear', example: 'His ambiguous statement left everyone confused.' },
+            { word: 'Ambivalence', meaning: 'দ্বন্দ্ব', mnemonic: 'Mixed feelings', example: 'She felt ambivalence about the decision.' },
+            { word: 'Ameliorate', meaning: 'উন্নত করা', mnemonic: 'Improve', example: 'Efforts are being made to ameliorate the living conditions in the region.' },
+            { word: 'Anachronism', meaning: 'সময়ভ্রষ্ট', mnemonic: 'Out of date', example: 'Using a typewriter in the digital age seems like an anachronism.' },
+            { word: 'Analogous', meaning: 'সদৃশ', mnemonic: 'Similar', example: 'The structures of the two buildings are analogous.' },
+            { word: 'Anomaly', meaning: 'অস্বাভাবিকতা', mnemonic: 'Irregularity', example: 'The strange phenomenon was considered an anomaly by scientists.' },
+            { word: 'Antipathy', meaning: 'বিদ্বেষ', mnemonic: 'Aversion', example: 'There is mutual antipathy between the two rival groups.' },
+            { word: 'Apathy', meaning: 'অবস্থানামেই', mnemonic: 'Indifference', example: 'The voter apathy was evident in the low turnout.' },
+            { word: 'Appease', meaning: 'শান্ত করা', mnemonic: 'Satisfy', example: 'He tried to appease her by offering an apology.' },
+            { word: 'Apprise', meaning: 'জানানো', mnemonic: 'Inform', example: 'I will apprise you of the situation as soon as I have more information.' },
+            { word: 'Approbation', meaning: 'অনুমোদন', mnemonic: 'Approval', example: 'Her hard work earned the approbation of her colleagues.' },
+            { word: 'Arbiter', meaning: 'নির্ণয়কর্তা', mnemonic: 'Judge', example: 'The court serves as the arbiter in legal disputes.' },
+            { word: 'Arduous', meaning: 'কঠিন', mnemonic: 'Difficult', example: 'The climb to the mountain peak was arduous but rewarding.' },
+            { word: 'Artless', meaning: 'আসল', mnemonic: 'Simple', example: 'His artless sincerity endeared him to everyone.' },
+            { word: 'Ascetic', meaning: 'তীব্রব্রত', mnemonic: 'Austere', example: 'The ascetic monk lived a simple and disciplined life.' },
+            { word: 'Assuage', meaning: 'শান্ত করা', mnemonic: 'Soothe', example: 'A hot cup of tea can assuage your worries.' },
+            { word: 'Attenuate', meaning: 'পাতলা করা', mnemonic: 'Weaken', example: 'The medicine is known to attenuate the symptoms of the illness.' },
+            { word: 'Audacious', meaning: 'অমিত্র', mnemonic: 'Bold', example: 'Her audacious plan surprised everyone but succeeded.' },
+            { word: 'Austere', meaning: 'বিশুদ্ধ', mnemonic: 'Stern', example: 'The austere teacher demanded strict discipline in the classroom.' },
+            { word: 'Avarice', meaning: 'লোভ', mnemonic: 'Greed', example: 'His avarice for wealth led him to engage in unethical practices.' },
+            { word: 'Axiom', meaning: 'অজুহাত', mnemonic: 'Self-evident truth', example: 'The axiom "all men are mortal" is widely accepted.' },
+            { word: 'Belie', meaning: 'মিথ্যা প্রতিত্যাগ করা', mnemonic: 'Contradict', example: 'His calm demeanor belied the inner turmoil he was experiencing.' },
+            { word: 'Benevolent', meaning: 'উদার', mnemonic: 'Kind-hearted', example: 'The benevolent donor contributed to various charitable causes.' },
+            { word: 'Bolster', meaning: 'সমর্থন করা', mnemonic: 'Support', example: 'The evidence helped bolster their case in court.' },
+            { word: 'Bombastic', meaning: 'শব্দবৃষ্টি', mnemonic: 'Pompous', example: 'His bombastic speech lacked substance and was full of empty rhetoric.' },
+            { word: 'Boorish', meaning: 'কুল্য', mnemonic: 'Rude', example: 'His boorish behavior offended everyone at the party.' },
+            { word: 'Cacophony', meaning: 'শব্দশৃঙ্গ', mnemonic: 'Harsh sound', example: 'The cacophony of traffic made it difficult to concentrate.' },
+            { word: 'Capricious', meaning: 'অচল', mnemonic: 'Whimsical', example: 'Her capricious decisions often surprised her colleagues.' },
+            { word: 'Castigate', meaning: 'শাস্তি দেওয়া', mnemonic: 'Reprimand', example: 'The teacher had to castigate the student for misbehavior.' },
+            { word: 'Caustic', meaning: 'ক্ষরশীল', mnemonic: 'Sarcastic', example: 'Her caustic remarks offended those around her.' },
+            { word: 'Chicanery', meaning: 'কুয়াচাকি', mnemonic: 'Deception', example: 'The politician was known for his chicanery in manipulating public opinion.' },
+            { word: 'Cogent', meaning: 'বিশ্বস্ত', mnemonic: 'Convincing', example: 'He presented a cogent argument that swayed the opinions of many.' },
+            { word: 'Commensurate', meaning: 'অনুযায়ী', mnemonic: 'Proportional', example: 'The reward should be commensurate with the effort put in.' },
+            { word: 'Complaisant', meaning: 'মনোনিবেশ করা', mnemonic: 'Willing to please', example: 'He was complaisant and always ready to help others.' },
+            { word: 'Concede', meaning: 'পৃথক থাকা', mnemonic: 'Admit', example: 'She had to concede that she was wrong after seeing the evidence.' },
+            { word: 'Convoluted', meaning: 'জটিল', mnemonic: 'Complicated', example: 'The convoluted plot of the movie confused many viewers.' },
+            { word: 'Craven', meaning: 'কুপুত্র', mnemonic: 'Cowardly', example: 'His craven behavior in the face of danger disappointed his friends.' },
+            { word: 'Decorum', meaning: 'শ্রীমতি', mnemonic: 'Proper behavior', example: 'The formal event required guests to maintain decorum.' },
+            { word: 'Deferential', meaning: 'শ্রদ্ধাশীল', mnemonic: 'Respectful', example: 'He was always deferential to his elders.' },
+            { word: 'Delineate', meaning: 'বর্ণনা করা', mnemonic: 'Describe', example: 'The map clearly delineates the borders of each country.' },
+            { word: 'Denigrate', meaning: 'নীচ করা', mnemonic: 'Defame', example: 'It is not appropriate to denigrate someone based on rumors.' },
+            { word: 'Deride', meaning: 'উপহাস করা', mnemonic: 'Mock', example: 'She derided his attempts to be taken seriously.' },
+            { word: 'Desiccate', meaning: 'শুকানো', mnemonic: 'Dry up', example: 'The intense heat caused the riverbed to desiccate.' },
+            { word: 'Desultory', meaning: 'বিচলনশীল', mnemonic: 'Random', example: 'His desultory approach to studying resulted in poor grades.' },
+            { word: 'Diatribe', meaning: 'আক্রমণাত্মক ভাষা', mnemonic: 'Harsh criticism', example: 'His diatribe against the government was filled with anger.' },
+            { word: 'Diffidence', meaning: 'অহংকার বহন', mnemonic: 'Shyness', example: 'Her diffidence made it difficult for her to speak in public.' },
+            { word: 'Dilettante', meaning: 'প্রাথমিক জ্ঞানে বিশেষজ্ঞ', mnemonic: 'Amateur', example: 'He dabbled in various arts but was considered a dilettante.' },
+            { word: 'Disabuse', meaning: 'ভুল ধারণা দূর করা', mnemonic: 'Correct a misconception', example: 'The teacher had to disabuse the students of their mistaken beliefs.' },
+            { word: 'Discerning', meaning: 'জ্ঞানী', mnemonic: 'Perceptive', example: 'Her discerning taste in art made her a respected critic.' },
+            { word: 'Disparate', meaning: 'বিভিন্ন', mnemonic: 'Dissimilar', example: 'The two ideas seemed disparate, but he found a connection between them.' },
+            { word: 'Dissonance', meaning: 'অসংগতি', mnemonic: 'Harsh sound', example: 'The dissonance of the music was intentional and created a sense of unease.' },
+            { word: 'Dogmatic', meaning: 'ধর্মনিরপেক্ষ', mnemonic: 'Rigidly fixed', example: 'He was dogmatic in his beliefs and unwilling to consider other perspectives.' },
+            { word: 'Ebullience', meaning: 'উত্সাহ', mnemonic: 'Enthusiasm', example: 'Her ebullience was infectious, and everyone around her felt energized.' },
+            { word: 'Eclectic', meaning: 'বহুকালের', mnemonic: 'Varied', example: 'The artist had an eclectic collection of paintings from different periods.' },
+            { word: 'Elegy', meaning: 'শ্রদ্ধার্থ্য', mnemonic: 'Mournful poem', example: 'The poet composed an elegy to commemorate the fallen soldiers.' },
+            { word: 'Emollient', meaning: 'শিতলকর', mnemonic: 'Soothing', example: 'She applied an emollient lotion to relieve dry skin.' },
+            { word: 'Empirical', meaning: 'প্রমাণমূলক', mnemonic: 'Based on observation', example: 'Scientists rely on empirical evidence to support their theories.' },
+            { word: 'Endemic', meaning: 'প্রদাগত', mnemonic: 'Native', example: 'Malaria is endemic in tropical regions.' },
+            { word: 'Enervate', meaning: 'শক্তি হারানো', mnemonic: 'Weaken', example: 'The prolonged illness enervated his strength.' },
+            { word: 'Enigmatic', meaning: 'রহস্যময়', mnemonic: 'Mysterious', example: 'The paintings meaning remained enigmatic to art critics.' },
+            { word: 'Enumerate', meaning: 'গণনা করা', mnemonic: 'Count', example: 'The speaker will enumerate the key points in the presentation.' },
+            { word: 'Ephemeral', meaning: 'অল্পকালিক', mnemonic: 'Short-lived', example: 'The beauty of the cherry blossoms is ephemeral.' },
+            { word: 'Epistolary', meaning: 'চিঠিয়াপত্রিক', mnemonic: 'Relating to letters', example: 'The novel is written in an epistolary format, using letters to tell the story.' },
+            { word: 'Equivocal', meaning: 'দ্বিধাপূর্ণ', mnemonic: 'Ambiguous', example: 'His equivocal response left everyone confused.' },
+            { word: 'Esoteric', meaning: 'গূঢ়', mnemonic: 'Secretive', example: 'The philosophers ideas were often esoteric and difficult to understand.' },
+            { word: 'Estimable', meaning: 'মূল্যবান', mnemonic: 'Admirable', example: 'Her efforts to help others were truly estimable.' },
+            { word: 'Eulogy', meaning: 'গান', mnemonic: 'Praise', example: 'The eulogy celebrated the achievements of the departed soul.' },
+            { word: 'Evanescent', meaning: 'অস্থায়ী', mnemonic: 'Fleeting', example: 'The evanescent beauty of the sunrise disappeared quickly.' },
+            { word: 'Exacerbate', meaning: 'বাড়ানো', mnemonic: 'Aggravate', example: 'His comments only served to exacerbate the tension in the room.' },
+            { word: 'Exculpate', meaning: 'দোষমুক্ত করা', mnemonic: 'Clear of blame', example: 'The evidence presented in court helped to exculpate the accused.' },
+            { word: 'Exigent', meaning: 'জরুরী', mnemonic: 'Urgent', example: 'The exigent situation required immediate attention.' },
+            { word: 'Exonerate', meaning: 'দোষমুক্ত করা', mnemonic: 'Absolve', example: 'New evidence emerged to exonerate the wrongly convicted man.' },
+            { word: 'Explicate', meaning: 'ব্যাখ্যা করা', mnemonic: 'Explain', example: 'The professor took time to explicate the complex theory to the students.' },
+            { word: 'Extant', meaning: 'অস্তিত্বমান', mnemonic: 'Still existing', example: 'Some ancient manuscripts are still extant today.' },
+            { word: 'Extol', meaning: 'প্রশংসা করা', mnemonic: 'Praise', example: 'They extolled the virtues of the new technology.' },
+            { word: 'Facetious', meaning: 'বিদ্রূপদৃষ্টি', mnemonic: 'Humorous', example: 'His facetious remarks lightened the mood in the room.' },
+            { word: 'Fastidious', meaning: 'সুখবিচারক', mnemonic: 'Meticulous', example: 'She is fastidious about cleanliness and order.' },
+            { word: 'Fatuous', meaning: 'মূঢ়', mnemonic: 'Silly', example: 'His fatuous comments made everyone laugh.' },
+            { word: 'Fecund', meaning: 'উর্বর', mnemonic: 'Fertile', example: 'The fecund soil yielded a rich harvest.' },
+            { word: 'Fervid', meaning: 'উত্কট', mnemonic: 'Passionate', example: 'Her fervid speech inspired the audience.' },
+            { word: 'Flag', meaning: 'পতাকা', mnemonic: 'Banner', example: 'The national flag waved proudly in the wind.' },
+            { word: 'Foment', meaning: 'উত্তেজনা তৈরি করা', mnemonic: 'Stir up', example: 'The speech seemed designed to foment discontent among the crowd.' },
+            { word: 'Forestall', meaning: 'পূর্বাভাস করা', mnemonic: 'Prevent', example: 'To forestall accidents, the road was closed for repairs.' },
+            { word: 'Fractious', meaning: 'কঠোর', mnemonic: 'Irritable', example: 'The fractious child refused to cooperate.' },
+            { word: 'Garrulous', meaning: 'বাক্চল', mnemonic: 'Talkative', example: 'The garrulous old man told endless stories to anyone who would listen.' },
+            { word: 'Gregarious', meaning: 'সজাতি সহজস্বাভাবিক', mnemonic: 'Social', example: 'She is known for her gregarious nature and love of socializing.' },
+            { word: 'Guileless', meaning: 'সরল', mnemonic: 'Innocent', example: 'Her guileless expression indicated she was unaware of the deception.' },
+            // Add more words to the list
+        ];
+
+
+
+
+
+
+        const allWordsList = [
+            
+            { word: 'Abate', meaning: 'হ্রাস করা', mnemonic: 'Think of "abate" as "abating" or diminishing in intensity.', example: 'The storm began to abate, and the sun emerged.' },
+
+            { word: 'abase', meaning: 'অত্যধীন করা', mnemonic: 'Think of "abase" as "lowering" or demeaning.', example: 'He refused to abase himself by begging for mercy.' },
+            { word: 'abash', meaning: 'শরণার্থী বা হতাশামুক্ত করা', mnemonic: 'Think of "abash" as "abashing" or embarrassing someone.', example: 'The unexpected question abashed her during the interview.' },
+            { word: 'abate', meaning: 'হ্রাস করা', mnemonic: 'Think of "abate" as "abating" or diminishing in intensity.', example: 'The storm began to abate, and the sun emerged.' },
+            { word: 'abbreviate', meaning: 'সংক্ষেপ করা', mnemonic: 'Think of "abbreviate" as "shortening" or making something briefer.', example: 'To save time, he decided to abbreviate his presentation.' },
+            { word: 'abdicate', meaning: 'পদত্যাগ করা', mnemonic: 'Think of "abdicate" as "giving up" or renouncing a position of power.', example: 'The king chose to abdicate the throne for the sake of his people.' },
+            { word: 'aberrant', meaning: 'অস্বাভাবিক', mnemonic: 'Think of "aberrant" as "deviating" or straying from the usual course.', example: 'The scientist studied the aberrant behavior of the rare species.' },
+            { word: 'aberration', meaning: 'অস্বাভাবিক বা অপ্রচলিত ঘটনা', mnemonic: 'Think of "aberration" as an "aberrant action" or a departure from what is normal.', example: 'The sudden outburst was considered an aberration in his usually calm demeanor.' },
+            { word: 'abet', meaning: 'সাহায্য করা', mnemonic: 'Think of "abet" as "aiding and abetting" or assisting in a wrongdoing.', example: 'He was charged with abetting the criminal in his escape.' },
+            { word: 'abeyance', meaning: 'মুছল অবস্থা', mnemonic: 'Think of "abeyance" as "in suspense" or temporarily set aside.', example: 'The project was in abeyance until the funding was secured.' },
+            { word: 'abhor', meaning: 'ঘৃণা করা', mnemonic: 'Think of "abhor" as "abhorring" or detesting something intensely.', example: 'She could not help but abhor the cruelty inflicted upon innocent animals.' },
+            { word: 'abide', meaning: 'মানা', mnemonic: 'Think of "abide" as "abiding by" or accepting a rule or decision.', example: 'He promised to abide by the terms of the contract.' },
+            { word: 'abject', meaning: 'বিনম্র', mnemonic: 'Think of "abject" as a state of being "abjected" or brought low in condition.', example: 'His abject apology showed sincere remorse for his actions.' },
+            { word: 'abjure', meaning: 'প্রত্যাহার করা', mnemonic: 'Think of "abjure" as "abjuring" or renouncing a belief or claim.', example: 'The witness decided to abjure his previous statement.' },
+            { word: 'ablution', meaning: 'শুচির্মোচন', mnemonic: 'Think of "ablution" as a ritual "washing away" of impurities, especially before prayer.', example: 'Performing ablutions is an essential part of some religious ceremonies.' },
+            { word: 'abnegation', meaning: 'সান্ন্যাস', mnemonic: 'Think of "abnegation" as a selfless "negation" or denial of one\'s own interests.', example: 'Her abnegation of personal luxuries allowed her to focus on helping others.' },
+            { word: 'abode', meaning: 'বাসস্থান', mnemonic: 'Think of "abode" as a place where one "abides" or resides.', example: 'Their cozy cottage was a peaceful abode in the countryside.' },
+            { word: 'abolish', meaning: 'উন্মূলন করা', mnemonic: 'Think of "abolish" as "doing away with" or putting an end to something.', example: 'The government decided to abolish the outdated law.' },
+            { word: 'abominable', meaning: 'ঘৃণিত', mnemonic: 'Think of "abominable" as something causing "abhorrence" or extreme dislike.', example: 'The conditions in the prison were described as abominable.' },
+            { word: 'abominate', meaning: 'ঘৃণা করা', mnemonic: 'Think of "abominate" as "abhorring" or having a strong dislike for something.', example: 'She would always abominate the idea of cruelty to animals.' },
+            { word: 'aboriginal', meaning: 'আদিম', mnemonic: 'Think of "aboriginal" as relating to the "original" inhabitants or earliest known people of a region.', example: 'The aboriginal tribes have a rich cultural heritage.' },
+            { word: 'abortive', meaning: 'ব্যর্থ', mnemonic: 'Think of "abortive" as an "aborted" or unsuccessful attempt.', example: 'The companys abortive efforts to expand led to financial losses.' },
+            { word: 'abrasive', meaning: 'ঘর্ষণকারী', mnemonic: 'Think of "abrasive" as something causing "abrasion" or friction.', example: 'The abrasive surface of the sandpaper smoothed the rough edges.' },
+            { word: 'abridge', meaning: 'সংক্ষেপ করা', mnemonic: 'Think of "abridge" as "shortening" or condensing a text without losing its essence.', example: 'The editor had to abridge the lengthy manuscript to fit the magazine.' },
+            { word: 'abrogate', meaning: 'সজ্জিত করা', mnemonic: 'Think of "abrogate" as "annulling" or repealing a law or agreement.', example: 'The government decided to abrogate the outdated treaty.' },
+            { word: 'abscission', meaning: 'কাটা প্রক্রিয়া', mnemonic: 'Think of "abscission" as a "cutting off" or separation of a part from a whole.', example: 'The abscission of leaves is a natural process in autumn.' },
+            { word: 'abscond', meaning: 'লুকিয়ে পড়া', mnemonic: 'Think of "abscond" as "absconding" or fleeing to avoid capture or punishment.', example: 'The suspect tried to abscond before the police arrived.' },
+            { word: 'absolute', meaning: 'পূর্ণ', mnemonic: 'Think of "absolute" as something "complete" or not limited by restrictions.', example: 'She had absolute control over the decision-making process.' },
+            { word: 'absolve', meaning: 'মুক্তি দেওয়া', mnemonic: 'Think of "absolve" as "absolving" or freeing someone from guilt or responsibility.', example: 'The pardon absolved him of all charges.' },
+            { word: 'abstain', meaning: 'বিরত থাকা', mnemonic: 'Think of "abstain" as "refraining" or choosing not to do something, especially from voting.', example: 'She decided to abstain from participating in the controversial decision.' },
+            { word: 'abstemious', meaning: 'মিতাচারী', mnemonic: 'Think of "abstemious" as someone who is "abstaining" or moderate, especially in eating and drinking.', example: 'His abstemious lifestyle contributed to his overall well-being.' },
+            { word: 'abstinence', meaning: 'বিরতি', mnemonic: 'Think of "abstinence" as the practice of "abstaining" or refraining from indulgence, especially in food or drink.', example: 'The monk practiced abstinence from worldly pleasures.' },
+            { word: 'abstract', meaning: 'সারগত', mnemonic: 'Think of "abstract" as something "abstracted" or conceptual rather than concrete.', example: 'The painting was an abstract representation of emotions.' },
+            { word: 'abstruse', meaning: 'অসহজ', mnemonic: 'Think of "abstruse" as something "obscure" or difficult to understand.', example: 'The professor presented an abstruse theory that puzzled the students.' },
+            { word: 'abusive', meaning: 'অবমাননাত্মক', mnemonic: 'Think of "abusive" as behavior involving "abuse" or harmful words or actions.', example: 'He was reprimanded for using abusive language in the workplace.' },
+            { word: 'abut', meaning: 'সংযোগিত থাকা', mnemonic: 'Think of "abut" as "abutting" or being adjacent to something.', example: 'Their properties abutted each other along the fence line.' },
+            { word: 'abysmal', meaning: 'অত্যন্ত মন্দ', mnemonic: 'Think of "abysmal" as something extremely "deep" or low in quality.', example: 'The company faced an abysmal decline in profits.' },
+            { word: 'abyss', meaning: 'অব্যাহত স্থান', mnemonic: 'Think of "abyss" as a vast, "bottomless" chasm or void.', example: 'The oceans abyss is a mysterious and unexplored region.' },
+            { word: 'academic', meaning: 'শিক্ষাবাদী', mnemonic: 'Think of "academic" as related to "academia" or educational institutions.', example: 'She pursued an academic career as a professor.' },
+            { word: 'accede', meaning: 'অভিগ্রহ করা', mnemonic: 'Think of "accede" as "acceding to" or agreeing to a request or demand.', example: 'The government decided to accede to the demands of the protesters.' },
+            { word: 'accelerate', meaning: 'ত্বরণ বাড়ানো', mnemonic: 'Think of "accelerate" as "increasing speed" or moving faster.', example: 'The car began to accelerate as it entered the highway.' },
+            { word: 'accessible', meaning: 'সুসংগত', mnemonic: 'Think of "accessible" as being "easily approached" or reachable.', example: 'The museum is designed to be accessible to visitors with disabilities.' },
+            { word: 'accessory', meaning: 'উপকরণ', mnemonic: 'Think of "accessory" as an "accessory item" or an additional, non-essential item.', example: 'She bought a stylish accessory to complement her outfit.' },
+            { word: 'acclaim', meaning: 'প্রশংসা', mnemonic: 'Think of "acclaim" as "acclaiming" or enthusiastic praise for something.', example: 'The artist received critical acclaim for his latest masterpiece.' },
+            { word: 'acclimate', meaning: 'পরিবর্তন করা', mnemonic: 'Think of "acclimate" as "acclimating" or adjusting to a new environment or climate.', example: 'It took some time for the tropical birds to acclimate to the colder weather.' },
+            { word: 'acclivity', meaning: 'উচ্চতা', mnemonic: 'Think of "acclivity" as an upward "incline" or slope.', example: 'The hikers faced a challenging acclivity as they climbed the mountain.' },
+            { word: 'accolade', meaning: 'সম্মান', mnemonic: 'Think of "accolade" as a mark of "acclaim" or a symbol of honor and recognition.', example: 'The scientist received numerous accolades for her groundbreaking research.' },
+            { word: 'accommodate', meaning: 'আবাসন করা', mnemonic: 'Think of "accommodate" as "providing accommodation" or making space for someone or something.', example: 'The hotel can accommodate up to 200 guests.' },
+            { word: 'accomplice', meaning: 'সহযোগী', mnemonic: 'Think of "accomplice" as a "companion in crime" or someone involved in a criminal act.', example: 'The police arrested the accomplice along with the main suspect.' },
+            { word: 'accord', meaning: 'সামঞ্জস্য', mnemonic: 'Think of "accord" as reaching an "agreement" or harmony between parties.', example: 'The two nations signed a peace accord to end the conflict.' },
+            { word: 'accost', meaning: 'আক্রমণ করা', mnemonic: 'Think of "accost" as "accosting" or approaching someone aggressively.', example: 'The stranger accosted her on the dark street.' },
+            { word: 'accoutre', meaning: 'সাজানো', mnemonic: 'Think of "accoutre" as "accoutering" or equipping with necessary items.', example: 'The soldiers were accoutred with the latest weapons and gear.' },
+            { word: 'accretion', meaning: 'সংঘটন', mnemonic: 'Think of "accretion" as the "accumulation" or gradual growth of something.', example: 'The accretion of sediment formed a new layer of rock.' },
+            { word: 'accrue', meaning: 'অভিবৃদ্ধি হত্তয়া', mnemonic: 'Think of "accrue" as "accumulating" or increasing over time.', example: 'Interest will accrue on your savings account.' },
+            { word: 'acerbity', meaning: 'টুণ্টুণি', mnemonic: 'Think of "acerbity" as a sharpness or "sourness" in speech or expression.', example: 'His acerbity in the debate alienated many listeners.' },
+            { word: 'acetic', meaning: 'সিঁড়েবোটা', mnemonic: 'Think of "acetic" as related to "acidity" or having a sour taste.', example: 'Vinegar has an acetic taste due to its acidity.' },
+            { word: 'acidulous', meaning: 'অমিষ্ট', mnemonic: 'Think of "acidulous" as something "acidic" or having a slightly sour taste.', example: 'The acidulous flavor of the fruit made her pucker her lips.' },
+            { word: 'acknowledge', meaning: 'স্বীকৃতি জানানো', mnemonic: 'Think of "acknowledge" as "acknowledging" or recognizing the existence or truth of something.', example: 'He refused to acknowledge his mistake.' },
+            { word: 'acme', meaning: 'শৃঙ্গ', mnemonic: 'Think of "acme" as the "highest point" or peak of achievement.', example: 'Winning the championship was the acme of her career.' },
+            { word: 'acne', meaning: 'মুখদুষ্ট', mnemonic: 'Think of "acne" as a skin condition characterized by the "appearance" of pimples.', example: 'Teenagers often experience acne during puberty.' },
+            { word: 'acoustics', meaning: 'শব্দ তত্ত্ব', mnemonic: 'Think of "acoustics" as the science or study of "sound" and its properties.', example: 'The acoustics of the concert hall enhanced the musical experience.' },
+            { word: 'acquiesce', meaning: 'স্বীকৃতি দেত্তয়া', mnemonic: 'Think of "acquiesce" as "acquiescing to" or reluctantly accepting something without protest.', example: 'She had to acquiesce to the decision, despite her disagreement.' },
+            { word: 'acquittal', meaning: 'দোষমুক্তি', mnemonic: 'Think of "acquittal" as the act of being "acquitted" or declared not guilty in a legal trial.', example: 'The defendant celebrated his acquittal in the courtroom.' },
+            { word: 'acrid', meaning: 'উগ্র', mnemonic: 'Think of "acrid" as a strong and "pungent" smell or taste.', example: 'The acrid smoke from the burning tires filled the air.' },
+            { word: 'acrimonious', meaning: 'অশিষ্ট', mnemonic: 'Think of "acrimonious" as something "bitter" or characterized by bitterness, especially in speech or behavior.', example: 'The acrimonious debate left a tense atmosphere in the room.' },
+            { word: 'acrophobia', meaning: 'উচ্চস্থান সংকোচ', mnemonic: 'Think of "acrophobia" as the "fear" or phobia of "heights."', example: 'Her acrophobia prevented her from climbing tall structures.' },
+            { word: 'actuarial', meaning: 'বীমা সাংকোকক', mnemonic: 'Think of "actuarial" as related to the statistical calculations and assessments used in "insurance" and pension planning.', example: 'The actuarial analysis predicted the future financial liabilities of the insurance company.' },
+            { word: 'actuary', meaning: 'বীমা সাংকোকক', mnemonic: 'Think of "actuary" as a professional who specializes in "actuarial" work, assessing financial risks in insurance and pensions.', example: 'The actuary calculated the premiums based on risk assessments.' },
+            { word: 'actuate', meaning: 'চালনা হত্তয়া', mnemonic: 'Think of "actuate" as "actuating" or causing a mechanical device or process to start functioning.', example: 'The button actuates the opening of the garage door.' },
+            { word: 'acuity', meaning: 'তীক্ষ্ণতা', mnemonic: 'Think of "acuity" as the "sharpness" or keenness of perception, especially senses like vision or hearing.', example: 'The eagles acuity of vision allows it to spot prey from great distances.' },
+            { word: 'acumen', meaning: 'বিদ্বেষজ্ঞতা', mnemonic: 'Think of "acumen" as having "sharp" or keen insight and judgment in making decisions.', example: 'Her business acumen led to the companys success.' },
+            { word: 'acute', meaning: 'তীক্ষ্ণ', mnemonic: 'Think of "acute" as something "sharp" or having a strong and intense quality.', example: 'The patient felt an acute pain in his chest.' },
+            { word: 'adage', meaning: 'লোকবাচন', mnemonic: 'Think of "adage" as a traditional "saying" or proverb that imparts wisdom.', example: 'The adage "early to bed, early to rise" is often quoted for a healthy lifestyle.' },
+            { word: 'adamant', meaning: 'অদম্য', mnemonic: 'Think of "adamant" as being "unyielding" or firmly refusing to change one\'s mind.', example: 'She remained adamant in her decision despite the criticism.' },
+            { word: 'adapt', meaning: 'অভিযোজন', mnemonic: 'Think of "adapt" as "adapting to" or adjusting to new conditions or environments.', example: 'Plants can adapt to different climates over time.' },
+            { word: 'addendum', meaning: 'পূর্বানুসরণ', mnemonic: 'Think of "addendum" as an "addition" or something added at the end of a document.', example: 'The report had an addendum containing additional data.' },
+            { word: 'addiction', meaning: 'ব্যস্ততা', mnemonic: 'Think of "addiction" as a strong "dependence" or habitual need for a substance or activity.', example: 'Overcoming addiction requires a combination of therapy and support.' },
+            { word: 'addle', meaning: 'সাংকোচহীন করা', mnemonic: 'Think of "addle" as "addling" or muddling, especially one\'s mind.', example: 'The confusing instructions will only addle the students\' understanding.' },
+            { word: 'address', meaning: 'ঠিকানা', mnemonic: 'Think of "address" as the specific "location" or place where someone lives or an organization is situated.', example: 'He wrote his address on the envelope.' },
+            { word: 'adept', meaning: 'দক্ষ', mnemonic: 'Think of "adept" as someone who is "skilled" or proficient in a particular area.', example: 'She is an adept pianist, captivating the audience with her performance.' },
+            { word: 'adhere', meaning: 'অনুগামী থাকা', mnemonic: 'Think of "adhere" as "adhering to" or sticking to something, either physically or figuratively.', example: 'Make sure the bandage adheres securely to the wound.' },
+            { word: 'adherent', meaning: 'অনুগামী', mnemonic: 'Think of "adherent" as someone who is "adhering to" or supporting a particular set of beliefs or principles.', example: 'He is a strong adherent of environmental conservation.' },
+            { word: 'adjacent', meaning: 'সামিপ্য', mnemonic: 'Think of "adjacent" as being "next to" or in close proximity to something.', example: 'The two buildings are adjacent to each other.' },
+            { word: 'adjoin', meaning: 'সংযোগ করা', mnemonic: 'Think of "adjoin" as "joining" or being next to something, forming a connection.', example: 'The park adjoins the school playground.' },
+            { word: 'adjourn', meaning: 'স্থানান্তর করা', mnemonic: 'Think of "adjourn" as "adjourning to" or suspending a meeting or session to a later time.', example: 'The court decided to adjourn the hearing until the next day.' },
+            { word: 'adjunct', meaning: 'সহযোগী', mnemonic: 'Think of "adjunct" as something "additional" or supplementary to the main thing.', example: 'The textbook includes an adjunct section with further explanations.' },
+            { word: 'adjuration', meaning: 'আবেগ', mnemonic: 'Think of "adjuration" as a fervent "adjuring" or earnest request.', example: 'Her adjuration for help was met with immediate assistance.' },
+            { word: 'adjutant', meaning: 'সহকারী', mnemonic: 'Think of "adjutant" as a military "adjutant" or an officer who assists the commanding officer.', example: 'The adjutant organized the logistics for the battalion.' },
+            { word: 'admonish', meaning: 'সতর্ক করা', mnemonic: 'Think of "admonish" as "admonishing" or warning someone firmly.', example: 'The teacher had to admonish the students for their disruptive behavior.' },
+            { word: 'adore', meaning: 'ভক্তি করা', mnemonic: 'Think of "adore" as "adoring" or expressing deep love and admiration for someone.', example: 'She would always adore her grandmother for her wisdom.' },
+            
+            { word: 'aerie', meaning: 'চিড়াখানা', mnemonic: 'Think of "aerie" as a high "aerie" or nest, especially of a bird of prey, located in a lofty place.', example: 'The eagle built its aerie on the cliff, providing a secure vantage point.' },
+            { word: 'aery', meaning: 'উড়ানখোর', mnemonic: 'Think of "aery" as related to "aeries" or habitats in elevated places, especially for birds.', example: 'The aery atop the mountain was home to a rare species of falcon.' },
+            { word: 'eyrie', meaning: 'চিড়াখানা', mnemonic: 'Think of "eyrie" as a variant spelling of "aerie," referring to a high nest or dwelling place for birds of prey.', example: 'The peregrine falcon returned to its eyrie on the cliffs each year.' },
+            { word: 'eyry', meaning: 'উড়ানখোর', mnemonic: 'Think of "eyry" as another variant of "aerie," denoting a high nest or dwelling for birds.', example: 'The eaglets were raised in a secure eyry on the mountain peak.' },
+            { word: 'aesthetic', meaning: 'সৌন্দর্যশাস্ত্র', mnemonic: 'Think of "aesthetic" as relating to the "aesthetic" or artistic principles and appreciation of beauty.', example: 'She had a deep appreciation for the aesthetic qualities of classical art.' },
+            { word: 'affable', meaning: 'আলিঙ্গনশীল', mnemonic: 'Think of "affable" as someone who is "affable" or friendly and easy to approach.', example: 'The manager was known for his affable nature, making employees feel comfortable.' },
+            { word: 'affected', meaning: 'প্রভাবিত', mnemonic: 'Think of "affected" as being "affected by" or influenced by external factors, often with a noticeable change.', example: 'Her speech was affected by the emotion of the moment.' },
+            { word: 'affidavit', meaning: 'শপথনামা', mnemonic: 'Think of "affidavit" as a written "affidavit" or sworn statement made under oath.', example: 'The witness provided an affidavit to support the legal case.' },
+            { word: 'affiliation', meaning: 'সংস্থা সংলগ্নতা', mnemonic: 'Think of "affiliation" as the "affiliation with" or connection to a particular organization or group.', example: 'The university has an affiliation with several research institutions.' },
+            { word: 'affinity', meaning: 'অনুরাগ', mnemonic: 'Think of "affinity" as a natural "affinity for" or attraction to something or someone.', example: 'She had an affinity for classical music from a young age.' },
+            { word: 'affirmation', meaning: 'দৃঢ়ীকরণ', mnemonic: 'Think of "affirmation" as the "affirmation of" or confirmation of the truth or validity of a statement.', example: 'Her success was an affirmation of her hard work and dedication.' },
+            { word: 'affliction', meaning: 'কষ্ট', mnemonic: 'Think of "affliction" as a state of "affliction with" or suffering from pain, illness, or distress.', example: 'The community faced the affliction of a severe drought.' },
+            { word: 'affluence', meaning: 'ধনসমৃদ্ধি', mnemonic: 'Think of "affluence" as the state of "affluence" or having a plentiful supply of wealth and resources.', example: 'The city displayed signs of affluence with its luxurious homes and vibrant businesses.' },
+            { word: 'affront', meaning: 'অপমান', mnemonic: 'Think of "affront" as an action that is an "affront to" or an insult to someone\'s dignity or honor.', example: 'His rude comment was seen as an affront to the entire community.' },
+            { word: 'afterlife', meaning: 'পরলোক', mnemonic: 'Think of "afterlife" as the "life after" or existence beyond physical death, often associated with religious beliefs.', example: 'Many cultures have different beliefs about the afterlife.' },
+            { word: 'agape', meaning: 'অচল', mnemonic: 'Think of "agape" as being "agape with" or wide open, especially in amazement or surprise.', example: 'Her mouth hung agape as she witnessed the breathtaking scenery.' },
+            { word: 'agenda', meaning: 'কার্যক্রম', mnemonic: 'Think of "agenda" as a list of "agendas for" or items to be discussed or accomplished in a meeting or event.', example: 'The team had a packed agenda for the conference.' },
+            { word: 'agglomeration', meaning: 'সমৃদ্ধিসমৃদ্ধ সমূহ', mnemonic: 'Think of "agglomeration" as the "agglomeration of" or collection of various things gathered together.', example: 'The city is a diverse agglomeration of cultures and lifestyles.' },
+            { word: 'aggrandize', meaning: 'মহাত্মা করা', mnemonic: 'Think of "aggrandize" as the act of "aggrandizing" or enhancing the power, status, or reputation of something or someone.', example: 'The leader was criticized for trying to aggrandize his achievements.' },
+            { word: 'aggregate', meaning: 'সমষ্টি', mnemonic: 'Think of "aggregate" as the "aggregate of" or the total sum or combination of individual elements.', example: 'The aggregate sales for the quarter exceeded expectations.' },
+            { word: 'aghast', meaning: 'অত্যন্ত আতঙ্কিত', mnemonic: 'Think of "aghast" as feeling "aghast at" or horrified and shocked by something unexpected.', example: 'He stood there, aghast at the sudden turn of events.' },
+            { word: 'agility', meaning: 'চলন্ত দক্ষতা', mnemonic: 'Think of "agility" as the quality of "agility in" or being able to move quickly and easily.', example: 'Cats are known for their agility in navigating narrow spaces.' },
+            { word: 'agitate', meaning: 'উত্তেজনা করা', mnemonic: 'Think of "agitate" as the action of "agitating" or stirring up, especially feelings or opinions.', example: 'The speaker tried to agitate the crowd with passionate arguments.' },
+            { word: 'agnostic', meaning: 'নির্দেশী', mnemonic: 'Think of "agnostic" as someone who is "agnostic about" or uncertain and skeptical about the existence of God or the supernatural.', example: 'She identified as an agnostic, not adhering to any specific religious beliefs.' },
+            { word: 'agog', meaning: 'উদ্বিগ্ন', mnemonic: 'Think of "agog" as being "agog with" or eagerly excited and enthusiastic about something.', example: 'The children were agog with anticipation as they waited for the surprise.' },
+            { word: 'agrarian', meaning: 'খেতি-কৃষি সংক্রান্ত', mnemonic: 'Think of "agrarian" as related to the "agrarian" or agricultural way of life, especially in rural areas.', example: 'The regions economy is primarily agrarian, relying on farming and cultivation.' },
+            { word: 'airy', meaning: 'আবহাওয়াময়', mnemonic: 'Think of "airy" as something that is "airy" or characterized by a light and breezy atmosphere.', example: 'The room had an airy feel with large windows and high ceilings.' },
+            { word: 'alacrity', meaning: 'উৎসাহ', mnemonic: 'Think of "alacrity" as the state of being "alacritous" or cheerful readiness and eagerness.', example: 'He accepted the challenge with alacrity and enthusiasm.' },
+            { word: 'alchemy', meaning: 'রসযান', mnemonic: 'Think of "alchemy" as the ancient practice of "alchemy in" or transforming base metals into gold and seeking the elixir of life.', example: 'Alchemy was a mystical pursuit that combined philosophy and chemistry.' },
+            { word: 'alcove', meaning: 'খিলান', mnemonic: 'Think of "alcove" as a small "alcove in" or recessed area within a larger room or space.', example: 'She created a cozy reading alcove with a comfortable chair and soft lighting.' },
+            { word: 'alias', meaning: 'উপনাম', mnemonic: 'Think of "alias" as a false name or "alias for" or an alternative name used by someone.', example: 'The fugitive used an alias to avoid detection by authorities.' },
+            { word: 'alienate', meaning: 'পৃথক করা', mnemonic: 'Think of "alienate" as the action of "alienating" or causing someone to feel isolated or estranged.', example: 'Constant criticism can alienate individuals from their peers.' },
+            { word: 'alimentary', meaning: 'পাকযোগ্য', mnemonic: 'Think of "alimentary" as something "alimentary to" or related to the nourishment and sustenance of the body.', example: 'Fruits and vegetables are essential for a healthy alimentary system.' },
+            { word: 'alimony', meaning: 'ভোগান্তি', mnemonic: 'Think of "alimony" as the financial support or "alimony for" provided to a spouse after a divorce.', example: 'The court ordered him to pay alimony to his ex-wife.' },
+            { word: 'allay', meaning: 'শান্ত করা', mnemonic: 'Think of "allay" as the action of "allaying" or calming and soothing someone\'s fears or concerns.', example: 'The doctor tried to allay the patient\'s anxiety about the upcoming surgery.' },
+            { word: 'allege', meaning: 'দাবী করা', mnemonic: 'Think of "allege" as the action of "alleging" or asserting something without providing proof.', example: 'The witness will allege that he saw the crime occur.' },
+            { word: 'allegiance', meaning: 'নিষ্ঠা', mnemonic: 'Think of "allegiance" as loyalty or "allegiance to" a person, group, or cause.', example: 'Citizens pledge allegiance to their country in the national anthem.' },
+            { word: 'allegory', meaning: 'অলঙ্কারিক কথা', mnemonic: 'Think of "allegory" as a story or narrative that is an "allegory of" or represents abstract ideas or moral principles.', example: 'Animal Farm by George Orwell is an allegory of political systems and power.' },
+            { word: 'alleviate', meaning: 'হতাশা দূর করা', mnemonic: 'Think of "alleviate" as the action of "alleviating" or easing pain, suffering, or a burden.', example: 'Medication can help alleviate the symptoms of a headache.' },
+            { word: 'alliteration', meaning: 'সর্বাধিক ভিন্ন বা সমবাদ', mnemonic: 'Think of "alliteration" as the repetition of the same letter or sound at the beginning of adjacent or closely connected words.', example: 'The poetic verse used alliteration to create a melodic effect.' },
+            { word: 'allocate', meaning: 'বরাদ্দ করা', mnemonic: 'Think of "allocate" as the action of "allocating" or assigning resources, tasks, or funds to specific purposes.', example: 'The committee will allocate funds for various community projects.' },
+            { word: 'alloy', meaning: 'আলয়', mnemonic: 'Think of "alloy" as a metal that is an "alloy of" or a mixture of two or more elements, usually to enhance its properties.', example: 'Brass is an alloy of copper and zinc.' },
+            { word: 'allude', meaning: 'প্রস্তুত করা', mnemonic: 'Think of "allude" as the action of "alluding to" or indirectly referring to something without explicitly stating it.', example: 'The speaker subtly alluded to historical events in his speech.' },
+            { word: 'allure', meaning: 'আকর্ষণ', mnemonic: 'Think of "allure" as the quality of being "alluring" or attractive, often in a mysterious or captivating way.', example: 'The allure of the unknown drew them to explore the hidden cave.' },
+            { word: 'adorn', meaning: 'সাজানো', mnemonic: 'Think of "adorn" as "adorning" or decorating something with ornaments or embellishments.', example: 'She decided to adorn the room with colorful curtains and artwork.' },
+            { word: 'adroit', meaning: 'নিপুণ', mnemonic: 'Think of "adroit" as someone who is "adroit in" or skillful and clever in handling situations.', example: 'His adroit handling of the crisis impressed everyone.' },
+            { word: 'adulation', meaning: 'মিঠা বক্তব্য', mnemonic: 'Think of "adulation" as excessive "admiration" or flattery towards someone.', example: 'The actor received adulation from his fans after the award ceremony.' },
+            { word: 'adulterate', meaning: 'মিশ্রিত করা', mnemonic: 'Think of "adulterate" as "adulterating" or making something impure by adding inferior or harmful substances.', example: 'Some unscrupulous vendors adulterate food products to increase profits.' },
+            { word: 'Advent', meaning: 'আগমন', mnemonic: 'Think of "Advent" as the "arrival" or beginning of something significant, especially the Christmas season in Christian traditions.', example: 'The Advent of the new year is celebrated with joy and anticipation.' },
+            { word: 'adventitious', meaning: 'আপেক্ষিক', mnemonic: 'Think of "adventitious" as something "accidental" or occurring by chance rather than by design.', example: 'The meeting was an adventitious encounter in the coffee shop.' },
+            { word: 'adversary', meaning: 'প্রতিদ্বন্দ্বী', mnemonic: 'Think of "adversary" as someone who is an "adversary in" or opponent in a conflict or competition.', example: 'The chess player faced a formidable adversary in the tournament.' },
+            { word: 'adverse', meaning: 'প্রতিকূল', mnemonic: 'Think of "adverse" as something "opposed" or unfavorable to one\'s interests.', example: 'The adverse weather conditions forced the cancellation of the outdoor event.' },
+            { word: 'adversity', meaning: 'দু: খ', mnemonic: 'Think of "adversity" as facing "adverse" or difficult circumstances, typically involving misfortune or hardship.', example: 'The family remained united in the face of adversity.' },
+            { word: 'advert', meaning: 'বিজ্ঞাপন', mnemonic: 'Think of "advert" as a short form of "advertisement" or a public notice promoting a product or service.', example: 'The company placed an advert in the local newspaper to attract customers.' },
+            { word: 'advocacy', meaning: 'প্রতিষ্ঠান', mnemonic: 'Think of "advocacy" as the "act of advocating" or supporting a cause, idea, or policy.', example: 'Her advocacy for environmental protection led to positive changes in local policies.' },
+            { word: 'advocate', meaning: 'সমর্থক', mnemonic: 'Think of "advocate" as someone who "advocates for" or publicly supports a cause, idea, or policy.', example: 'She is a passionate advocate for gender equality.' },
+            { word: 'aegis', meaning: 'রক্ষা', mnemonic: 'Think of "aegis" as the "protection" or support of a powerful, influential, or benevolent source.', example: 'The organization operates under the aegis of a renowned humanitarian foundation.' },
+            { word: 'Aberrant', meaning: 'অত্যন্ত মন্দ', mnemonic: 'Exceptional', example: 'His aberrant behavior surprised everyone.' },
+            { word: 'Abeyance', meaning: 'অমুল্যায়িততা', mnemonic: 'Suspended', example: 'The project is in abeyance until further notice.' },
+            { word: 'Abscond', meaning: 'প্রবৃদ্ধি করা', mnemonic: 'Escape', example: 'The thief tried to abscond with the stolen goods.' },
+            { word: 'Abstemious', meaning: 'মিতাচারী', mnemonic: 'Moderate', example: 'His abstemious lifestyle includes a healthy diet and regular exercise.' },
+            { word: 'Admonish', meaning: 'সতর্ক করা', mnemonic: 'Warn', example: 'The teacher had to admonish the student for disruptive behavior.' },
+            { word: 'Adulterate', meaning: 'মিশ্রিত করা', mnemonic: 'Contaminate', example: 'Some sellers adulterate their products to increase profits.' },
+            { word: 'Aesthetic', meaning: 'সৌন্দর্যশাস্ত্রগত', mnemonic: 'Artistic', example: 'The artist focused on creating an aesthetic masterpiece.' },
+            { word: 'Aggregate', meaning: 'সমৃদ্ধি', mnemonic: 'Total', example: 'The aggregate wealth of the nation increased over the years.' },
+            { word: 'Alacrity', meaning: 'উত্সাহ', mnemonic: 'Eagerness', example: 'She accepted the challenge with alacrity.' },
+            { word: 'Amalgamate', meaning: 'মেলানো', mnemonic: 'Combine', example: 'The two companies decided to amalgamate for mutual benefits.' },
+            { word: 'Ambiguous', meaning: 'অস্পষ্ট', mnemonic: 'Unclear', example: 'His ambiguous statement left everyone confused.' },
+            { word: 'Ambivalence', meaning: 'দ্বন্দ্ব', mnemonic: 'Mixed feelings', example: 'She felt ambivalence about the decision.' },
+            { word: 'Ameliorate', meaning: 'উন্নত করা', mnemonic: 'Improve', example: 'Efforts are being made to ameliorate the living conditions in the region.' },
+            { word: 'Anachronism', meaning: 'সময়ভ্রষ্ট', mnemonic: 'Out of date', example: 'Using a typewriter in the digital age seems like an anachronism.' },
+            { word: 'Analogous', meaning: 'সদৃশ', mnemonic: 'Similar', example: 'The structures of the two buildings are analogous.' },
+            { word: 'Anomaly', meaning: 'অস্বাভাবিকতা', mnemonic: 'Irregularity', example: 'The strange phenomenon was considered an anomaly by scientists.' },
+            { word: 'Antipathy', meaning: 'বিদ্বেষ', mnemonic: 'Aversion', example: 'There is mutual antipathy between the two rival groups.' },
+            { word: 'Apathy', meaning: 'অবস্থানামেই', mnemonic: 'Indifference', example: 'The voter apathy was evident in the low turnout.' },
+            { word: 'Appease', meaning: 'শান্ত করা', mnemonic: 'Satisfy', example: 'He tried to appease her by offering an apology.' },
+            { word: 'Apprise', meaning: 'জানানো', mnemonic: 'Inform', example: 'I will apprise you of the situation as soon as I have more information.' },
+            { word: 'Approbation', meaning: 'অনুমোদন', mnemonic: 'Approval', example: 'Her hard work earned the approbation of her colleagues.' },
+            { word: 'Arbiter', meaning: 'নির্ণয়কর্তা', mnemonic: 'Judge', example: 'The court serves as the arbiter in legal disputes.' },
+            { word: 'Arduous', meaning: 'কঠিন', mnemonic: 'Difficult', example: 'The climb to the mountain peak was arduous but rewarding.' },
+            { word: 'Artless', meaning: 'আসল', mnemonic: 'Simple', example: 'His artless sincerity endeared him to everyone.' },
+            { word: 'Ascetic', meaning: 'তীব্রব্রত', mnemonic: 'Austere', example: 'The ascetic monk lived a simple and disciplined life.' },
+            { word: 'Assuage', meaning: 'শান্ত করা', mnemonic: 'Soothe', example: 'A hot cup of tea can assuage your worries.' },
+            { word: 'Attenuate', meaning: 'পাতলা করা', mnemonic: 'Weaken', example: 'The medicine is known to attenuate the symptoms of the illness.' },
+            { word: 'Audacious', meaning: 'অমিত্র', mnemonic: 'Bold', example: 'Her audacious plan surprised everyone but succeeded.' },
+            { word: 'Austere', meaning: 'বিশুদ্ধ', mnemonic: 'Stern', example: 'The austere teacher demanded strict discipline in the classroom.' },
+            { word: 'Avarice', meaning: 'লোভ', mnemonic: 'Greed', example: 'His avarice for wealth led him to engage in unethical practices.' },
+            { word: 'Axiom', meaning: 'অজুহাত', mnemonic: 'Self-evident truth', example: 'The axiom "all men are mortal" is widely accepted.' },
+            { word: 'Belie', meaning: 'মিথ্যা প্রতিত্যাগ করা', mnemonic: 'Contradict', example: 'His calm demeanor belied the inner turmoil he was experiencing.' },
+            { word: 'Benevolent', meaning: 'উদার', mnemonic: 'Kind-hearted', example: 'The benevolent donor contributed to various charitable causes.' },
+            { word: 'Bolster', meaning: 'সমর্থন করা', mnemonic: 'Support', example: 'The evidence helped bolster their case in court.' },
+            { word: 'Bombastic', meaning: 'শব্দবৃষ্টি', mnemonic: 'Pompous', example: 'His bombastic speech lacked substance and was full of empty rhetoric.' },
+            { word: 'Boorish', meaning: 'কুল্য', mnemonic: 'Rude', example: 'His boorish behavior offended everyone at the party.' },
+            { word: 'Cacophony', meaning: 'শব্দশৃঙ্গ', mnemonic: 'Harsh sound', example: 'The cacophony of traffic made it difficult to concentrate.' },
+            { word: 'Capricious', meaning: 'অচল', mnemonic: 'Whimsical', example: 'Her capricious decisions often surprised her colleagues.' },
+            { word: 'Castigate', meaning: 'শাস্তি দেওয়া', mnemonic: 'Reprimand', example: 'The teacher had to castigate the student for misbehavior.' },
+            { word: 'Caustic', meaning: 'ক্ষরশীল', mnemonic: 'Sarcastic', example: 'Her caustic remarks offended those around her.' },
+            { word: 'Chicanery', meaning: 'কুয়াচাকি', mnemonic: 'Deception', example: 'The politician was known for his chicanery in manipulating public opinion.' },
+            { word: 'Cogent', meaning: 'বিশ্বস্ত', mnemonic: 'Convincing', example: 'He presented a cogent argument that swayed the opinions of many.' },
+            { word: 'Commensurate', meaning: 'অনুযায়ী', mnemonic: 'Proportional', example: 'The reward should be commensurate with the effort put in.' },
+            { word: 'Complaisant', meaning: 'মনোনিবেশ করা', mnemonic: 'Willing to please', example: 'He was complaisant and always ready to help others.' },
+            { word: 'Concede', meaning: 'পৃথক থাকা', mnemonic: 'Admit', example: 'She had to concede that she was wrong after seeing the evidence.' },
+            { word: 'Convoluted', meaning: 'জটিল', mnemonic: 'Complicated', example: 'The convoluted plot of the movie confused many viewers.' },
+            { word: 'Craven', meaning: 'কুপুত্র', mnemonic: 'Cowardly', example: 'His craven behavior in the face of danger disappointed his friends.' },
+            { word: 'Decorum', meaning: 'শ্রীমতি', mnemonic: 'Proper behavior', example: 'The formal event required guests to maintain decorum.' },
+            { word: 'Deferential', meaning: 'শ্রদ্ধাশীল', mnemonic: 'Respectful', example: 'He was always deferential to his elders.' },
+            { word: 'Delineate', meaning: 'বর্ণনা করা', mnemonic: 'Describe', example: 'The map clearly delineates the borders of each country.' },
+            { word: 'Denigrate', meaning: 'নীচ করা', mnemonic: 'Defame', example: 'It is not appropriate to denigrate someone based on rumors.' },
+            { word: 'Deride', meaning: 'উপহাস করা', mnemonic: 'Mock', example: 'She derided his attempts to be taken seriously.' },
+            { word: 'Desiccate', meaning: 'শুকানো', mnemonic: 'Dry up', example: 'The intense heat caused the riverbed to desiccate.' },
+            { word: 'Desultory', meaning: 'বিচলনশীল', mnemonic: 'Random', example: 'His desultory approach to studying resulted in poor grades.' },
+            { word: 'Diatribe', meaning: 'আক্রমণাত্মক ভাষা', mnemonic: 'Harsh criticism', example: 'His diatribe against the government was filled with anger.' },
+            { word: 'Diffidence', meaning: 'অহংকার বহন', mnemonic: 'Shyness', example: 'Her diffidence made it difficult for her to speak in public.' },
+            { word: 'Dilettante', meaning: 'প্রাথমিক জ্ঞানে বিশেষজ্ঞ', mnemonic: 'Amateur', example: 'He dabbled in various arts but was considered a dilettante.' },
+            { word: 'Disabuse', meaning: 'ভুল ধারণা দূর করা', mnemonic: 'Correct a misconception', example: 'The teacher had to disabuse the students of their mistaken beliefs.' },
+            { word: 'Discerning', meaning: 'জ্ঞানী', mnemonic: 'Perceptive', example: 'Her discerning taste in art made her a respected critic.' },
+            { word: 'Disparate', meaning: 'বিভিন্ন', mnemonic: 'Dissimilar', example: 'The two ideas seemed disparate, but he found a connection between them.' },
+            { word: 'Dissonance', meaning: 'অসংগতি', mnemonic: 'Harsh sound', example: 'The dissonance of the music was intentional and created a sense of unease.' },
+            { word: 'Dogmatic', meaning: 'ধর্মনিরপেক্ষ', mnemonic: 'Rigidly fixed', example: 'He was dogmatic in his beliefs and unwilling to consider other perspectives.' },
+            { word: 'Ebullience', meaning: 'উত্সাহ', mnemonic: 'Enthusiasm', example: 'Her ebullience was infectious, and everyone around her felt energized.' },
+            { word: 'Eclectic', meaning: 'বহুকালের', mnemonic: 'Varied', example: 'The artist had an eclectic collection of paintings from different periods.' },
+            { word: 'Elegy', meaning: 'শ্রদ্ধার্থ্য', mnemonic: 'Mournful poem', example: 'The poet composed an elegy to commemorate the fallen soldiers.' },
+            { word: 'Emollient', meaning: 'শিতলকর', mnemonic: 'Soothing', example: 'She applied an emollient lotion to relieve dry skin.' },
+            { word: 'Empirical', meaning: 'প্রমাণমূলক', mnemonic: 'Based on observation', example: 'Scientists rely on empirical evidence to support their theories.' },
+            { word: 'Endemic', meaning: 'প্রদাগত', mnemonic: 'Native', example: 'Malaria is endemic in tropical regions.' },
+            { word: 'Enervate', meaning: 'শক্তি হারানো', mnemonic: 'Weaken', example: 'The prolonged illness enervated his strength.' },
+            { word: 'Enigmatic', meaning: 'রহস্যময়', mnemonic: 'Mysterious', example: 'The paintings meaning remained enigmatic to art critics.' },
+            { word: 'Enumerate', meaning: 'গণনা করা', mnemonic: 'Count', example: 'The speaker will enumerate the key points in the presentation.' },
+            { word: 'Ephemeral', meaning: 'অল্পকালিক', mnemonic: 'Short-lived', example: 'The beauty of the cherry blossoms is ephemeral.' },
+            { word: 'Epistolary', meaning: 'চিঠিয়াপত্রিক', mnemonic: 'Relating to letters', example: 'The novel is written in an epistolary format, using letters to tell the story.' },
+            { word: 'Equivocal', meaning: 'দ্বিধাপূর্ণ', mnemonic: 'Ambiguous', example: 'His equivocal response left everyone confused.' },
+            { word: 'Esoteric', meaning: 'গূঢ়', mnemonic: 'Secretive', example: 'The philosophers ideas were often esoteric and difficult to understand.' },
+            { word: 'Estimable', meaning: 'মূল্যবান', mnemonic: 'Admirable', example: 'Her efforts to help others were truly estimable.' },
+            { word: 'Eulogy', meaning: 'গান', mnemonic: 'Praise', example: 'The eulogy celebrated the achievements of the departed soul.' },
+            { word: 'Evanescent', meaning: 'অস্থায়ী', mnemonic: 'Fleeting', example: 'The evanescent beauty of the sunrise disappeared quickly.' },
+            { word: 'Exacerbate', meaning: 'বাড়ানো', mnemonic: 'Aggravate', example: 'His comments only served to exacerbate the tension in the room.' },
+            { word: 'Exculpate', meaning: 'দোষমুক্ত করা', mnemonic: 'Clear of blame', example: 'The evidence presented in court helped to exculpate the accused.' },
+            { word: 'Exigent', meaning: 'জরুরী', mnemonic: 'Urgent', example: 'The exigent situation required immediate attention.' },
+            { word: 'Exonerate', meaning: 'দোষমুক্ত করা', mnemonic: 'Absolve', example: 'New evidence emerged to exonerate the wrongly convicted man.' },
+            { word: 'Explicate', meaning: 'ব্যাখ্যা করা', mnemonic: 'Explain', example: 'The professor took time to explicate the complex theory to the students.' },
+            { word: 'Extant', meaning: 'অস্তিত্বমান', mnemonic: 'Still existing', example: 'Some ancient manuscripts are still extant today.' },
+            { word: 'Extol', meaning: 'প্রশংসা করা', mnemonic: 'Praise', example: 'They extolled the virtues of the new technology.' },
+            { word: 'Facetious', meaning: 'বিদ্রূপদৃষ্টি', mnemonic: 'Humorous', example: 'His facetious remarks lightened the mood in the room.' },
+            { word: 'Fastidious', meaning: 'সুখবিচারক', mnemonic: 'Meticulous', example: 'She is fastidious about cleanliness and order.' },
+            { word: 'Fatuous', meaning: 'মূঢ়', mnemonic: 'Silly', example: 'His fatuous comments made everyone laugh.' },
+            { word: 'Fecund', meaning: 'উর্বর', mnemonic: 'Fertile', example: 'The fecund soil yielded a rich harvest.' },
+            { word: 'Fervid', meaning: 'উত্কট', mnemonic: 'Passionate', example: 'Her fervid speech inspired the audience.' },
+            { word: 'Flag', meaning: 'পতাকা', mnemonic: 'Banner', example: 'The national flag waved proudly in the wind.' },
+            { word: 'Foment', meaning: 'উত্তেজনা তৈরি করা', mnemonic: 'Stir up', example: 'The speech seemed designed to foment discontent among the crowd.' },
+            { word: 'Forestall', meaning: 'পূর্বাভাস করা', mnemonic: 'Prevent', example: 'To forestall accidents, the road was closed for repairs.' },
+            { word: 'Fractious', meaning: 'কঠোর', mnemonic: 'Irritable', example: 'The fractious child refused to cooperate.' },
+            { word: 'Garrulous', meaning: 'বাক্চল', mnemonic: 'Talkative', example: 'The garrulous old man told endless stories to anyone who would listen.' },
+            { word: 'Gregarious', meaning: 'সজাতি সহজস্বাভাবিক', mnemonic: 'Social', example: 'She is known for her gregarious nature and love of socializing.' },
+            { word: 'Guileless', meaning: 'সরল', mnemonic: 'Innocent', example: 'Her guileless expression indicated she was unaware of the deception.' },
+  
+            // Add more words to the list
+        ];
+
+        //Multiple Question
+      const tests = [
+        [
+            
+             {
+                question: 'Test 01-What is the meaning of "Abate"?',
+                choices: ['Increase', 'Decrease', 'Strengthen', 'Elevate'],
+                correctAnswer: 'Decrease'
+            },
+            {
+                question: 'What is the meaning of "Aberrant"?',
+                choices: ['Normal', 'Unusual', 'Predictable', 'Common'],
+                correctAnswer: 'Unusual'
+            },
+            {
+                question: 'What is the meaning of "Abeyance"?',
+                choices: ['Continuation', 'Active', 'Suspension', 'Progress'],
+                correctAnswer: 'Suspension'
+            },
+            {
+                question: 'What is the meaning of "effervescent"?',
+                choices: ['Happy', 'Fizzing like soda', 'Gloomy', 'Loud'],
+                correctAnswer: 'Fizzing like soda'
+            },
+
+            
+            {
+                question: 'What is the meaning of "Abscond"?',
+                choices: ['Reveal', 'Hide', 'Explore', 'Seek'],
+                correctAnswer: 'Hide'
+            },
+            {
+                question: 'What is the meaning of "Abstemious"?',
+                choices: ['Indulgent', 'Moderate', 'Excessive', 'Overindulgent'],
+                correctAnswer: 'Moderate'
+            },
+            {
+                question: 'What is the meaning of "Admonish"?',
+                choices: ['Praise', 'Warn', 'Encourage', 'Applaud'],
+                correctAnswer: 'Warn'
+            },
+            {
+                question: 'What is the meaning of "Adulterate"?',
+                choices: ['Purify', 'Pollute', 'Clarify', 'Refine'],
+                correctAnswer: 'Pollute'
+            }, 
+            {
+                question: 'What is the meaning of "Aesthetic"?',
+                choices: ['Unpleasant', 'Artistic', 'Boring', 'Dull'],
+                correctAnswer: 'Artistic'
+            },
+            {
+                question: 'What is the meaning of "Aggregate"?',
+                choices: ['Separate', 'Collective', 'Divide', 'Individual'],
+                correctAnswer: 'Collective'
+            },
+          
+            // Add 9 more questions for Test 01
+        ],
+        [
+        {
+            question: 'Test 02-What is the meaning of "Alacrity"?',
+            choices: ['Indifference', 'Eagerness', 'Reluctance', 'Apathy'],
+            correctAnswer: 'Eagerness'
+        },
+        {
+            question: 'What is the meaning of "Amalgamate"?',
+            choices: ['Combine', 'Isolate', 'Separate', 'Divide'],
+            correctAnswer: 'Combine'
+        },
+        {
+            question: 'What is the meaning of "Ambiguous"?',
+            choices: ['Clear', 'Precise', 'Uncertain', 'Definite'],
+            correctAnswer: 'Uncertain'
+        },
+        {
+            question: 'What is the meaning of "Ambivalence"?',
+            choices: ['Certainty', 'Clarity', 'Mixed feelings', 'Determination'],
+            correctAnswer: 'Mixed feelings'
+        },
+        {
+            question: 'What is the meaning of "Ameliorate"?',
+            choices: ['Worsen', 'Improve', 'Stagnate', 'Deteriorate'],
+            correctAnswer: 'Improve'
+        },
+        {
+            question: 'What is the meaning of "Anachronism"?',
+            choices: ['Modern', 'Obsolete', 'Timely', 'Current'],
+            correctAnswer: 'Obsolete'
+        },
+        {
+            question: 'What is the meaning of "Analogous"?',
+            choices: ['Similar', 'Different', 'Opposite', 'Contradictory'],
+            correctAnswer: 'Similar'
+        },
+        {
+            question: 'What is the meaning of "Anomaly"?',
+            choices: ['Normality', 'Irregularity', 'Consistency', 'Stability'],
+            correctAnswer: 'Irregularity'
+        },
+        {
+            question: 'What is the meaning of "Antipathy"?',
+            choices: ['Sympathy', 'Affection', 'Aversion', 'Attraction'],
+            correctAnswer: 'Aversion'
+        },
+        {
+            question: 'What is the meaning of "Apathy"?',
+            choices: ['Enthusiasm', 'Indifference', 'Passion', 'Interest'],
+            correctAnswer: 'Indifference'
+        },
+            // Add 9 more questions for Test 02
+        ],
+        
+        [
+        {
+    question: 'Test 03-What is the meaning of "Appease"?',
+    choices: ['Agitate', 'Satisfy', 'Provoke', 'Irritate'],
+    correctAnswer: 'Satisfy'
+},
+{
+    question: 'What is the meaning of "Apprise"?',
+    choices: ['Ignore', 'Notify', 'Neglect', 'Overlook'],
+    correctAnswer: 'Notify'
+},
+{
+    question: 'What is the meaning of "Approbation"?',
+    choices: ['Disapproval', 'Criticism', 'Approval', 'Rejection'],
+    correctAnswer: 'Approval'
+},
+{
+    question: 'What is the meaning of "Arbiter"?',
+    choices: ['Neutral party', 'Involved party', 'Biased party', 'Partial party'],
+    correctAnswer: 'Neutral party'
+},
+{
+    question: 'What is the meaning of "Arduous"?',
+    choices: ['Easy', 'Simple', 'Difficult', 'Effortless'],
+    correctAnswer: 'Difficult'
+},
+{
+    question: 'What is the meaning of "Artless"?',
+    choices: ['Skillful', 'Innocent', 'Crafty', 'Sophisticated'],
+    correctAnswer: 'Innocent'
+},
+{
+    question: 'What is the meaning of "Ascetic"?',
+    choices: ['Indulgent', 'Luxurious', 'Spartan', 'Opulent'],
+    correctAnswer: 'Spartan'
+},
+{
+    question: 'What is the meaning of "Assuage"?',
+    choices: ['Aggravate', 'Intensify', 'Mitigate', 'Escalate'],
+    correctAnswer: 'Mitigate'
+},
+{
+    question: 'What is the meaning of "Attenuate"?',
+    choices: ['Strengthen', 'Weaken', 'Enhance', 'Intensify'],
+    correctAnswer: 'Weaken'
+},
+{
+    question: 'What is the meaning of "Audacious"?',
+    choices: ['Fearful', 'Cautious', 'Bold', 'Timid'],
+    correctAnswer: 'Bold'
+},
+            // Add 9 more questions for Test 03
+        ],
+        
+         [
+         {
+            question: 'Test 04-What is the meaning of "Austere"?',
+            choices: ['Elaborate', 'Lavish', 'Simple', 'Opulent'],
+            correctAnswer: 'Simple'
+        },
+        {
+            question: 'What is the meaning of "Avarice"?',
+            choices: ['Generosity', 'Greed', 'Altruism', 'Charity'],
+            correctAnswer: 'Greed'
+        },
+        {
+            question: 'What is the meaning of "Axiom"?',
+            choices: ['Hypothesis', 'Theory', 'Principle', 'Assumption'],
+            correctAnswer: 'Principle'
+        },
+        {
+            question: 'What is the meaning of "Belie"?',
+            choices: ['Reveal', 'Conceal', 'Expose', 'Uncover'],
+            correctAnswer: 'Conceal'
+        },
+        {
+            question: 'What is the meaning of "Benevolent"?',
+            choices: ['Malevolent', 'Kind-hearted', 'Cruel', 'Malicious'],
+            correctAnswer: 'Kind-hearted'
+        },
+        {
+            question: 'What is the meaning of "Bolster"?',
+            choices: ['Undermine', 'Weaken', 'Strengthen', 'Diminish'],
+            correctAnswer: 'Strengthen'
+        },
+        {
+            question: 'What is the meaning of "Bombastic"?',
+            choices: ['Simple', 'Plain', 'Grandiloquent', 'Modest'],
+            correctAnswer: 'Grandiloquent'
+        },
+        {
+            question: 'What is the meaning of "Boorish"?',
+            choices: ['Polite', 'Sophisticated', 'Rude', 'Cultured'],
+            correctAnswer: 'Rude'
+        },
+        {
+            question: 'What is the meaning of "Cacophony"?',
+            choices: ['Harmony', 'Melody', 'Discord', 'Concord'],
+            correctAnswer: 'Discord'
+        },
+        {
+            question: 'What is the meaning of "Capricious"?',
+            choices: ['Predictable', 'Consistent', 'Stable', 'Whimsical'],
+            correctAnswer: 'Whimsical'
+        },
+            // Add 9 more questions for Test 04
+        ],
+        
+        [
+        {
+            question: 'Test 05-What is the meaning of "Castigate"?',
+            choices: ['Praise', 'Commend', 'Admire', 'Reprimand'],
+            correctAnswer: 'Reprimand'
+        },
+        {
+            question: 'What is the meaning of "Caustic"?',
+            choices: ['Mild', 'Gentle', 'Acidic', 'Neutral'],
+            correctAnswer: 'Acidic'
+        },
+        {
+            question: 'What is the meaning of "Chicanery"?',
+            choices: ['Honesty', 'Integrity', 'Deception', 'Sincerity'],
+            correctAnswer: 'Deception'
+        },
+        {
+            question: 'What is the meaning of "Cogent"?',
+            choices: ['Weak', 'Ineffective', 'Powerful', 'Inefficient'],
+            correctAnswer: 'Powerful'
+        },
+        {
+            question: 'What is the meaning of "Commensurate"?',
+            choices: ['Disproportionate', 'Inadequate', 'Proportional', 'Unbalanced'],
+            correctAnswer: 'Proportional'
+        },
+        {
+            question: 'What is the meaning of "Complaisant"?',
+            choices: ['Stubborn', 'Inflexible', 'Obliging', 'Unyielding'],
+            correctAnswer: 'Obliging'
+        },
+        {
+            question: 'What is the meaning of "Concede"?',
+            choices: ['Refuse', 'Deny', 'Yield', 'Reject'],
+            correctAnswer: 'Yield'
+        },
+        {
+            question: 'What is the meaning of "Convoluted"?',
+            choices: ['Straightforward', 'Simple', 'Complex', 'Uncomplicated'],
+            correctAnswer: 'Complex'
+        },
+        {
+            question: 'What is the meaning of "Craven"?',
+            choices: ['Fearless', 'Brave', 'Cowardly', 'Heroic'],
+            correctAnswer: 'Cowardly'
+        },
+        {
+            question: 'What is the meaning of "Decorum"?',
+            choices: ['Disorder', 'Indecency', 'Impropriety', 'Propriety'],
+            correctAnswer: 'Propriety'
+        },
+            // Add 9 more questions for Test 05
+        ],
+        
+        [
+        {
+            question: 'Test 06-What is the meaning of "Deferential"?',
+            choices: ['Arrogant', 'Respectful', 'Disrespectful', 'Impolite'],
+            correctAnswer: 'Respectful'
+        },
+        {
+            question: 'What is the meaning of "Delineate"?',
+            choices: ['Confuse', 'Blur', 'Outline', 'Obscure'],
+            correctAnswer: 'Outline'
+        },
+        {
+            question: 'What is the meaning of "Denigrate"?',
+            choices: ['Praise', 'Defame', 'Compliment', 'Elevate'],
+            correctAnswer: 'Defame'
+        },
+        {
+            question: 'What is the meaning of "Deride"?',
+            choices: ['Mock', 'Applaud', 'Praise', 'Compliment'],
+            correctAnswer: 'Mock'
+        },
+        {
+            question: 'What is the meaning of "Desiccate"?',
+            choices: ['Moisten', 'Dry', 'Soak', 'Dampen'],
+            correctAnswer: 'Dry'
+        },
+        {
+            question: 'What is the meaning of "Desultory"?',
+            choices: ['Methodical', 'Systematic', 'Random', 'Organized'],
+            correctAnswer: 'Random'
+        },
+        {
+            question: 'What is the meaning of "Diatribe"?',
+            choices: ['Praise', 'Compliment', 'Harangue', 'Eulogy'],
+            correctAnswer: 'Harangue'
+        },
+        {
+            question: 'What is the meaning of "Diffidence"?',
+            choices: ['Confidence', 'Certainty', 'Assurance', 'Self-doubt'],
+            correctAnswer: 'Self-doubt'
+        },
+        {
+            question: 'What is the meaning of "Dilettante"?',
+            choices: ['Expert', 'Professional', 'Amateur', 'Specialist'],
+            correctAnswer: 'Amateur'
+        },
+        {
+            question: 'What is the meaning of "Disabuse"?',
+            choices: ['Deceive', 'Mislead', 'Enlighten', 'Confuse'],
+            correctAnswer: 'Enlighten'
+        },
+            // Add 9 more questions for Test 06
+        ],
+        
+        [
+        {
+            question: 'Test 07-What is the meaning of "Discerning"?',
+            choices: ['Perceptive', 'Unperceptive', 'Observant', 'Insightful'],
+            correctAnswer: 'Perceptive'
+        },
+        {
+            question: 'What is the meaning of "Disparate"?',
+            choices: ['Similar', 'Alike', 'Different', 'Comparable'],
+            correctAnswer: 'Different'
+        },
+        {
+            question: 'What is the meaning of "Dissonance"?',
+            choices: ['Harmony', 'Concord', 'Agreement', 'Disharmony'],
+            correctAnswer: 'Disharmony'
+        },
+        {
+            question: 'What is the meaning of "Dogmatic"?',
+            choices: ['Open-minded', 'Flexible', 'Authoritative', 'Lenient'],
+            correctAnswer: 'Authoritative'
+        },
+        {
+            question: 'What is the meaning of "Ebullience"?',
+            choices: ['Calmness', 'Serenity', 'Enthusiasm', 'Tranquility'],
+            correctAnswer: 'Enthusiasm'
+        },
+        {
+            question: 'What is the meaning of "Eclectic"?',
+            choices: ['Narrow', 'Limited', 'Selective', 'Diverse'],
+            correctAnswer: 'Diverse'
+        },
+        {
+            question: 'What is the meaning of "Efficacy"?',
+            choices: ['Ineffectiveness', 'Inefficiency', 'Effectiveness', 'Weakness'],
+            correctAnswer: 'Effectiveness'
+        },
+        {
+            question: 'What is the meaning of "Effrontery"?',
+            choices: ['Politeness', 'Modesty', 'Audacity', 'Respectfulness'],
+            correctAnswer: 'Audacity'
+        },
+        {
+            question: 'What is the meaning of "Elegy"?',
+            choices: ['Celebration', 'Eulogy', 'Lament', 'Praise'],
+            correctAnswer: 'Lament'
+        },
+        {
+            question: 'What is the meaning of "Emollient"?',
+            choices: ['Rough', 'Soothing', 'Harsh', 'Abrasive'],
+            correctAnswer: 'Soothing'
+},
+            // Add 9 more questions for Test 07
+        ],
+        
+         [
+         {
+            question: 'Test 08-What is the meaning of "Empirical"?',
+            choices: ['Theoretical', 'Experimental', 'Hypothetical', 'Imaginary'],
+            correctAnswer: 'Experimental'
+        },
+        {
+            question: 'What is the meaning of "Endemic"?',
+            choices: ['Widespread', 'Pandemic', 'Localized', 'Global'],
+            correctAnswer: 'Localized'
+        },
+        {
+            question: 'What is the meaning of "Enervate"?',
+            choices: ['Energize', 'Strengthen', 'Weaken', 'Invigorate'],
+            correctAnswer: 'Weaken'
+        },
+
+        {
+            question: 'What is the meaning of "Enigmatic"?',
+            choices: ['Clear', 'Mysterious', 'Transparent', 'Obvious'],
+            correctAnswer: 'Mysterious'
+        },
+        {
+            question: 'What is the meaning of "Enumerate"?',
+            choices: ['List', 'Count', 'Omit', 'Skip'],
+            correctAnswer: 'List'
+        },
+        {
+            question: 'What is the meaning of "Ephemeral"?',
+            choices: ['Enduring', 'Permanent', 'Transient', 'Lasting'],
+            correctAnswer: 'Transient'
+        },
+        {
+            question: 'What is the meaning of "Epistolary"?',
+            choices: ['Verbal', 'Written', 'Spoken', 'Oral'],
+            correctAnswer: 'Written'
+        },
+        {
+            question: 'What is the meaning of "Equivocal"?',
+            choices: ['Ambiguous', 'Clear', 'Precise', 'Definite'],
+            correctAnswer: 'Ambiguous'
+        },
+        {
+            question: 'What is the meaning of "Esoteric"?',
+            choices: ['Accessible', 'Common', 'Known', 'Secret'],
+            correctAnswer: 'Secret'
+        },
+        {
+            question: 'What is the meaning of "Estimable"?',
+            choices: ['Praiseworthy', 'Blameworthy', 'Disreputable', 'Culpable'],
+            correctAnswer: 'Praiseworthy'
+        },
+        {
+            question: 'What is the meaning of "Eulogy"?',
+            choices: ['Censure', 'Criticism', 'Praise', 'Reproach'],
+            correctAnswer: 'Praise'
+        },
+            // Add 9 more questions for Test 08
+        ],
+        
+         [
+         {
+            question: 'Test 09-What is the meaning of "Evanescent"?',
+            choices: ['Eternal', 'Lasting', 'Vanishing', 'Enduring'],
+            correctAnswer: 'Vanishing'
+        },
+        {
+            question: 'What is the meaning of "Exacerbate"?',
+            choices: ['Soothe', 'Aggravate', 'Mitigate', 'Alleviate'],
+            correctAnswer: 'Aggravate'
+        },
+        {
+            question: 'What is the meaning of "Exculpate"?',
+            choices: ['Blame', 'Accuse', 'Clear', 'Charge'],
+            correctAnswer: 'Clear'
+        },
+        {
+            question: 'What is the meaning of "Exigent"?',
+            choices: ['Flexible', 'Lenient', 'Urgent', 'Relaxed'],
+            correctAnswer: 'Urgent'
+        },
+        {
+            question: 'What is the meaning of "Exonerate"?',
+            choices: ['Convict', 'Absolve', 'Condemn', 'Punish'],
+            correctAnswer: 'Absolve'
+        },
+        {
+            question: 'What is the meaning of "Explicate"?',
+            choices: ['Complicate', 'Elaborate', 'Simplify', 'Confuse'],
+            correctAnswer: 'Elaborate'
+        },
+        {
+            question: 'What is the meaning of "Extant"?',
+            choices: ['Extinct', 'Nonexistent', 'Existing', 'Dormant'],
+            correctAnswer: 'Existing'
+        },
+        {
+            question: 'What is the meaning of "Extol"?',
+            choices: ['Criticize', 'Praise', 'Blame', 'Reproach'],
+            correctAnswer: 'Praise'
+        },
+        {
+            question: 'What is the meaning of "Facetious"?',
+            choices: ['Serious', 'Humorous', 'Jovial', 'Solemn'],
+            correctAnswer: 'Humorous'
+        },
+        {
+            question: 'What is the meaning of "Fastidious"?',
+            choices: ['Meticulous', 'Careless', 'Sloppy', 'Negligent'],
+            correctAnswer: 'Meticulous'
+        },
+            // Add 9 more questions for Test 09
+        ],
+        
+         [
+         {
+            question: 'Test -10 What is the meaning of "Fatuous"?',
+            choices: ['Intelligent', 'Sensible', 'Silly', 'Wise'],
+            correctAnswer: 'Silly'
+        },
+        {
+            question: 'What is the meaning of "Fecund"?',
+            choices: ['Infertile', 'Barren', 'Fertile', 'Sterile'],
+            correctAnswer: 'Fertile'
+        },
+        {
+            question: 'What is the meaning of "Fervid"?',
+            choices: ['Apathetic', 'Indifferent', 'Enthusiastic', 'Calm'],
+            correctAnswer: 'Enthusiastic'
+        },
+        {
+            question: 'What is the meaning of "Flag"?',
+            choices: ['Soar', 'Fall', 'Rise', 'Decline'],
+            correctAnswer: 'Decline'
+        },
+        {
+            question: 'What is the meaning of "Foment"?',
+            choices: ['Stifle', 'Suppress', 'Incite', 'Quell'],
+            correctAnswer: 'Incite'
+        },
+        {
+            question: 'What is the meaning of "Forestall"?',
+            choices: ['Anticipate', 'Ignore', 'Neglect', 'Overlook'],
+            correctAnswer: 'Anticipate'
+        },
+        {
+            question: 'What is the meaning of "Fractious"?',
+            choices: ['Cooperative', 'Amiable', 'Unruly', 'Compliant'],
+            correctAnswer: 'Unruly'
+        },
+        {
+            question: 'What is the meaning of "Garrulous"?',
+            choices: ['Talkative', 'Reserved', 'Taciturn', 'Silent'],
+            correctAnswer: 'Talkative'
+        },
+        {
+            question: 'What is the meaning of "Gregarious"?',
+            choices: ['Solitary', 'Unsocial', 'Introverted', 'Sociable'],
+            correctAnswer: 'Sociable'
+        },
+        {
+            question: 'What is the meaning of "Guileless"?',
+            choices: ['Deceptive', 'Cunning', 'Innocent', 'Sly'],
+            correctAnswer: 'Innocent'
+        },
+            // Add 9 more questions for Test 10
+        ],
+        
+        // Add more tests as needed
+    ];
+
+    let currentTestIndex = null;
+    let currentQuestionIndex = 0;
+    let selectedAnswer = null;
+    let correctAnswers = 0;
+
+    function toggleTestSection(testIndex) {
+        const questionSection = document.getElementById('questionSection');
+        const markingResultDiv = document.getElementById('markingResult');
+
+        // Reset test index and hide question section if already open
+        if (currentTestIndex !== null && currentTestIndex === testIndex) {
+            questionSection.style.display = 'none';
+            markingResultDiv.textContent = ''; // Clear marking result
+            currentTestIndex = null;
+            return;
+        }
+
+        // Show question section for the selected test
+        currentTestIndex = testIndex;
+        currentQuestionIndex = 0;
+        correctAnswers = 0;
+        displayQuestion();
+        questionSection.style.display = 'block';
+    }
+
+    function displayQuestion() {
+        const questionContainer = document.getElementById('questionContainer');
+        const currentQuestion = tests[currentTestIndex][currentQuestionIndex];
+
+        let html = `
+            <div>${currentQuestion.question}</div>
+            <div id="choicesContainer">
+        `;
+
+        currentQuestion.choices.forEach((choice) => {
+            html += `
+                <label>
+                    <input type="radio" name="choices" value="${choice}" onclick="setSelectedAnswer('${choice}')">
+                    ${choice}
+                </label>
+            `;
+        });
+
+        html += '</div>';
+        questionContainer.innerHTML = html;
+    }
+
+    function setSelectedAnswer(answer) {
+        selectedAnswer = answer;
+    }
+
+    function submitAnswer() {
+        if (currentTestIndex === null) {
+            alert('Please select a test first.');
+            return;
+        }
+
+        const currentQuestion = tests[currentTestIndex][currentQuestionIndex];
+
+        if (selectedAnswer === null) {
+            alert('Please select an answer.');
+            return;
+        }
+
+        if (selectedAnswer === currentQuestion.correctAnswer) {
+            alert('Congratulations! Your answer is correct.');
+            correctAnswers++;
+        } else {
+            alert(`Incorrect! The correct answer is: ${currentQuestion.correctAnswer}`);
+        }
+
+        currentQuestionIndex++;
+        selectedAnswer = null;
+
+        if (currentQuestionIndex < tests[currentTestIndex].length) {
+            displayQuestion();
+        } else {
+            displayMarkingResult();
+        }
+    }
+
+    function displayMarkingResult() {
+        const markingResultDiv = document.getElementById('markingResult');
+        markingResultDiv.textContent = `You got ${correctAnswers} out of ${tests[currentTestIndex].length} questions correct.`;
+
+        // Reset test index after displaying result
+        currentTestIndex = null;
+    }
+
+      
+      //**
+      
+      function submitAnswer() {
+    if (currentTestIndex === null) {
+        showAlert('Please select a test first.', 'warning');
+        return;
+    }
+
+    const currentQuestion = tests[currentTestIndex][currentQuestionIndex];
+
+    if (selectedAnswer === null) {
+        showAlert('Please select an answer.', 'warning');
+        return;
+    }
+
+    if (selectedAnswer === currentQuestion.correctAnswer) {
+        showAlert('Congratulations! Your answer is correct.', 'success');
+        correctAnswers++;
+    } else {
+        showAlert(`Incorrect! The correct answer is: ${currentQuestion.correctAnswer}`, 'error');
+    }
+
+    currentQuestionIndex++;
+    selectedAnswer = null;
+
+    if (currentQuestionIndex < tests[currentTestIndex].length) {
+        displayQuestion();
+    } else {
+        displayMarkingResult();
+    }
+}
+
+function showAlert(message, type) {
+    const alertContainer = document.createElement('div');
+    alertContainer.classList.add('custom-alert', type);
+    alertContainer.textContent = message;
+
+    document.body.appendChild(alertContainer);
+
+    setTimeout(() => {
+        alertContainer.remove();
+    }, 3000); // Remove the alert after 3 seconds
+}
+
+    
+
+        //***
+        function searchDictionary() {
+            const input = document.getElementById('searchInput').value;
+            const resultDiv = document.getElementById('result');
+
+            // Convert input to lowercase for case-insensitive search
+            const inputLowerCase = input.toLowerCase();
+            const translation = dictionary[inputLowerCase];
+
+            if (translation) {
+                resultDiv.innerHTML = generateClickableWord(inputLowerCase, translation);
+            } else {
+                resultDiv.textContent = 'No translation found.';
+            }
+        }
+
+        function generateClickableWord(word, translation) {
+            return `
+                <div class="wordContainer" onclick="expandWord('${word}')">
+                    <strong>${word}</strong>
+                    <div class="wordDetails" id="${word}Details">
+                        <p>Bangla Meaning: ${translation}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function expandWord(word) {
+            const wordDetails = document.getElementById(`${word}Details`);
+            if (wordDetails.style.display === 'block') {
+                wordDetails.style.display = 'none';
+            } else {
+                wordDetails.style.display = 'block';
+            }
+        }
+
+        function displayTodaysWord() {
+            const todaysWordContainer = document.getElementById('todaysWordContainer');
+
+            // Get today's date and use it to select a word from the list
+            const today = new Date();
+            const wordIndex = today.getDate() % wordOfTheDayList.length;
+            const todayWord = wordOfTheDayList[wordIndex];
+
+            const formattedDate = `${today.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`;
+
+            const html = `
+                <div class="wordContainer" onclick="expandWord('${todayWord.word}')">
+                    <strong>${todayWord.word}</strong>
+                    <p>${formattedDate}</p>
+                    <div class="wordDetails" id="${todayWord.word}Details">
+                        <p>Bangla Meaning: ${todayWord.meaning}</p>
+                        <p>Mnemonic: ${todayWord.mnemonic}</p>
+                        <p>Example: ${todayWord.example}</p>
+                    </div>
+                </div>
+            `;
+
+            todaysWordContainer.innerHTML = html;
+        }
+
+        function displayAllWordsList() {
+            const wordListContainer = document.getElementById('wordListContainer');
+
+            let html = '';
+            allWordsList.forEach((wordObj, index) => {
+                html += `
+                    <div class="wordContainer" onclick="expandWord('word-${index}')">
+                        <strong>${wordObj.word}</strong>
+                        <div class="wordDetails" id="word-${index}Details">
+                            <p>Bangla Meaning: ${wordObj.meaning}</p>
+                            <p>Mnemonic: ${wordObj.mnemonic}</p>
+                            <p>Example: ${wordObj.example}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            wordListContainer.innerHTML = html;
+        }
+
+        // Call the functions to display today's word, word list, and the first question when the page loads
+        displayTodaysWord();
+        displayAllWordsList();
+        displayQuestion();
+
+     //**
+     function searchDictionary() {
+    const input = document.getElementById('searchInput').value;
+    const resultDiv = document.getElementById('result');
+
+    // Convert input to lowercase for case-insensitive search
+    const inputLowerCase = input.toLowerCase();
+
+    let html = '';
+
+    // Check if the search input is not empty
+    if (inputLowerCase !== '') {
+        // Loop through all words in the dictionary
+        for (const word in dictionary) {
+            if (word.toLowerCase().includes(inputLowerCase)) {
+                html += generateClickableWord(word, dictionary[word]);
+            }
+        }
+    }
+
+    if (html !== '') {
+        resultDiv.innerHTML = html;
+    } else {
+        resultDiv.textContent = 'No matching words found.';
+    }
+}
+
+
+
+    </script>
+</body>
+</html>
+
+
+    
