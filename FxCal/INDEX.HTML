@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Goal Set Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background-image: url('background.jpg'); /* Add your background image URL here */
+            background-size: cover;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .calculator {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #c0dfde;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .calculator:hover {
+
+            scale: 1.02;
+            transition: 0.5s;
+            box-shadow: 10px 20px 50px rgb(154, 154, 154);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            border-radius: 6px;
+            border: 1px solid white;
+        }
+        
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+            cursor: pointer;
+            display: block; /* Make the button a block element */
+            margin: auto; /* Center the button horizontally */
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        #result p {
+            margin: 8px 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+        }
+
+        #risk, #dailyLoss {
+            color: red;
+        }
+
+        #downloadButton {
+            background-color: #2196F3;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Style the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #282828;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: rgb(46, 45, 45);
+        }
+
+        /* Hover effect on table rows */
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+    <!-- Include html2pdf.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="calculator" id="pdfContainer">
+        <h2 style='text-align:center;background-color: #4caf50;padding: 10px;border-radius: 10px;'>Forex Goal Set Calculator - <span id="displayedName"></span></h2>
+
+        <label for="userName">Your Name : </label>
+        <input type="text" id="userName" placeholder="Enter your name">
+
+        <label for="requireAmount">Required Amount($) :</label>
+        <input type="number" id="requireAmount" placeholder="Enter amount">
+
+        <label for="initialAmount">Initial Amount($) :</label>
+        <input type="number" id="initialAmount" placeholder="Enter amount">
+
+        <label for="totalYear">Total Year :</label>
+        <input type="number" id="totalYear" placeholder="Enter number of years">
+
+        <label for="riskPercentage">Risk % (You can afford) :</label>
+        <input type="number" id="riskPercentage" placeholder="Enter risk percentage">
+
+        <label for="pips">S.L in Pips (You can Afford) :</label>
+        <input type="number" id="pips" placeholder="Enter pips">
+
+        <button onclick="calculate()">Calculate</button>
+
+        <div id="result">
+            <h3>Result:</h3>
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Risk</td>
+                    <td>$<span id="risk"></span></td>
+                </tr>
+                <tr>
+                    <td>Monthly Target</td>
+                    <td>$<span id="monthlyTarget"></span></td>
+                </tr>
+                <tr>
+                    <td>Weekly Target</td>
+                    <td>$<span id="weeklyTarget"></span></td>
+                </tr>
+                <tr>
+                    <td>Daily Target</td>
+                    <td>$<span id="dailyTarget"></span></td>
+                </tr>
+                <tr>
+                    <td>Per Week Trade</td>
+                    <td><span id="weeklyEntry"></span></td>
+                </tr>
+                <tr>
+                    <td>Per Day Trade</td>
+                    <td><span id="dailyEntry"></span></td>
+                </tr>
+                <tr>
+                    <td>Daily Exit Upon Loss</td>
+                    <td><span id="dailyLoss"></span></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Add the Download button -->
+        <button id="downloadButton" onclick="downloadPDF()">Download</button>
+    </div>
+
+    <footer>&copy; Copyright Jahid</footer>
+
+    <script>
+        // Function to download PDF
+        function downloadPDF() {
+            const element = document.getElementById('pdfContainer');
+
+            // Use html2pdf.js to generate the PDF
+            html2pdf(element, {
+                margin: 5,
+                filename: 'forex_goal_set_results.pdf',
+                image: { type: 'jpeg', quality: 1.5 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                output: 'dataurl',
+                html2pdf: {
+                    width: 500,
+                    height: 800,
+                    margin: 5,
+                    x: 2,
+                    y: 2
+                }
+            });
+        }
+
+        function calculate() {
+            // Get input values
+            const userName = document.getElementById('userName').value;
+            document.getElementById('displayedName').innerText = userName;
+
+            const requireAmount = parseFloat(document.getElementById('requireAmount').value);
+            const initialAmount = parseFloat(document.getElementById('initialAmount').value);
+            const totalYear = parseFloat(document.getElementById('totalYear').value);
+            const riskPercentage = parseFloat(document.getElementById('riskPercentage').value);
+            const pips = parseFloat(document.getElementById('pips').value);
+
+            // Perform calculations
+            const risk = (initialAmount * riskPercentage) / 100;
+            const monthlyTarget = requireAmount / (totalYear * 12);
+            const weeklyTarget = requireAmount / (totalYear * 52);
+            const dailyTarget = requireAmount / (totalYear * 260);
+            const weeklyEntry = risk / pips ;
+            const dailyEntry = weeklyEntry /5 ;
+            const dailyLoss = weeklyEntry /8 ;
+
+            // Display results
+            document.getElementById('risk').innerText = risk.toFixed(2);
+            document.getElementById('monthlyTarget').innerText = monthlyTarget.toFixed(2);
+            document.getElementById('weeklyTarget').innerText = weeklyTarget.toFixed(2);
+            document.getElementById('dailyTarget').innerText = dailyTarget.toFixed(2);
+            document.getElementById('weeklyEntry').innerText = weeklyEntry.toFixed(2);
+            document.getElementById('dailyEntry').innerText = dailyEntry.toFixed(2);
+            document.getElementById('dailyLoss').innerText = dailyLoss.toFixed(2);
+        }
+
+        // Update results on input change
+        document.getElementById('requireAmount').addEventListener('input', calculate);
+        document.getElementById('initialAmount').addEventListener('input', calculate);
+        document.getElementById('totalYear').addEventListener('input', calculate);
+        document.getElementById('riskPercentage').addEventListener('input', calculate);
+        document.getElementById('pips').addEventListener('input', calculate);
+    </script>
+</body>
+</html>
