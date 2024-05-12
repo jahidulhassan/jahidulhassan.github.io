@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMV Calculator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+        background-image: url('background1.jpg');
+        background-size: cover; /* Adjust the size of the background image */
+        background-position: center;
+    }
+    h2 {
+    text-align: center;
+    margin: 10px auto;
+    padding: 10px;
+    color: #333;
+    width: 30%;
+    background:green;
+    border-radius: 10px;
+    -webkit-text-fill-color: white;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+}
+
+h3 {
+    text-align: center;
+    margin: 10px auto;
+    padding: 10px;
+    color: #333;
+    width: 80%;
+    background:green;
+    border-radius: 10px;
+    -webkit-text-fill-color: white;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+}
+    
+    table {
+        border-collapse: collapse;
+        width: 30%;
+        margin:auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        align-items: center;
+        
+
+    }
+    th, td {
+        border: 1px solid #000000;
+        padding: 12px;
+        text-align: center;
+    }
+    th {
+        background-color: #5aeef9;
+        color: #000000;
+        text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+    }
+    input[type="number"] {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 5px;
+        /* margin-bottom: 10px; */
+        border-radius: 8px;
+        align-items: center;
+    }
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    button:hover {
+        background-color: #45a049;
+        scale: 1.02;
+        transition: 0.1s ease-in-out;
+    }
+    #result {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    .result-box {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.3s ease;
+    }
+    .result-box:hover {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+    p {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    footer {
+        text-align: center;
+        margin-top: 50px;
+        color: #666;
+    }
+    @media screen and (min-width: 768px) {
+        /* Adjust table layout for larger screens */
+        table {
+            max-width: 600px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<h2>SMV Calculator</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>SL. No</th>
+      <th>Stopwatch Reading</th>
+    </tr>
+  </thead>
+  <tbody id="stopwatchReadings">
+    <!-- Rows will be added dynamically -->
+  </tbody>
+</table>
+
+
+
+<div style="max-width: 300px; margin: 0 auto;">
+    <h3>Enter Skills, Effort, and Quality:</h3>
+    <label for="skills">Skills:</label>
+    <input type="number" id="skills" min="0" max="10" step="0.1">
+    <label for="effort">Effort:</label>
+    <input type="number" id="effort" min="0" max="10" step="0.1">
+    <label for="quality">Quality:</label>
+    <input type="number" id="quality" min="0" max="10" step="0.1">
+
+    <button onclick="calculateSMV()">Calculate SMV</button>
+</div>
+
+<div id="result">
+    <div class="result-box">
+        <p id="ot">OT: </p>
+    </div>
+    <div class="result-box">
+        <p id="consistency">Consistency: </p>
+    </div>
+    <div class="result-box">
+        <p id="or">OR: </p>
+    </div>
+    <div class="result-box">
+        <p id="bt">BT: </p>
+    </div>
+    <div class="result-box">
+        <p id="smv">SMV (in Minutes): </p>
+    </div>
+    <div class="result-box">
+        <p id="capacity">Capacity (in Pcs): </p>
+    </div>
+</div>
+
+<footer style="padding: 10px;">&copy; Jahid</footer>
+
+<script>
+function calculateSMV() {
+    var stopwatchReadings = document.querySelectorAll("#stopwatchReadings input[type='number']");
+    var totalStopwatchReading = 0;
+    var maxReading = -Infinity;
+    var minReading = Infinity;
+
+    stopwatchReadings.forEach(function(readingInput) {
+        var reading = parseFloat(readingInput.value);
+        totalStopwatchReading += reading;
+        if (reading > maxReading) {
+            maxReading = reading;
+        }
+        if (reading < minReading) {
+            minReading = reading;
+        }
+    });
+
+    var OT = totalStopwatchReading / stopwatchReadings.length;
+    var consistency = 1 - ((maxReading - minReading) / OT);
+
+    var skills = parseFloat(document.getElementById("skills").value);
+    var effort = parseFloat(document.getElementById("effort").value);
+    var quality = parseFloat(document.getElementById("quality").value);
+
+    var OR = (skills + effort + quality + consistency*100) / 4;
+    
+    var BT = OT * (OR / 100);
+    var SMV = (BT * 1.15) / 60;
+    var capacity = 60 / SMV;
+
+    document.getElementById("ot").textContent = "OT: " + OT.toFixed(2);
+    document.getElementById("consistency").textContent = "Consistency: " + consistency.toFixed(2);
+    document.getElementById("or").textContent = "OR: " + OR.toFixed(2);
+    document.getElementById("bt").textContent = "BT: " + BT.toFixed(2);
+    document.getElementById("smv").textContent = "SMV (in Minutes): " + SMV.toFixed(2);
+    document.getElementById("capacity").textContent = "Capacity (in Pcs): " + capacity.toFixed(2);
+}
+
+// Function to add rows dynamically
+(function() {
+    var tbody = document.getElementById("stopwatchReadings");
+    for (var i = 1; i <= 10; i++) {
+        var row = document.createElement("tr");
+        row.innerHTML = "<td>" + i + "</td><td><input type='number' min='0'></td>";
+        tbody.appendChild(row);
+    }
+})();
+</script>
+
+</body>
+</html>
