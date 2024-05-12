@@ -107,10 +107,22 @@ h3 {
         color: #666;
     }
 
+    .floating-news {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
 .floating-news marquee {
     font-size: 20px;
     white-space: nowrap;
 }
+
     @media screen and (min-width: 768px) {
         /* Adjust table layout for larger screens */
         table {
@@ -121,11 +133,12 @@ h3 {
 </head>
 <body>
 
-<div class="floating-news">
+    <div class="floating-news">
         <marquee behavior="scroll" direction="left">
             Dedicated to MBA-AM 241 Batch, BGMEA University of Fashion & Technology (BUFT)
         </marquee>
     </div>
+    
 
 <h2>SMV Calculator</h2>
 
