@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+       body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('pexels-steve-johnson-1269968.jpg') center/cover;
+    color: #000000;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: auto;
+}
+
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to bottom, #ffffff, #ececec); /* Adjust colors as needed */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: auto;
+    animation: fadeIn 0.8s ease-out;
+}
+
+
+
+        .container:hover {
+
+            scale: 1.02;
+            transition: 0.5s ease-in;
+        }
+
+        
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        h1:hover {
+            text-align: center;
+            color: #005dc0de;
+            scale: 1.02;
+            transition:0.5s ease-in-out;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 2px solid #ced4da;
+            border-radius: 10px;
+            box-sizing: border-box;
+            transition: border-color 0.2s ease-in-out;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        #searchResults {
+            margin-top: 20px;
+        }
+
+        .result {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #007bff;
+            color: #000000;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        form {
+            display: none;
+            margin-top: 20px;
+            background-color: #007bff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        form button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #fff;
+            color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+    <title>Swift Searches, Instant Results</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Swift Searches, Instant Results</h1>
+        <input type="text" id="searchInput" placeholder="Your Name, Organization, Blood Group">
+        <div id="searchResults"></div>
+        <button id="addDataBtn" onclick="location.href='gallery.html'" style="font-size: 20px;color: white;">Our Gallery</button>
+        <form id="addDataForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="position">Position:</label>
+            <input type="text" id="position" name="position" required>
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" required>
+            <label for="bloodGroup">Blood Group:</label>
+            <input type="text" id="bloodGroup" name="bloodGroup" required>
+            <label for="company">Company:</label>
+            <input type="text" id="company" name="company" required>
+            <label for="image">Image Path (Your WhatsApp profile image copy address):</label>
+            <input type="text" id="image" name="image" placeholder="Your WhatsApp profile image copy address" required>
+            <button type="button" onclick="addNewData()">Add Data</button>
+        </form>
+    </div>
+
+    <script>
+        // Hardcoded data
+        let data = [
+           
+            {
+                Name: "Jahidul Hassan",
+                Mobile: "01952004180",
+                BloodGroup: "O+",
+                Company: "ACS Textiles Ltd.",
+                Image: "profile/jahid.jpg"
+            },
+
+            {
+                Name: "Md. Riaz uddin",
+                Mobile: "01679222030",
+                BloodGroup: "O+",
+                Company: "Viyellatex Group",
+                Image: "profile/riaz.jpeg"
+            },
+
+            {
+                Name: "Tanmoy Islam",
+                Mobile: "01686625595",
+                BloodGroup: "A+",
+                Company: "Top Energy Sourcing Ltd.",
+                Image: "profile/tonmoy.jpg"
+            },
+
+            {
+                Name: "Md.Ariful Islam",
+                Mobile: "01842251701",
+                BloodGroup: "O+",
+                Company: "",
+                Image: "profile/arif.jpg"
+            },
+            {
+                Name: "Md. Masumul Hasan",
+                Mobile: "01715178810",
+                BloodGroup: "B+",
+                Company: "Intelligent Image Management Limited",
+                Image: "profile/masum.jpg"
+            },
+
+
+
+        //  ACS TEXTILES (BD)
+
+
+
+
+
+
+
+
+
+
+
+            // Add more data as needed
+        ];
+
+        function saveDataToStorage() {
+            // This function won't be used since data is hardcoded
+        }
+
+        function toggleForm() {
+            const addDataForm = document.getElementById('addDataForm');
+            addDataForm.style.display = addDataForm.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function search() {
+            const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+            const searchResults = document.getElementById('searchResults');
+
+            searchResults.innerHTML = '';
+
+            if (searchTerm !== '') {
+                const results = data.filter(item => {
+                    for (const key in item) {
+                        if (item[key].toString().toLowerCase().includes(searchTerm)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+
+                results.forEach(result => {
+                    const resultDiv = document.createElement('div');
+                    resultDiv.classList.add('result');
+                    resultDiv.innerHTML = `
+                        <img src="${result.Image}" alt="${result.Name}" />
+                        <p><strong>Name:</strong> ${result.Name}</p>
+                        <p><strong>Mobile Number:</strong> ${result.Mobile}</p>
+                        <p><strong>Blood Group:</strong> ${result.BloodGroup}</p>
+                        <p><strong>Company:</strong> ${result.Company}</p>
+                    `;
+                    searchResults.appendChild(resultDiv);
+                });
+            }
+        }
+
+        function addNewData() {
+            const newData = {
+                Name: document.getElementById('name').value,
+                // Position: document.getElementById('position').value,
+                Mobile: document.getElementById('mobile').value,
+                BloodGroup: document.getElementById('bloodGroup').value,
+                Company: document.getElementById('company').value,
+                Image: document.getElementById('image').value
+            };
+
+            data.push(newData);
+            // Save data to localStorage (won't be used)
+            search();
+            document.getElementById('addDataForm').reset();
+            document.getElementById('addDataForm').style.display = 'none';
+        }
+
+        document.getElementById('searchInput').addEventListener('input', search);
+        document.getElementById('addDataBtn').addEventListener('click', toggleForm);
+
+        // Initial search on page load
+        search();
+    </script>
+
+</body>
+
+</html>
